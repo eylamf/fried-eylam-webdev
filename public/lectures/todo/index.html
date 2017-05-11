@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="todoApp">
+
+<head>
+    <!-- add angular and bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
+    <meta charset="utf-8">
+    <title>First Angular App</title>
+</head>
+
+<body>
+<div class="container" ng-controller="todoController">
+
+
+    <h1>Todo List</h1>
+    <input ng-model="todo.title" class="form-control" placeholder="What do you need?"/>
+    <br>
+    <textarea ng-model="todo.details" class="form-control" placeholder="Additional notes..."></textarea>
+    <br>
+    <button ng-click="createTodo(todo)" class="btn btn-block btn-primary">add item</button>
+
+    <button ng-click="updateTodo(todo)" class="btn btn-block btn-success">update</button>
+    <br>
+    <ul class="list-group">
+        <li ng-repeat="todo in todos" class="list-group-item">
+            <h3>{{todo.title}}</h3>
+            <span class="pull-right glyphicon glyphicon-trash"
+                  ng-click="deleteTodo(todo)"></span>
+            <span class="pull-right glyphicon glyphicon-edit"
+                  ng-click="editTodo(todo)"></span>
+            <p>{{todo.details}}</p>
+            <label>{{todo.date | date}}</label>
+        </li>
+
+    </ul>
+</div>
+</body>
+
+</html>
