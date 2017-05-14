@@ -6,3 +6,13 @@
 1. mongod
 1. node server.js
 1. browse to localhost:3000
+
+BIO:
+-----
+My name is Eylam Fried. I am a 3rd year Computer Science and Digital Art combined major.
+
+PURPOSE:
+--------
+This is a repo for CS4550 WebDev where all my work will be posted.
+
+
