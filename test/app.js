@@ -6,13 +6,22 @@ module.exports = function(app)
 
     var connectionString = 'mongodb://127.0.0.1:27017/test';
 
-    if(process.env.MLAB_USERNAME) {
+    /*if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
             process.env.MLAB_PASSWORD + "@" +
             process.env.MLAB_HOST + ':' +
             process.env.MLAB_PORT + '/' +
             process.env.MLAB_APP_NAME;
+    }*/
+
+
+    if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
+        var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
+        var password = process.env.MLAB_PASSWORD_WEBDEV;
+        connectionString = 'mongodb://' + username + ':' + password;
+        connectionString += 'mongodb://heroku_9hsqv3gp:abfe0in9ar0bn5f2l5riumga8t@ds139801.mlab.com:39801/heroku_9hsqv3gp'; // user yours
     }
+
 
     var mongoose = require("mongoose");
     mongoose.connect(connectionString);
