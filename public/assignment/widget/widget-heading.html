@@ -8,9 +8,23 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default ef-light-nav navbar-fixed-top">
-        <div class="container-fluid">
-            <a href="#">
+<nav class="navbar navbar-default ef-light-nav navbar-fixed-top hidden-xs col-sm-4">
+
+    <a href="widget-list.html">
+        <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+    </a>
+
+    <a class="ef-nav-title-dark" href="#">
+        Widgets
+    </a>
+
+</nav>
+
+
+
+    <nav class="navbar navbar-default ef-light-nav navbar-fixed-top col-sm-8">
+
+            <a class="visible-xs" href="widget-list.html">
                 <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
             </a>
 
@@ -21,36 +35,55 @@
                 Widget Edit
             </a>
 
-            <a href="">
+            <a href="widget-list.html">
                 <span class="ef-dark-glyph-header glyphicon glyphicon-ok pull-right"></span>
             </a>
 
-        </div>
+
     </nav>
 
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 hidden-xs srollable-left">
+            <div class="list-group">
+                <a href="widget-heading.html" class="list-group-item list-group-item-action">Header</a>
+                <a href="#" class="list-group-item list-group-item-action">Label</a>
+                <a href="#" class="list-group-item list-group-item-action">HTML</a>
+                <a href="#" class="list-group-item list-group-item-action">Text Input</a>
+                <a href="#" class="list-group-item list-group-item-action">Link</a>
+                <a href="#" class="list-group-item list-group-item-action">Button</a>
+                <a href="widget-image.html" class="list-group-item list-group-item-action">Image</a>
+                <a href="widget-youtube.html" class="list-group-item list-group-item-action">YouTube</a>
+                <a href="#" class="list-group-item list-group-item-action">Data Table</a>
+                <a href="#" class="list-group-item list-group-item-action">Repeater</a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <label for="name">Name</label>
+            <input id="name" class="form-control" type="text" placeholder="Name">
 
-        <label for="name">Name</label>
-        <input id="name" class="form-control" type="text" placeholder="Name">
+            <label for="text">Text</label>
+            <input id="text" class="form-control" type="text" placeholder="Text"
+                   value="A New Look at Proxima b's Potential Climate Offers Hope for Future Colonists">
 
-        <label for="text">Text</label>
-        <input id="text" class="form-control" type="text" placeholder="Text">
+            <label for="size">Size</label>
+            <!--<input id="size" class="form-control" type="text" placeholder="Size">-->
+            <select class="form-control" id="size">
+                <option value="ONE">1</option>
+                <option value="TWO">2</option>
+                <option value="THREE">3</option>
+                <option value="FOUR">4</option>
+                <option value="FIVE">5</option>
+            </select>
 
-        <label for="size">Size</label>
-        <!--<input id="size" class="form-control" type="text" placeholder="Size">-->
-        <select class="form-control" id="size">
-            <option value="ONE">1</option>
-            <option value="TWO">2</option>
-            <option value="THREE">3</option>
-            <option value="FOUR">4</option>
-            <option value="FIVE">5</option>
-        </select>
-
-        <a class="btn btn-block btn-danger" href="">
-            Delete
-        </a>
-
+            <a class="btn btn-block btn-danger" href="widget-list.html">
+                Delete
+            </a>
+        </div>
     </div>
+</div>
+
+
 
     <nav class="navbar navbar-default ef-light-nav navbar-fixed-bottom">
         <div class="container-fluid">
