@@ -1,23 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="WAM">
-<head>
-    <script src="../../../../vendor/angular/angular.min.js"></script>
-    <script src="app.js"></script>
-    <script src="../controllers/login.controller.client.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../../css/style.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum scale=1.0, user-scalable=no"/>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-<div class="container-fluid"
-     ng-controller="loginController">
+
+<div class="container-fluid">
 
     <h1>Login</h1>
 
-    <div ng-show="message" class="alert alert-danger">
-        {{message}}
+    <div ng-show="vm.message" class="alert alert-danger">
+        {{vm.message}}
     </div>
 
     <label for="username">Username</label>
@@ -34,16 +22,13 @@
            type="password"
            placeholder="Password"/>
 
-    <a ng-click="login(username, password)"
+    <a ng-click="vm.login(username, password)"
        class="btn btn-block btn-primary">
         Login
     </a>
 
-    <a href="register.html"
+    <a href="#!/register"
        class="btn btn-block btn-success">
         Register
     </a>
 </div>
-</body>
-
-</html>

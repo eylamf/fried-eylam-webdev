@@ -7,28 +7,21 @@
         .module('WAM')
         .controller('loginController', loginController);
 
-    function loginController($scope) {
+    function loginController($location, userService) {
+        // this is instead of using $scope
+        var model = this;
 
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
 
-        $scope.login = function(username, password) {
-            console.log([username, password]);
-            var found = false;
-            for (var u in users) {
-                var user = users[u];
-                if (user.username === username && user.password === password) {
-                    found = true;
-                }
-            }
-            if (found) {
-                $scope.message = "Welcome " + username;
+
+        model.login = function(username, password) {
+
+            var found = userService.findUserByCredentials(username, password);
+
+            if (found !== null) {
+                $location.url('/user/' + found._id);
+                // $scope.message = "Welcome " + username;
             } else {
-                $scope.message = "Username " + username + " not found";
+                model.message = "Username " + username + " not found";
             }
         };
 

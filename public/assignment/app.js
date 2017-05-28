@@ -4,6 +4,6 @@
 
 (function() {
     angular
-        .module('WAM', []);
-
+        .module('WAM', ['ngRoute']);
+        //.config(configuration);
 })();
