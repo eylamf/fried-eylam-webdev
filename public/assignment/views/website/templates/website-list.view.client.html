@@ -13,7 +13,7 @@
                 Websites
             </a>
 
-            <a href="website-new.html">
+            <a href="#!/user/{{model.userId}}/website/new">
                 <span class="ef-white-glyph-header glyphicon glyphicon-plus pull-right"></span>
             </a>
 
@@ -24,7 +24,7 @@
 
 <div class="container-fluid">
     <ul class="list-group">
-        <!--<li class="list-group-item active">
+        <li class="list-group-item active">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
                     Website Name
@@ -39,89 +39,30 @@
 
                 </div>
             </div>
-        </li>-->
+        </li>
 
 
-        <li class="list-group-item">
+        <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
                     <a href="../page/page-list.html">
-                        website 1
+                        {{website.name}}
                     </a>
                 </div>
                 <div class="col-lg-3 visible-lg">
-                    1/1/2017
+                    {{website.created | date}}
                 </div>
                 <div class="col-md-3 hidden-sm  hidden-xs">
-                    2/2/2017
+                    {{website.updated | date}}
                 </div>
                 <div class="col-sm-1">
-                    <a href="website-edit.html">
+                    <a href="#!/">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
             </div>
         </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a href="../page/page-list.html">
-                        website 2
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    1/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm  hidden-xs">
-                    2/2/2017
-                </div>
-                <div class="col-sm-1">
-                    <a href="website-edit.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a href="../page/page-list.html">
-                        website 3
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    1/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm  hidden-xs">
-                    2/2/2017
-                </div>
-                <div class="col-sm-1">
-                    <a href="website-edit.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-lg-5 col-md-8 col-sm-11 col-xs-11">
-                    <a href="../page/page-list.html">
-                        website 4
-                    </a>
-                </div>
-                <div class="col-lg-3 visible-lg">
-                    1/1/2017
-                </div>
-                <div class="col-md-3 hidden-sm  hidden-xs">
-                    2/2/2017
-                </div>
-                <div class="col-sm-1">
-                    <a href="website-edit.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </div>
-            </div>
-        </li>
+
     </ul>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
