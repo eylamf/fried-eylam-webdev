@@ -15,10 +15,20 @@
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
 
+
+
         // this needs to execute at startup
         function init() {
             model.widgets = widgetService.findWidgetsByPageId(model.pageId);
             model.widget = widgetService.findWidgetById(model.widgetId);
+            model.widgetCopy = angular.copy(model.widget);
+            model.emptyWidgetHeader = {
+                _id: new Date().getTime(),
+                widgetType: "HEADING",
+                pageId: model.pageId,
+                size: "",
+                text: ""
+            };
         }
         init();
 
@@ -44,11 +54,11 @@
             return $sce.trustAsResourceUrl(embedUrl);
         }
 
-        function createWidget(pageId, widget) {
-            widgetService.createWidget(pageId, widget);
+        function createWidget(pageId, widgetType) {
+            widgetService.createWidget(pageId, widgetType);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
                 model.pageId + '/widget/');
-            console.log(pageId);
+
         }
 
         function updateWidget(widgetId, widget) {

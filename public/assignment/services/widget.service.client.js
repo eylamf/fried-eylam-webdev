@@ -36,14 +36,29 @@
         };
         return api;
 
-        function createWidget(pageId, widget) {
+        /*function createWidget(pageId, widget) {
+
             var newWidget = angular.copy(widget);
             newWidget._id = (new Date()).getTime() + "";
+            newWidget.pageId = pageId;
+
             widgets.push(newWidget);
+        }*/
+
+
+        function createWidget(pageId, widget) {
+            widget._id = new Date().getTime() + "";
+            widget.pageId = pageId;
+
+            widgets.push(widget);
         }
 
         function updateWidget(widgetId, widget)  {
-            var index = widgets.indexOf(widget);
+
+            var found = findWidgetById(widgetId);
+
+            var index = widgets.indexOf(found);
+            widgets[index] = widget;
 
         }
 
@@ -72,6 +87,8 @@
 
             return results;
         }
+
+
     }
 
 })();
