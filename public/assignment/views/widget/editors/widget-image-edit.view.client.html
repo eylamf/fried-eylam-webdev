@@ -15,14 +15,14 @@
 
     <label for="url">URL</label>
     <input id="url"
-           ng-model="model.widget.url"
+           ng-model="model.widgetCopy.url"
            class="form-control"
            type="text"
            placeholder="Image URL">
 
     <label for="width">Width</label>
     <input id="width"
-           ng-model="model.widget.width"
+           ng-model="model.widgetCopy.width"
            class="form-control"
            type="text"
            placeholder="0%">
@@ -33,9 +33,18 @@
            type="file"
            placeholder="File">
 
-    <button class="btn btn-block btn-primary">Upload Image</button>
-    <a class="btn btn-block btn-danger"
-       href="widget-list.view.client.html">
+    <a ng-click="model.createWidget(model.pageId, model.widgetCopy)"
+       class="btn btn-block btn-primary">
+        Upload Image
+    </a>
+
+    <a ng-click="model.updateWidget(model.widgetId, model.widgetCopy)"
+       class="btn btn-block btn-success">
+        Update
+    </a>
+
+    <a ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-block btn-danger">
         Delete
     </a>
 </div>
