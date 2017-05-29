@@ -48,6 +48,7 @@
             widgetService.createWidget(pageId, widget);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
                 model.pageId + '/widget/');
+            console.log(pageId);
         }
 
         function updateWidget(widgetId, widget) {

@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top hidden-xs col-sm-4">
 
-    <a href="website-list.view.client.html">
+    <a href="#!/user/{{model.userId}}/website">
         <span class="ef-white-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
     </a>
 
@@ -28,14 +28,14 @@
 
 <nav class="navbar navbar-default navbar-fixed-top col-sm-8">
 
-    <a class="visible-xs" href="website-list.view.client.html">
+    <a class="visible-xs" href="#!/user/{{model.userId}}/website">
         <span class="ef-white-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
     </a>
     <a class="ef-nav-title-light" href="#">
         New Website
     </a>
 
-    <a href="website-list.view.client.html">
+    <a href="#!/user/{{model.userId}}/website">
         <span class="ef-white-glyph-header glyphicon glyphicon-ok pull-right"></span>
     </a>
 
@@ -46,143 +46,14 @@
     <div class="row">
         <div class="col-sm-4 hidden-xs srollable-left">
             <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
+                <li ng-repeat="website in model.websites" class="list-group-item">
+                    <a href="#!/user/{{model.userId}}/website">
+                        {{website.name}}
                     </a>
-                    <a href="website-edit.view.client.html">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">
-                        website title
-                    </a>
-                    <a href="website-edit.view.client.html">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-
 
             </ul>
         </div>
@@ -209,7 +80,7 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="../user/profile.html">
+        <a href="#!/user/{{model.userId}}">
             <span class="ef-white-glyph-header glyphicon glyphicon-user pull-right"></span>
         </a>
     </div>

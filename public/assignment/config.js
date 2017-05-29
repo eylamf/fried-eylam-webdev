@@ -12,6 +12,9 @@
             .when('/', {
                 templateUrl: 'home.html'
             })
+
+            // user
+
             .when('/login', {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: 'loginController',
@@ -29,6 +32,9 @@
                 controllerAs: 'model'
 
             })
+
+            // website
+
             .when('/user/:userId/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html',
                 controller: 'websiteListController',
@@ -44,7 +50,9 @@
                 controller: 'websiteEditController',
                 controllerAs: 'model'
             })
+
             // page routing
+
             .when('/user/:userId/website/:websiteId/page', {
                 templateUrl: 'views/page/templates/page-list.view.client.html',
                 controller: 'pageListController',
@@ -60,7 +68,9 @@
                 controller: 'pageEditController',
                 controllerAs: 'model'
             })
+
             // widget routing
+
             .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
                 templateUrl: 'views/widget/templates/widget-list.view.client.html',
                 controller: 'widgetListController',

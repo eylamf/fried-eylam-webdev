@@ -32,9 +32,10 @@
             $location.url('/user/' + model.userId + '/website');
         }
 
-        // TODO finish this for all aspects (website/user/etc...)
+
         function updateWebsite(website) {
             websiteService.updateWebsite();
+            $location.url('/user/' + model.userId + '/website');
         }
 
         function deleteWebsite(websiteId) {

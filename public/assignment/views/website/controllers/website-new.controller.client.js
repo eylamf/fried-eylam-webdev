@@ -13,11 +13,13 @@
 
         // event handlers
         model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
         model.createWebsite = createWebsite;
 
         // this needs to execute at startup
         function init() {
             model.websites = websiteService.findAllWebsitesForUser(model.userId);
+
         }
         init();
 

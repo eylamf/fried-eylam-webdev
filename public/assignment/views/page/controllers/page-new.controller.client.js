@@ -17,6 +17,7 @@
         model.websiteId = $routeParams['websiteId'];
         model.userId = $routeParams['userId'];
         model.createPage = createPage;
+        model.updatePage = updatePage;
 
         // this needs to execute at startup
         function init() {
@@ -28,6 +29,11 @@
         function createPage(page) {
             page.websiteId = model.websiteId;
             pageService.createPage(page);
+            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+        }
+
+        function updatePage(pageId) {
+            pageService.updatePage(pageId);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
         }
     }

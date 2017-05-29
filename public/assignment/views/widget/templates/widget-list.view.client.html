@@ -11,7 +11,7 @@
 
     <nav class="navbar navbar-default ef-light-nav navbar-fixed-top">
         <div class="container-fluid">
-            <a href="../page/page-list.html">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
             </a>
 
@@ -44,24 +44,15 @@
             <div ng-switch="widget.widgetType">
 
                 <div ng-switch-when="HEADING">
-                    <div ng-switch="widget.size">
-                        <h1 ng-switch-when="1">{{widget.text}}</h1>
-                        <h2 ng-switch-when="2">{{widget.text}}</h2>
-                        <h3 ng-switch-when="3">{{widget.text}}</h3>
-                        <h4 ng-switch-when="4">{{widget.text}}</h4>
-                        <h5 ng-switch-when="5">{{widget.text}}</h5>
-                        <h6 ng-switch-when="6">{{widget.text}}</h6>
-                    </div>
+                    <div ng-include="'views/widget/common/widget-heading.view.client.html'"></div>
                 </div>
 
                 <div ng-switch-when="IMAGE">
-                    <img width="{{widget.width}}" ng-src="{{widget.url}}">
+                    <div ng-include="'views/widget/common/widget-image.view.client.html'"></div>
                 </div>
 
                 <div ng-switch-when="YOUTUBE">
-                    <div class="videoWrapper">
-                        <iframe width="100%" src="{{model.getYouTubeEmbedUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
-                    </div>
+                    <div ng-include="'views/widget/common/widget-youtube.view.client.html'"></div>
                 </div>
 
                 <div ng-switch-when="HTML"
@@ -82,7 +73,7 @@
                 Footer
             </a>
 
-            <a href="../user/profile.html">
+            <a href="#!/user/{{model.userId}}">
                 <span class="ef-dark-glyph-header glyphicon glyphicon-user pull-right"></span>
             </a>
 
