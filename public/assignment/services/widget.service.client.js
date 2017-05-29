@@ -55,10 +55,6 @@
 
         function updateWidget(widgetId, widget)  {
 
-            var found = findWidgetById(widgetId);
-
-            var index = widgets.indexOf(found);
-            widgets[index] = widget;
 
         }
 

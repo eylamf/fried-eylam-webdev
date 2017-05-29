@@ -33,10 +33,10 @@
         }
 
         function updateUser(userId, user) {
-            var found = findUserById(userId);
+            /*var found = findUserById(userId);
 
             var index = users.indexOf(found);
-            users[index] = user;
+            users[index] = user;*/
         }
 
         function deleteUser(userId) {

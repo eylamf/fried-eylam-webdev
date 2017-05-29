@@ -34,10 +34,10 @@
         }
 
         function updatePage(pageId, page) {
-            var found = findPageById(pageId);
+            /*var found = findPageById(pageId);
 
             var index = pages.indexOf(found);
-            pages[index] = page;
+            pages[index] = page;*/
         }
 
         function deletePage(pageId) {
