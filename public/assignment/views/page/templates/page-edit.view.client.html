@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum scale=1.0, user-scalable=no"/>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!--<link href="../css/style.css" rel="stylesheet"/>-->
+    <!--<title>Page Edit</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<nav class="ef-light-nav navbar navbar-default navbar-fixed-top hidden-xs col-sm-4">
+
+    <a href="page-list.view.client.html">
+        <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+    </a>
+
+    <a class="ef-nav-title-dark" href="#">
+        Pages
+    </a>
+
+    <a href="page-new.view.client.html">
+        <span class="ef-dark-glyph-header glyphicon glyphicon-plus pull-right"></span>
+    </a>
+
+
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-top ef-light-nav col-sm-8">
+
+    <a class="visible-xs" href="page-list.view.client.html">
+        <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+    </a>
+
+    <a class="ef-nav-title-dark" href="#">
+        Edit Page
+    </a>
+
+    <a href="page-list.view.client.html">
+        <span class="ef-dark-glyph-header glyphicon glyphicon-ok pull-right"></span>
+    </a>
+
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-4 hidden-xs srollable-left">
+
+            <ul class="list-group">
+
+                <li ng-repeat="page in model.pages" class="list-group-item">
+                    <a href="#">
+                        {{page.name}}
+                    </a>
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-8">
+
+
+                <label for="name">Name</label>
+                <input id="name"
+                       ng-model="model.page.name"
+                       class="form-control"
+                       type="text"
+                       placeholder="Page name">
+
+                <label for="description">Description</label>
+                <input id="description"
+                       ng-model="model.page.description"
+                       class="form-control"
+                       type="text"
+                       placeholder="Page description">
+
+                <a ng-click="updatePage(page)"
+                   class="btn btn-block btn-success">
+                    Update
+                </a>
+
+                <a href="page-list.view.client.html"
+                   class="btn btn-block btn-danger">
+                    Delete
+                </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+    <nav class="navbar navbar-default ef-light-nav navbar-fixed-bottom">
+        <div class="container-fluid">
+
+            <!--<a class="navbar-brand" href="">
+                Footer
+            </a>-->
+
+            <a class="ef-nav-title-dark" href="">
+                Footer
+            </a>
+
+            <a href="../user/profile.html">
+                <span class="ef-dark-glyph-header glyphicon glyphicon-user pull-right"></span>
+            </a>
+
+        </div>
+    </nav>
+
+<!--</body>-->
+<!--</html>-->

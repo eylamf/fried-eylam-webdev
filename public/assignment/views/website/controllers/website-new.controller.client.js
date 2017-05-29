@@ -7,7 +7,7 @@
         .module('WAM')
         .controller('websiteNewController', websiteNewController);
 
-    function websiteNewController($routeParams, websiteService) {
+    function websiteNewController($routeParams, websiteService, $location) {
         // this is instead of using $scope
         var model = this;
 
@@ -23,7 +23,9 @@
 
         // implementations
         function createWebsite(website) {
+            website.developerId = model.userId;
             websiteService.createWebsite(website);
+            $location.url('/user/' + model.userId + '/website');
         }
 
     };

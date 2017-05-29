@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum scale=1.0, user-scalable=no"/>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!--<link href="../css/style.css" rel="stylesheet"/>-->
+    <!--<title>Widgets</title>-->
+<!--</head>-->
+<!--<body>-->
+
+    <nav class="navbar navbar-default ef-light-nav navbar-fixed-top">
+        <div class="container-fluid">
+            <a href="../page/page-list.html">
+                <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+            </a>
+
+            <!--<a class="navbar-brand" href="">
+                Edit Page
+            </a>-->
+            <a class="ef-nav-title-dark" href="">
+                Widgets
+            </a>
+
+            <a href="#!/widget-chooser">
+                <span class="ef-dark-glyph-header glyphicon glyphicon-plus pull-right"></span>
+            </a>
+
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+
+        <div ng-repeat="widget in model.widgets"
+             class="wd-widget">
+            <div class="wd-toolbar">
+                <a href="widget-heading.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+
+            <div ng-switch="widget.widgetType">
+
+                <div ng-switch-when="HEADING">
+                    <div ng-switch="widget.size">
+                        <h1 ng-switch-when="1">{{widget.text}}</h1>
+                        <h2 ng-switch-when="2">{{widget.text}}</h2>
+                        <h3 ng-switch-when="3">{{widget.text}}</h3>
+                        <h4 ng-switch-when="4">{{widget.text}}</h4>
+                        <h5 ng-switch-when="5">{{widget.text}}</h5>
+                        <h6 ng-switch-when="6">{{widget.text}}</h6>
+                    </div>
+                </div>
+
+                <div ng-switch-when="IMAGE">
+                    <img width="{{widget.width}}" ng-src="{{widget.url}}">
+                </div>
+
+                <div ng-switch-when="YOUTUBE">
+                    <div class="videoWrapper">
+                        <iframe width="100%" src="{{model.getYouTubeEmbedUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div ng-switch-when="HTML"
+                     ng-bind-html="model.trustThisContent(widget.text)">
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <nav class="navbar navbar-default ef-light-nav navbar-fixed-bottom">
+        <div class="container-fluid">
+
+            <a class="ef-nav-title-dark" href="">
+                Footer
+            </a>
+
+            <a href="../user/profile.html">
+                <span class="ef-dark-glyph-header glyphicon glyphicon-user pull-right"></span>
+            </a>
+
+            <a href="">
+                <span class="ef-dark-glyph-header glyphicon glyphicon-play pull-left"></span>
+            </a>
+
+            <a href="">
+                <span class="ef-dark-glyph-header glyphicon glyphicon-eye-open pull-left"></span>
+            </a>
+
+        </div>
+    </nav>
+
+<!--</body>-->
+<!--</html>-->
