@@ -19,10 +19,11 @@
         model.pageId = $routeParams['pageId'];
         model.createPage = createPage;
         model.deletePage = deletePage;
+        model.updatePafe = updatePage;
 
         // this needs to execute at startup
         function init() {
-            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
+            model.pages = pageService.findPageByWebsiteId(model.websiteId);
             model.page = pageService.findPageById(model.pageId);
         }
         init();
@@ -32,6 +33,11 @@
             page.websiteId = model.websiteId;
             pageService.createPage(page);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+        }
+
+        function updatePage(page) {
+            pageService.updatePage(page);
+
         }
 
         function deletePage(pageId) {

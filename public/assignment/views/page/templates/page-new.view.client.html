@@ -11,7 +11,7 @@
 
 <nav class="ef-light-nav navbar navbar-default navbar-fixed-top hidden-xs col-sm-4">
 
-    <a href="page-list.view.client.html">
+    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
         <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
     </a>
 
@@ -49,144 +49,14 @@
         <div class="col-sm-4 hidden-xs srollable-left">
 
             <ul class="list-group">
-                <li class="list-group-item">
+                <li ng-repeat="page in model.pages" class="list-group-item">
                     <a href="#">
-                        page title
+                        {{page.name}}
                     </a>
-                    <a href="#">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        page title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        page title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        page title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        website title
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
-                    </a>
-                </li>
-
-
             </ul>
 
         </div>
@@ -201,7 +71,7 @@
 
             <label for="title">Title</label>
             <input id="title"
-                   ng-model="page.title"
+                   ng-model="page.description"
                    class="form-control"
                    type="text"
                    placeholder="Page title">

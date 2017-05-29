@@ -22,7 +22,7 @@
                 Widgets
             </a>
 
-            <a href="#!/widget-chooser">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="ef-dark-glyph-header glyphicon glyphicon-plus pull-right"></span>
             </a>
 
@@ -35,7 +35,7 @@
         <div ng-repeat="widget in model.widgets"
              class="wd-widget">
             <div class="wd-toolbar">
-                <a href="widget-heading.html">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <span class="glyphicon glyphicon-align-justify"></span>

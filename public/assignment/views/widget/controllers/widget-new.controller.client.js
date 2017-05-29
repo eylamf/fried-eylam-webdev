@@ -5,9 +5,9 @@
 (function () {
     angular
         .module('WAM')
-        .controller('widgetListController', widgetListController);
+        .controller('widgetNewController', widgetNewController);
 
-    function widgetListController($sce, $routeParams, widgetService) {
+    function widgetNewController($sce, $routeParams, widgetService) {
 
         var model = this;
         model.userId = $routeParams['userId'];

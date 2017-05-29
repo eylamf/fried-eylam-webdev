@@ -19,7 +19,7 @@
         // crud operations
         var api = {
             createPage: createPage,
-            findAllPagesForWebsite: findAllPagesForWebsite,
+            findPageByWebsiteId: findPageByWebsiteId,
             findPageById: findPageById,
             updatePage: updatePage,
             deletePage: deletePage
@@ -33,7 +33,8 @@
             pages.push(page);
         }
 
-        function updatePage(pageId, newPageData) {
+        function updatePage(pageId, page) {
+            var index = pages.indexOf(page);
 
         }
 
@@ -51,7 +52,7 @@
             });
         }
 
-        function findAllPagesForWebsite(websiteId) {
+        function findPageByWebsiteId(websiteId) {
             var results = [];
 
             for (var p in pages) {

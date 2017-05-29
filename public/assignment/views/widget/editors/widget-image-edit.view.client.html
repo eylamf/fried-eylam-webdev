@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<div class="col-xs-12 col-sm-8">
+    <label for="name">Name</label>
+    <input id="name"
+           class="form-control"
+           type="text"
+           placeholder="Name">
+
+    <label for="text">Text</label>
+    <input id="text"
+           class="form-control"
+           type="text"
+           placeholder="Text">
+
+    <label for="url">URL</label>
+    <input id="url"
+           ng-model="model.widget.url"
+           class="form-control"
+           type="text"
+           placeholder="Image URL">
+
+    <label for="width">Width</label>
+    <input id="width"
+           ng-model="model.widget.width"
+           class="form-control"
+           type="text"
+           placeholder="0%">
+
+    <label for="upload">Upload</label>
+    <input id="upload"
+           class="form-control"
+           type="file"
+           placeholder="File">
+
+    <button class="btn btn-block btn-primary">Upload Image</button>
+    <a class="btn btn-block btn-danger"
+       href="widget-list.view.client.html">
+        Delete
+    </a>
+</div>

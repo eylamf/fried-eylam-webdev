@@ -20,7 +20,7 @@
 
         // this needs to execute at startup
         function init() {
-            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
+            model.pages = pageService.findPageByWebsiteId(model.websiteId);
         }
         init();
 
