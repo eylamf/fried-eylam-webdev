@@ -32,8 +32,11 @@
             users.push(user);
         }
 
-        function updateUser(userId, newDataUser) {
+        function updateUser(userId, user) {
+            var found = findUserById(userId);
 
+            var index = users.indexOf(found);
+            users[index] = user;
         }
 
         function deleteUser(userId) {

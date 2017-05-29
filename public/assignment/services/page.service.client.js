@@ -34,8 +34,10 @@
         }
 
         function updatePage(pageId, page) {
-            var index = pages.indexOf(page);
+            var found = findPageById(pageId);
 
+            var index = pages.indexOf(found);
+            pages[index] = page;
         }
 
         function deletePage(pageId) {

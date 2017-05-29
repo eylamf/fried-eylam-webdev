@@ -36,8 +36,11 @@
             websites.push(website);
         }
 
-        function updateWebsite(websiteId, newWebsite) {
+        function updateWebsite(websiteId, website) {
+            var found = findWebsiteById(websiteId);
 
+            var index = websites.indexOf(found);
+            websites[index] = website;
         }
 
         function deleteWebsite(websiteId) {
