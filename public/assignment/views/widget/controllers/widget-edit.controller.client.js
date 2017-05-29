@@ -57,20 +57,20 @@
         function createWidget(pageId, widgetType) {
             widgetService.createWidget(pageId, widgetType);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
-                model.pageId + '/widget/');
+                model.pageId + '/widget');
 
         }
 
         function updateWidget(widgetId, widget) {
             widgetService.updateWidget(widgetId, widget);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
-                model.pageId + '/widget/');
+                model.pageId + '/widget');
         }
 
         function deleteWidget(widgetId) {
             widgetService.deleteWidget(widgetId);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
-                model.pageId + '/widget/');
+                model.pageId + '/widget');
         }
 
     }
