@@ -7,7 +7,7 @@
         .module('WAM')
         .factory('websiteService', websiteService);
 
-    function websiteService() {
+    function websiteService($http) {
 
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -58,14 +58,21 @@
         }
 
         function findAllWebsitesForUser(userId) {
-            var results = [];
+            var url = '/api/assignment/user/' + userId + '/website';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
 
-            for (var w in websites) {
-                if (websites[w].developerId === userId) {
-                    results.push(websites[w]);
-                }
-            }
-            return results;
+            // old
+            // var results = [];
+            //
+            // for (var w in websites) {
+            //     if (websites[w].developerId === userId) {
+            //         results.push(websites[w]);
+            //     }
+            // }
+            // return results;
         };
     }
 

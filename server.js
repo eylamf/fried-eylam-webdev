@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+// load parser lib
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,5 +17,8 @@ require ("./test/app.js")(app);
 myApp(app);*/
 
 var port = process.env.PORT || 3000;
+
+// hw3 load app
+require ("./assignment/app.js")(app);
 
 app.listen(port);

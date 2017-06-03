@@ -15,14 +15,24 @@
 
         model.login = function(username, password) {
 
-            var found = userService.findUserByCredentials(username, password);
+            // var found = userService.findUserByCredentials(username, password);
+            userService
+                .findUserByCredentials(username, password)
+                .then(loginUser, handleError);
 
-            if (found !== null) {
-                $location.url('/user/' + found._id);
-                // $scope.message = "Welcome " + username;
-            } else {
+            function handleError(error) {
                 model.message = "Username " + username + " not found";
             }
+
+            function loginUser(found) {
+                if (found !== null) {
+                    $location.url('/user/' + found._id);
+                    // $scope.message = "Welcome " + username;
+                } else {
+                    model.message = "Username " + username + " not found";
+                }
+            }
+
         };
 
     };

@@ -21,7 +21,7 @@
                 model.error = "Passwords must match";
                 return;
             }
-            var found = userService.findUserByUsername(username);
+            var found = null; //userService.findUserByUsername(username);
 
             if (found !== null) {
                 model.error = "Username is not available";
@@ -30,8 +30,12 @@
                     username: username,
                     password: password
                 };
-                userService.createUser(user);
-                $location.url('/user/' + user._id);
+                userService
+                    .createUser(user)
+                    .then(function (user) {
+                        $location.url('/user/' + user._id);
+                    });
+
             }
 
         };
