@@ -28,15 +28,26 @@
            placeholder="0%">
 
     <label for="upload">Upload</label>
-    <input id="upload"
-           class="form-control"
-           type="file"
-           placeholder="File">
 
-    <a ng-click="model.createWidget(model.pageId, model.widgetCopy)"
-       class="btn btn-block btn-primary">
-        Upload Image
+    <a class="btn btn-info btn-block"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
+        Search
     </a>
+
+    <form id="upload" action="/api/assignment/upload"   method="post" enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
+        <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+
+    <!--<a ng-click="model.createWidget(model.pageId, model.widgetCopy)"-->
+       <!--class="btn btn-block btn-primary">-->
+        <!--Upload Image-->
+    <!--</a>-->
 
     <a ng-click="model.updateWidget(model.widgetId, model.widgetCopy)"
        class="btn btn-block btn-success">

@@ -16,19 +16,38 @@
         model.websiteId = $routeParams['websiteId'];
         model.createWebsite = createWebsite;
 
+
         // this needs to execute at startup
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
+
+            websiteService
+                .findWebsiteById(model.websiteId)
+                .then(function (website) {
+                    model.website = website;
+                });
+
+            //model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            //model.website = websiteService.findWebsiteById(model.websiteId);
 
         }
         init();
 
         // implementations
-        function createWebsite(website) {
-            website.developerId = model.userId;
-            websiteService.createWebsite(website);
-            $location.url('/user/' + model.userId + '/website');
+        function createWebsite(userId, website) {
+            websiteService
+                .createWebsite(userId, website)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website');
+                });
+            // website.developerId = model.userId;
+            // websiteService.createWebsite(website);
+            // $location.url('/user/' + model.userId + '/website');
         }
 
     };

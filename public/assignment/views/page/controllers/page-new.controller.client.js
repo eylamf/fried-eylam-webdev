@@ -21,15 +21,27 @@
 
         // this needs to execute at startup
         function init() {
-            model.pages = pageService.findPageByWebsiteId(model.websiteId);
+            pageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+
+
         }
         init();
 
         // implementations
-        function createPage(page) {
-            page.websiteId = model.websiteId;
-            pageService.createPage(page);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+        function createPage(websiteId, page) {
+            pageService
+                .createPage(websiteId, page)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                });
+
+            // page.websiteId = model.websiteId;
+            // pageService.createPage(page);
+            // $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
         }
 
         function updatePage(pageId) {

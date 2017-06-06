@@ -17,32 +17,68 @@
         model.websiteId = $routeParams['websiteId'];
         model.userId = $routeParams['userId'];
         model.pageId = $routeParams['pageId'];
-        model.createPage = createPage;
+        // model.createPage = createPage;
         model.deletePage = deletePage;
         model.updatePage = updatePage;
 
         // this needs to execute at startup
         function init() {
-            model.pages = pageService.findPageByWebsiteId(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+
+            pageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+
+            pageService
+                .findPageById(model.pageId)
+                .then(function (page) {
+                    model.page = page;
+                });
+
         }
         init();
 
         // implementations
-        function createPage(page) {
-            page.websiteId = model.websiteId;
-            pageService.createPage(page);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
-        }
+        /*function createPage(websiteId, page) {
+            pageService
+                .createPage(websiteId, page)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + websiteId
+                        + '/page');
+                });
 
-        function updatePage(pageId) {
-            pageService.updatePage(pageId);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+
+            // page.websiteId = model.websiteId;
+            // pageService.createPage(page);
+            // $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+
+
+        }
+        */
+
+        function updatePage(pageId, page) {
+
+            pageService
+                .updatePage(pageId, page)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                });
+
+            // pageService.updatePage(pageId);
+            // $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
         }
 
         function deletePage(pageId) {
-            pageService.deletePage(pageId);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+
+            pageService
+                .deletePage(pageId)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                });
+
+            // pageService.deletePage(pageId);
+            // $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
         }
 
 

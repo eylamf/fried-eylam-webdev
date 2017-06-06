@@ -50,7 +50,6 @@
         }
 
         function deleteUser(userId) {
-
             var url = '/api/assignment/user/' + userId;
             return $http.delete(url)
                 .then(function (response) {
@@ -67,14 +66,20 @@
         }
 
         function findUserByUsername(username) {
-            var user = users.find(function (user) {
+            var url = "/api/assignment/user?username=" + username;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+            /*var user = users.find(function (user) {
                 return user.username === username;
             });
             if (typeof user === 'undefined') {
                 return null;
             } else {
                 return user;
-            }
+            }*/
         }
 
         function findUserByCredentials(username, password) {

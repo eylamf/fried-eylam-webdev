@@ -16,7 +16,14 @@
 
         // this needs to execute at startup
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
+
+            //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
 
         }
         init();

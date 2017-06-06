@@ -13,6 +13,11 @@ select.form-control {
     margin-bottom: 5px;
 }
 
+/* added in hw4 for widget image editor form */
+.btn {
+    margin-bottom: 5px;
+}
+
 body {
     margin-top: 30px;
     margin-bottom: 60px;

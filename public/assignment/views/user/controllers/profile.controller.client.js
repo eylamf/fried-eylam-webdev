@@ -13,6 +13,7 @@
 
         var userId = $routeParams['userId'];
 
+
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
 
@@ -20,6 +21,7 @@
         userService
             .findUserById(userId)
             .then(renderUser);
+
 
         function deleteUser(user) {
             userService

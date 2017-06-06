@@ -7,7 +7,7 @@
         .module('WAM')
         .controller('widgetNewController', widgetNewController);
 
-    function widgetNewController($sce, $routeParams, widgetService) {
+    function widgetNewController($sce, $routeParams, widgetService, $location) {
 
         var model = this;
         model.userId = $routeParams['userId'];
@@ -16,7 +16,15 @@
 
         // this needs to execute at startup
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
+
+
+            //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+
             model.emptyWidgetHeader = {
                 _id: new Date().getTime(),
                 widgetType: "HEADING",
@@ -24,7 +32,6 @@
                 size: "",
                 text: ""
             };
-            console.log(model.emptyWidgetHeader._id);
 
         }
         init();
@@ -32,6 +39,16 @@
 
         model.trustThisContent = trustThisContent;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        model.createWidget = createWidget;
+
+        function createWidget(pageId, widget) {
+            widgetService
+                .createWidget(pageId, widget)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' +
+                        model.websiteId + '/page/' + model.pageId + '/widget');
+                });
+        }
 
 
         function trustThisContent(html) {

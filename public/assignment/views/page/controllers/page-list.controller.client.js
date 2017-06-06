@@ -16,7 +16,14 @@
 
         // this needs to execute at startup
         function init() {
-            model.pages = pageService.findPageByWebsiteId(model.websiteId);
+
+            pageService
+                .findPageByWebsiteId(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+
+
         }
         init();
 

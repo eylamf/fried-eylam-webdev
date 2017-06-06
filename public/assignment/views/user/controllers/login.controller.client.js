@@ -20,6 +20,7 @@
                 .findUserByCredentials(username, password)
                 .then(loginUser, handleError);
 
+
             function handleError(error) {
                 model.message = "Username " + username + " not found";
             }

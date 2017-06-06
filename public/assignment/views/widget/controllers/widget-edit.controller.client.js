@@ -19,16 +19,23 @@
 
         // this needs to execute at startup
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-            model.widget = widgetService.findWidgetById(model.widgetId);
-            model.widgetCopy = angular.copy(model.widget);
-            model.emptyWidgetHeader = {
-                _id: new Date().getTime(),
-                widgetType: "HEADING",
-                pageId: model.pageId,
-                size: "",
-                text: ""
-            };
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
+
+            widgetService
+                .findWidgetById(model.widgetId)
+                .then(function (widget) {
+                    model.widget = widget;
+                    model.widgetCopy = angular.copy(model.widget);
+                });
+
+            // model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            // model.widget = widgetService.findWidgetById(model.widgetId);
+
+
         }
         init();
 
@@ -54,23 +61,49 @@
             return $sce.trustAsResourceUrl(embedUrl);
         }
 
-        function createWidget(pageId, widgetType) {
+        function createWidget(pageId, widget) {
+            widgetService
+                .createWidget(pageId, widget)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
+                        model.pageId + '/widget');
+                });
+            /*
             widgetService.createWidget(pageId, widgetType);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
                 model.pageId + '/widget');
+            */
 
         }
 
         function updateWidget(widgetId, widget) {
+            widgetService
+                .updateWidget(widgetId, widget)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
+                        model.pageId + '/widget');
+                });
+
+            /*
             widgetService.updateWidget(widgetId, widget);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
                 model.pageId + '/widget');
+                */
         }
 
         function deleteWidget(widgetId) {
+            widgetService
+                .deleteWidget(widgetId)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
+                        model.pageId + '/widget');
+                });
+
+            /*
             widgetService.deleteWidget(widgetId);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
                 model.pageId + '/widget');
+                */
         }
 
     }

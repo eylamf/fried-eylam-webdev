@@ -14,33 +14,52 @@
         model.websiteId = $routeParams['websiteId'];
 
         // event handlers
-        model.createWebsite = createWebsite;
+        //model.createWebsite = createWebsite;
         model.updateWebsite = updateWebsite;
         model.deleteWebsite = deleteWebsite;
 
         // this needs to execute at startup
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
+
+            websiteService
+                .findWebsiteById(model.websiteId)
+                .then(function (website) {
+                    model.website = website;
+                });
         }
         init();
 
         // implementations
-        function createWebsite(website) {
+        /*function createWebsite(website) {
             website.developerId = model.userId;
             websiteService.createWebsite(website);
             $location.url('/user/' + model.userId + '/website');
-        }
+        }*/
 
 
-        function updateWebsite(website) {
-            websiteService.updateWebsite();
-            $location.url('/user/' + model.userId + '/website');
+        function updateWebsite(websiteId, website) {
+            websiteService
+                .updateWebsite(websiteId, website)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website');
+                });
+            // websiteService.updateWebsite();
+            // $location.url('/user/' + model.userId + '/website');
         }
 
         function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/' + model.userId + '/website');
+            websiteService
+                .deleteWebsite(websiteId)
+                .then(function (response) {
+                    $location.url('/user/' + model.userId + '/website');
+                });
+            // websiteService.deleteWebsite(websiteId);
+            // $location.url('/user/' + model.userId + '/website');
         }
 
     };

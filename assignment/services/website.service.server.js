@@ -5,7 +5,13 @@
 
 module.exports = function (app) {
 
+    app.post('/api/assignment/user/:userId/website', createWebsite);
     app.get('/api/assignment/user/:userId/website', findAllWebsitesForUser);
+    app.get('/api/assignment/user/:userId/website/:websiteId', findWebsiteById);
+    app.put('/api/assignment/user/:userId/website/:websiteId', updateWebsite);
+    app.delete('/api/assignment/user/:userId/website/:websiteId', deleteWebsite);
+
+
 
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -17,9 +23,43 @@ module.exports = function (app) {
         { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
     ];
 
+    function deleteWebsite(req, res) {
+        var websiteId = req.params['websiteId'];
+        var website = websites.find(function (website) {
+            return website._id === websiteId;
+        });
+        var index = websites.indexOf(website);
+        websites.splice(index, 1);
+        res.sendStatus(200);
+    }
+
+    function updateWebsite(req, res) {
+        var website = req.body;
+        var websiteId = req.params['websiteId'];
+        for (var w in websites) {
+            if (websiteId === websites[w]._id) {
+                websites[w] = website;
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function findWebsiteById(req, res) {
+
+        var websiteId = req.params['websiteId'];
+        var website = websites.find(function (website) {
+            return website._id === websiteId;
+        });
+        res.send(website);
+
+    }
+
     function findAllWebsitesForUser(req, res) {
         var results = [];
         var userId = req.params['userId'];
+
         for (var w in websites) {
             if (websites[w].developerId === userId) {
                 results.push(websites[w]);
@@ -28,4 +68,16 @@ module.exports = function (app) {
         res.json(results);
     }
 
-}
+    function createWebsite(req, res) {
+        var website = req.body;
+        website._id = (new Date()).getTime() + "";
+        website.created = new Date();
+        website.updated = new Date();
+        website.developerId = req.params['userId'];
+        websites.push(website);
+        res.send(website);
+
+
+    }
+
+};
