@@ -13,6 +13,7 @@
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
+        model.emptyWidget = {};
 
         // this needs to execute at startup
         function init() {
@@ -25,13 +26,6 @@
 
             //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
 
-            model.emptyWidgetHeader = {
-                _id: new Date().getTime(),
-                widgetType: "HEADING",
-                pageId: model.pageId,
-                size: "",
-                text: ""
-            };
 
         }
         init();
@@ -40,6 +34,7 @@
         model.trustThisContent = trustThisContent;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         model.createWidget = createWidget;
+        model.createEmptyWidget = createEmptyWidget;
 
         function createWidget(pageId, widget) {
             widgetService
@@ -56,8 +51,15 @@
         }
 
         function createEmptyWidget(widgetType) {
+            var widget = {
+                _id: new Date().getTime() + "",
+                widgetType: widgetType,
+                pageId: model.pageId
+            }
 
+            model.emptyWidget = widget;
         }
+
 
         function getYouTubeEmbedUrl(youtubeLink) {
             var embedUrl = 'https://www.youtube.com/embed/';

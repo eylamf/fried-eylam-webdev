@@ -32,10 +32,6 @@
                     model.widgetCopy = angular.copy(model.widget);
                 });
 
-            // model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-            // model.widget = widgetService.findWidgetById(model.widgetId);
-
-
         }
         init();
 
