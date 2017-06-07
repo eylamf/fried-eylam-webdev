@@ -21,6 +21,8 @@ module.exports = function (app) {
         { "_id": "002", "widgetType": "YOUTUBE", "pageId": "000", "width": "100%",
             "url": "" },
 
+        { "_id": "003", "widgetType": "HTML", "pageId": "321", "text": ""},
+        { "_id": "004", "widgetType": "TEXT", "pageId": "321", "text": ""},
 
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
         { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -143,8 +145,6 @@ module.exports = function (app) {
         var pageId = req.params['pageId'];
         widget._id = new Date().getTime() + "";
         widget.pageId = pageId;
-        console.log(widget);
-
         widgets.push(widget);
         res.send(widget);
     }

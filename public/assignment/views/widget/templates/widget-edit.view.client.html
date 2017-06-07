@@ -17,7 +17,7 @@
 
 <nav class="navbar navbar-default ef-light-nav navbar-fixed-top col-sm-8">
 
-    <a class="visible-xs" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+    <a class="visible-xs" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
         <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
     </a>
 
@@ -45,8 +45,14 @@
                     Header
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">Label</a>
-                <a href="#" class="list-group-item list-group-item-action">HTML</a>
-                <a href="#" class="list-group-item list-group-item-action">Text Input</a>
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/003"
+                   class="list-group-item list-group-item-action">
+                    HTML
+                </a>
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/004"
+                   class="list-group-item list-group-item-action">
+                    Text Input
+                </a>
                 <a href="#" class="list-group-item list-group-item-action">Link</a>
                 <a href="#" class="list-group-item list-group-item-action">Button</a>
                 <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/001"
@@ -73,7 +79,12 @@
             <div ng-switch-when="YOUTUBE">
                 <div ng-include="'views/widget/editors/widget-youtube-edit.view.client.html'"></div>
             </div>
-
+            <div ng-switch-when="HTML">
+                <div ng-include="'views/widget/editors/widget-html-edit.view.client.html'"></div>
+            </div>
+            <div ng-switch-when="TEXT">
+                <div ng-include="'views/widget/editors/widget-text-edit.view.client.html'"></div>
+            </div>
         </div>
 
 
