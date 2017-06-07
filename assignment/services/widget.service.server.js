@@ -7,6 +7,7 @@ module.exports = function (app) {
     app.post('/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget', createWidget);
     app.get('/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget', findWidgetsByPageId);
     app.get('/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', findWidgetById);
+    app.put('/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget', sortWidgets);
     app.put('/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', updateWidget);
     app.delete('/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', deleteWidget);
 
@@ -81,6 +82,26 @@ module.exports = function (app) {
                                     pageId + '/widget/' + widgetId;
 
         res.redirect(callbackUrl);
+    }
+
+    function sortWidgets(req, res) {
+        var initial = req.query['initial'];
+        var final = req.query['final'];
+        var savedWidgets = [];
+        var len = widgets.length;
+        // iterate down
+        for (var i = len - 1; i >= 0; i--) {
+            if (widgets[i].pageId === req.params.pageId) {
+                savedWidgets.unshift(widgets[i]);
+                widgets.splice(i, 1);
+            }
+        }
+
+        var widget = savedWidgets[initial];
+        savedWidgets.splice(initial, 1);
+        savedWidgets.splice(final, 0, widget);
+        widgets = widgets.concat(savedWidgets);
+        res.sendStatus(200);
     }
 
     function deleteWidget(req, res) {

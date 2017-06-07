@@ -10,7 +10,7 @@
         .module('WAM')
         .factory('widgetService', widgetService);
 
-    function widgetService($http) {
+    function widgetService($http, $routeParams) {
 
         // var widgets = [
         //
@@ -32,7 +32,8 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            sortWidgets: sortWidgets
         };
         return api;
 
@@ -44,6 +45,16 @@
 
             widgets.push(newWidget);
         }*/
+
+        function sortWidgets(initial, final) {
+            var pageId = $routeParams['pageId'];
+            var url = '/api/assignment/user/:userId/website/:websiteId/page/' + pageId
+                + '/widget?initial=' + initial + '&final=' + final;
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
 
         function createWidget(pageId, widget) {
