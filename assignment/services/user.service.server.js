@@ -71,8 +71,7 @@ module.exports = function(app) {
 
         for (var u in users) {
             var user = users[u];
-            if (user.username === username &&
-                user.password === password) {
+            if (user.username === username && user.password === password) {
                 res.json(user);
                 return;
             }

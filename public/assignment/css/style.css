@@ -18,11 +18,6 @@ select.form-control {
     margin-bottom: 5px;
 }
 
-.btn-secondary {
-    background-color: #f9f9f9;
-    border: 1px solid #bfbfbf;
-}
-
 body {
     margin-top: 30px;
     margin-bottom: 60px;

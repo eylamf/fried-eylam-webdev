@@ -17,6 +17,7 @@
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
         model.userId = $routeParams['userId'];
+        model.widgetCopy = {};
 
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
@@ -30,6 +31,7 @@
                 pageId: model.pageId,
                 width: '100%'
             };
+
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function() {
@@ -42,7 +44,7 @@
             FlickrService
                 .searchPhotos(searchTerm)
                 .then(function(response) {
-                    console.log(response.data);
+
                     data = response.data.replace("jsonFlickrApi(","");
                     // data is now a string with an extra ')'
                     data = data.substring(0,data.length - 1);
