@@ -15,14 +15,14 @@
 
     <label for="url">URL</label>
     <input id="url"
-           ng-model="model.widgetCopy.url"
+           ng-model="model.widget.url"
            class="form-control"
            type="text"
            placeholder="Image URL">
 
     <label for="width">Width</label>
     <input id="width"
-           ng-model="model.widgetCopy.width"
+           ng-model="model.widget.width"
            class="form-control"
            type="text"
            placeholder="0%">
@@ -35,7 +35,7 @@
         Search
     </a>
 
-    <label for="upload">Upload</label>
+    <label for="upload">Upload Your Own Image</label>
     <form id="upload" action="/api/assignment/upload"   method="post" enctype="multipart/form-data">
         <input  name="myFile"    type="file" class="form-control"/>
         <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
@@ -43,7 +43,7 @@
         <input  name="websiteId" value="{{model.websiteId}}"    style="display: none"/>
         <input  name="pageId"    value="{{model.pageId}}"       style="display: none"/>
         <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
-        <button type="submit"    class="btn btn-block btn-primary">Upload URL</button>
+        <button type="submit"    class="btn btn-block btn-primary">Generate URL</button>
     </form>
 
     <!--<a ng-click="model.createWidget(model.pageId, model.widgetCopy)"-->
@@ -52,9 +52,10 @@
     <!--</a>-->
 
     <br>
+    <br>
     <a ng-click="model.createWidget(model.pageId, model.widget)"
        class="btn btn-block btn-info">
-        Create Image
+        Add Image
     </a>
 
     <a ng-click="model.updateWidget(model.widgetId, model.widgetCopy)"

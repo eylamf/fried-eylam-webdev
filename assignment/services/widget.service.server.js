@@ -58,8 +58,9 @@ module.exports = function (app) {
 
         var extension = '.' + ogNameArray[ogNameArray.length - 1];
 
+        myFile.originalname += extension;
 
-        var filename      = myFile.filename + extension; // new file name in upload folder
+        var filename      = myFile.filename; // new file name in upload folder
         var path          = myFile.path; // full path of uploaded file
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
@@ -67,13 +68,15 @@ module.exports = function (app) {
 
 
 
-        function getWidgetById(widgetId) {
-            var widget =  widgets.find(function (widget) {
-                return widget._id === widgetId;
-            });
-            return widget;
-        }
-        var widget = getWidgetById(widgetId);
+        // function getWidgetById(widgetId) {
+        //     var widget =  widgets.find(function (widget) {
+        //         return widget._id === widgetId;
+        //     });
+        //     return widget;
+        // }
+        var widget = widgets.find(function (widget) {
+            return widget._id === widgetId;
+        }); //getWidgetById(widgetId);
 
         widget.url = '/assignment/uploads/' + filename;
 
