@@ -5,7 +5,20 @@
 (function () {
     angular
         .module('WAM')
-        .controller('widgetListController', widgetListController);
+        .controller('widgetListController', widgetListController)
+        .directive('wd-sortableWidget', wdSortableWidget);
+
+
+    function wdSortableWidget() {
+
+        function linkFunction(scope, element) {
+            $(element).sortable();
+        }
+
+        return {
+            link: linkFunction
+        }
+    }
 
     function widgetListController($sce, $routeParams, widgetService) {
 

@@ -16,6 +16,7 @@
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
+        model.userId = $routeParams['userId'];
 
         function selectPhoto(photo) {
             /*var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;

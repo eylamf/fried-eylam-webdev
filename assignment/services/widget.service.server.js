@@ -14,10 +14,10 @@ module.exports = function (app) {
 
 
 
-        { "_id": "000", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": ""},
-        { "_id": "001", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
+        { "_id": "000", "widgetType": "HEADING", "pageId": "000", "size": 2, "text": ""},
+        { "_id": "001", "widgetType": "IMAGE", "pageId": "000", "width": "100%",
             "url": ""},
-        { "_id": "002", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+        { "_id": "002", "widgetType": "YOUTUBE", "pageId": "000", "width": "100%",
             "url": "" },
 
 
@@ -40,6 +40,7 @@ module.exports = function (app) {
 
     function uploadImage(req, res) {
 
+
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
         var myFile        = req.file;
@@ -49,14 +50,30 @@ module.exports = function (app) {
         var pageId = req.body.pageId;
 
         var originalname  = myFile.originalname; // file name on user's computer
-        var filename      = myFile.filename;     // new file name in upload folder
-        var path          = myFile.path;         // full path of uploaded file
+
+        var ogNameArray = originalname.split('.');
+
+        var extension = '.' + ogNameArray[ogNameArray.length - 1];
+
+
+        var filename      = myFile.filename + extension; // new file name in upload folder
+        var path          = myFile.path; // full path of uploaded file
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        var widget = {}; //getWidgetById(widgetId);
+
+
+        function getWidgetById(widgetId) {
+            var widget =  widgets.find(function (widget) {
+                return widget._id === widgetId;
+            });
+            return widget;
+        }
+        var widget = getWidgetById(widgetId);
+
         widget.url = '/assignment/uploads/' + filename;
+
 
 
         var callbackUrl = '/assignment/index.html#!/user/' + userId +
