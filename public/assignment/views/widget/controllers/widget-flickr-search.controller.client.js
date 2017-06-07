@@ -8,7 +8,7 @@
         .module('WAM')
         .controller('FlickrImageSearchController', FlickrImageSearchController);
 
-    function FlickrImageSearchController(FlickrService, widgetService, $routeParams) {
+    function FlickrImageSearchController(FlickrService, widgetService, $routeParams, $location) {
         var model = this;
 
         model.searchPhotos = searchPhotos;
@@ -19,14 +19,23 @@
         model.userId = $routeParams['userId'];
 
         function selectPhoto(photo) {
-            /*var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            widget = {
+                _id: model.widgetId,
+                name: '',
+                text: '',
+                url: url,
+                widgetType: 'IMAGE',
+                pageId: model.pageId,
+                width: '100%'
+            };
             widgetService
-                .updateWidget(model.websiteId, model.pageId, model.widgetId, {url: url})
-                .then(function (response) {
-                    console.log("Data: " + response.data);
+                .createWidget(model.pageId, widget)
+                .then(function() {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
+                        model.pageId + '/widget/' + model.widgetId);
                 });
-                */
         }
 
         function searchPhotos(searchTerm) {
