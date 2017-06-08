@@ -14,12 +14,11 @@
         model.searchYelp = searchYelp;
 
 
-        function searchYelp(term) {
+        function searchYelp(term, city) {
             yelpService
-                .searchYelp(term)
+                .searchYelp(term, city)
                 .then(function (response) {
-                    model.locations = response.data;
-                    console.log(model.locations['id']);
+                    model.locations = response.data.businesses;
                     // data = response.data;
                     // data = JSON.parse(data);
                     // model.locations = data;

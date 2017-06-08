@@ -23,19 +23,38 @@
 
 <div class="container-fluid">
 
+    <label for="category">Category</label>
+    <select class="form-control"
+            id="category"
+            ng-model="model.term">
+
+        <option value="restaurant">Food</option>
+        <option value="restaurant">Restaurants</option>
+    </select>
+
+    <label for="loc">City</label>
     <div class="input-group">
 
-        <input ng-model="searchText"
+        <input id="loc"
+               ng-model="searchText"
                type="text"
                class="form-control">
 
         <span class="input-group-btn">
-        <a ng-click="model.searchYelp(searchText)"
+        <a ng-click="model.searchYelp(model.term, searchText)"
            class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
         </a>
     </span>
     </div>
-    {{model.locations}}
+
+    <ul class="list-group">
+        <li ng-repeat="location in model.locations"
+            class="list-group-item">
+            <h4>{{location.name}}</h4>
+            <img ng-src="{{location.image_url}}" width="100px">
+            <h6>Rating {{location.rating}}</h6>
+        </li>
+    </ul>
 
 </div>

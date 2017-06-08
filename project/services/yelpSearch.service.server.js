@@ -13,7 +13,7 @@ module.exports = function (app) {
         "method": "GET",
         "hostname": "api.yelp.com",
         "port": null,
-        "path": "/v3/businesses/search?term=restaurant&location=boulder&Authorization=Bearer%20f9v0cXyTOKnqPqew1gDFZdnI1JVtFxQKj8cEJwgp0sTI_X9RH6dqTi1pYzcPQhqq9DgexghKfOT08QH3I2GbC1Z7WTU5DcGN2NDwlBNzoo5PmCtuT_fjqr05NqQ4WXYx",
+        "path": "/v3/businesses/search?term=restaurant&location=paloalto&Authorization=Bearer%20f9v0cXyTOKnqPqew1gDFZdnI1JVtFxQKj8cEJwgp0sTI_X9RH6dqTi1pYzcPQhqq9DgexghKfOT08QH3I2GbC1Z7WTU5DcGN2NDwlBNzoo5PmCtuT_fjqr05NqQ4WXYx",
         "headers": {
             "content-type": "application/x-www-form-urlencoded",
             "authorization": "Bearer f9v0cXyTOKnqPqew1gDFZdnI1JVtFxQKj8cEJwgp0sTI_X9RH6dqTi1pYzcPQhqq9DgexghKfOT08QH3I2GbC1Z7WTU5DcGN2NDwlBNzoo5PmCtuT_fjqr05NqQ4WXYx",
@@ -37,8 +37,21 @@ module.exports = function (app) {
     }
 
     function yelpSearchQuery(term, location) {
+        console.log(term);
+        console.log(location);
         var deferred = q.defer();
-        http.get(options, function (response) {
+        var item = {
+            "method": "GET",
+            "hostname": "api.yelp.com",
+            "port": null,
+            "path": "/v3/businesses/search?term="+term+"&location="+location+"&Authorization=Bearer%20f9v0cXyTOKnqPqew1gDFZdnI1JVtFxQKj8cEJwgp0sTI_X9RH6dqTi1pYzcPQhqq9DgexghKfOT08QH3I2GbC1Z7WTU5DcGN2NDwlBNzoo5PmCtuT_fjqr05NqQ4WXYx",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded",
+                "authorization": "Bearer f9v0cXyTOKnqPqew1gDFZdnI1JVtFxQKj8cEJwgp0sTI_X9RH6dqTi1pYzcPQhqq9DgexghKfOT08QH3I2GbC1Z7WTU5DcGN2NDwlBNzoo5PmCtuT_fjqr05NqQ4WXYx",
+                "cache-control": "no-cache"
+            }
+        };
+        http.get(item, function (response) {
             var body = '';
             response.on('data', function (d) {
                 body += d;
