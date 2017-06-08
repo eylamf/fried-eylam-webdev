@@ -145,7 +145,6 @@ module.exports = function (app) {
 
     function createWidget(req, res) {
         var widget = req.body;
-
         var pageId = req.params['pageId'];
         widget._id = new Date().getTime() + "";
         widget.pageId = pageId;

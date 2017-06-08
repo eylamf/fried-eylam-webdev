@@ -32,9 +32,11 @@
                 width: '100%'
             };
 
+            model.widgetId = widget._id;
+
             widgetService
                 .createWidget(model.pageId, widget)
-                .then(function() {
+                .then(function(newWidget) {
                     $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' +
                         model.pageId + '/widget/' + model.widgetId);
                 });

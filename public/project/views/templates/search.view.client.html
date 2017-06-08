@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a href="#!/search">
+            <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+        </a>
+
+        <!--<a class="navbar-brand" href="">
+            Edit Page
+        </a>-->
+        <a class="ef-nav-title-dark" href="">
+            Search
+        </a>
+
+        <a href="">
+            <span class="ef-dark-glyph-header glyphicon glyphicon-ok pull-right"></span>
+        </a>
+
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <div class="input-group">
+
+        <input ng-model="searchText"
+               type="text"
+               class="form-control">
+
+        <span class="input-group-btn">
+        <a ng-click="model.searchYelp(searchText)"
+           class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+    {{model.locations}}
+
+</div>

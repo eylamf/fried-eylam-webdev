@@ -1,0 +1,160 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 36px;
+}
+
+
+input.form-control,
+textarea.form-control,
+select.form-control {
+    margin-bottom: 5px;
+}
+
+/* added in hw4 for widget image editor form */
+.btn {
+    margin-bottom: 5px;
+}
+
+body {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+
+.navbar-default {
+    background-color: #4286f4;
+    /*box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);*/
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+/*
+.list-group-item {
+    border: none;
+}
+*/
+
+.srollable-left {
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    overflow: scroll;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+
+
+@media (min-width: 768px) {
+    .col-sm-8 {
+        margin-left: 33.3%;
+    }
+}
+
+.wd-widget {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wd-toolbar {
+    position: absolute;
+    background-color: white;
+    top: 0px;
+    right: 0px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    opacity: 0.8;
+    z-index:2;
+}
+
+/* classes for custom headers */
+
+.ef-light-nav {
+    background-color: #f9f9f9;
+}
+
+.glyphicon-eye-open {
+    margin-left:15px;
+}
+
+
+.ef-white-glyph {
+    color:#fff;
+}
+
+.ef-white-glyph-header {
+    position:relative;
+    color:#fff;
+    top:17px;
+
+}
+
+.ef-white-glyph-header:hover {
+    transition: 0.35s ease;
+    color: #444;
+}
+
+.ef-dark-glyph-header {
+    transition: 0.35s ease;
+    position: relative;
+    color: #777;
+    top:17px;
+
+}
+
+.ef-dark-glyph-header:hover {
+    transition: 0.35s ease;
+    color: #444;
+}
+
+.ef-nav-title-light {
+    color:#fff;
+    font-size:18px;
+    margin-left:15px;
+    line-height:50px;
+    text-decoration: none;
+}
+
+.ef-nav-title-dark {
+    color: #a0a0a0;
+    font-size:18px;
+    margin-left:15px;
+    line-height:50px;
+    text-decoration: none;
+}
+.ef-nav-title-dark:hover {
+    color:#aaa;
+    text-decoration: none;
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top:25px;
+    height:0;
+    z-index:1;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+

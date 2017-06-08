@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="PROJ">
 <head>
+    <!-- angular -->
+    <script src="../vendor/angular/angular.min.js"></script>
+    <script src="../vendor/angular/angular-route.min.js"></script>
+    <!-- app js and config js -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- controllers -->
+    <script src="controllers/yelp-search.controller.client.js"></script>
+    <!-- services -->
+    <script src="services/yelp.service.client.js"></script>
+    <!-- bootstrap -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- my own css -->
+    <link href="css/style.css" rel="stylesheet">
+
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Project Home Page</title>
 </head>
 <body>
-    <h1>Project Home Page</h1>
+
+    <div ng-view>
+
+
+    </div>
+
 </body>
 </html>
