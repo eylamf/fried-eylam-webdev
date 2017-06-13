@@ -3,6 +3,7 @@
 <div class="col-xs-12 col-sm-8">
     <label for="name">Name</label>
     <input id="name"
+           ng-model="model.widgetCopy.name"
            class="form-control"
            type="text"
            placeholder="Name">
@@ -15,14 +16,14 @@
 
     <label for="url">URL</label>
     <input id="url"
-           ng-model="model.widget.url"
+           ng-model="model.widgetCopy.url"
            class="form-control"
            type="text"
            placeholder="Image URL">
 
     <label for="width">Width</label>
     <input id="width"
-           ng-model="model.widget.width"
+           ng-model="model.widgetCopy.width"
            class="form-control"
            type="text"
            placeholder="0%">
@@ -53,7 +54,7 @@
 
     <br>
     <br>
-    <a ng-click="model.createWidget(model.pageId, model.widgetCopy)"
+    <a ng-click="model.updateWidget(model.pageId, model.widgetCopy)"
        class="btn btn-block btn-info">
         Add Image
     </a>

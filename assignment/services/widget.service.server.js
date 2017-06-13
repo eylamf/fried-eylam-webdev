@@ -55,11 +55,11 @@ module.exports = function (app) {
 
         var originalname  = myFile.originalname; // file name on user's computer
 
-        var ogNameArray = originalname.split('.');
+        // var ogNameArray = originalname.split('.');
 
-        var extension = '.' + ogNameArray[ogNameArray.length - 1];
+        // var extension = '.' + ogNameArray[ogNameArray.length - 1];
 
-        myFile.originalname += extension;
+        // myFile.originalname += extension;
 
         var filename      = myFile.filename; // new file name in upload folder
         var path          = myFile.path; // full path of uploaded file
@@ -75,19 +75,29 @@ module.exports = function (app) {
         //     });
         //     return widget;
         // }
-        var widget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        }); //getWidgetById(widgetId);
+        // var widget = widgets.find(function (widget) {
+        //     return widget._id === widgetId;
+        // }); //getWidgetById(widgetId);
 
-        widget.url = '/assignment/uploads/' + filename;
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(function (widget) {
+                widget.url = '/assignment/uploads/' + filename;
+                widget.width += "%";
+                console.log(widget.width);
+                widgetModel
+                    .updateWidget(widgetId, widget)
+                    .then(function () {
+                        var callbackUrl = '/assignment/index.html#!/user/' + userId +
+                            '/website/' + websiteId + '/page/' +
+                            pageId + '/widget/' + widgetId;
 
+                        res.redirect(callbackUrl);
+                    }, function (err) {
+                        res.send(err);
+                    });
+            });
 
-
-        var callbackUrl = '/assignment/index.html#!/user/' + userId +
-                                '/website/' + websiteId + '/page/' +
-                                    pageId + '/widget/' + widgetId;
-
-        res.redirect(callbackUrl);
     }
 
     function sortWidgets(req, res) {
@@ -166,7 +176,6 @@ module.exports = function (app) {
         widgetModel
             .findWidgetsByPageId(pageId)
             .then(function (widgets) {
-                console.log('this is widgets : ' + widgets);
                 res.json(widgets);
             }, function (err) {
                 res.send(err);

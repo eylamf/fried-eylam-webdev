@@ -65,7 +65,6 @@ function createWidget(pageId, widget) {
     return widgetModel
         .create(widget)
         .then(function (response) {
-            console.log('here with response: ' + response);
             return pageModel.addWidget(pageId, response._id);
         });
 
