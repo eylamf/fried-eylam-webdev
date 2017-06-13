@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top ef-light-nav">
     <div class="container-fluid">
         <a href="#!/search">
             <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
@@ -24,13 +24,10 @@
 <div class="container-fluid">
 
     <label for="category">Category</label>
-    <select class="form-control"
-            id="category"
-            ng-model="model.term">
-
-        <option value="restaurant">Food</option>
-        <option value="restaurant">Restaurants</option>
-    </select>
+    <input id="category"
+           class="form-control"
+           ng-model="model.term"
+           placeholder="Search any category!">
 
     <label for="loc">City</label>
     <div class="input-group">
@@ -38,7 +35,8 @@
         <input id="loc"
                ng-model="searchText"
                type="text"
-               class="form-control">
+               class="form-control"
+               placeholder="Where are you looking?">
 
         <span class="input-group-btn">
         <a ng-click="model.searchYelp(model.term, searchText)"
@@ -51,8 +49,14 @@
     <ul class="list-group">
         <li ng-repeat="location in model.locations"
             class="list-group-item">
+            <div class="text-center">
+                <img ng-src="{{location.image_url}}" width="310px">
+            </div>
             <h4>{{location.name}}</h4>
-            <img ng-src="{{location.image_url}}" width="100px">
+
+            <h6>Categories:</h6>
+            <h6 ng-repeat="category in location.categories">{{category.title}}</h6>
+
             <h6>Rating {{location.rating}}</h6>
         </li>
     </ul>

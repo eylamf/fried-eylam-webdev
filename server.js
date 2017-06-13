@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 // to-do - uncomment for hw 1 - testing server
-require ("./test/app.js")(app);
+//require ("./test/app.js")(app);
 
 // for to-do app
 /*var myApp = require('./lectures/app');

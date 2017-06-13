@@ -31,7 +31,9 @@ a:hover {
     text-decoration: none;
 }
 
-
+.ef-navbar-default {
+    background-color: #4286f4;
+}
 
 .navbar-default {
     background-color: #4286f4;
@@ -85,7 +87,7 @@ a:hover {
 /* classes for custom headers */
 
 .ef-light-nav {
-    background-color: #f9f9f9;
+    background-color: #F4F4F4;
 }
 
 .glyphicon-eye-open {
@@ -156,5 +158,10 @@ a:hover {
     left:0;
     width:100%;
     height:100%;
+}
+
+.ef-glyph-margin {
+    margin-left: 15px;
+    margin-right: 15px;
 }
 

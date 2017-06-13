@@ -21,7 +21,8 @@
 
         function searchYelp(term, city) {
             var cityName = city.replace(/\s+/g, '');
-            var url = '/api/project/index.html/search?term=' + term + '&location=' + cityName.toLowerCase();
+            var correctTerm = term.replace(/\s+/g, '');
+            var url = '/api/project/index.html/search?term=' + correctTerm.toLowerCase() + '&location=' + cityName.toLowerCase();
             return $http.get(url);
         }
 

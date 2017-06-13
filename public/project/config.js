@@ -16,6 +16,15 @@
                 templateUrl: 'views/templates/search.view.client.html',
                 controller: 'yelpController',
                 controllerAs: 'model'
+            })
+            .when('/main', {
+                templateUrl: 'views/templates/main.view.client.html'
+            })
+            .when('/login', {
+                templateUrl: 'views/user/templates/login.view.client.html',
+                controller: 'loginController',
+                controllerAs: 'model'
+
             });
 
 

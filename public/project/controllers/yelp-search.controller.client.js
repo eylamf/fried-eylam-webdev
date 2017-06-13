@@ -19,10 +19,6 @@
                 .searchYelp(term, city)
                 .then(function (response) {
                     model.locations = response.data.businesses;
-                    // data = response.data;
-                    // data = JSON.parse(data);
-                    // model.locations = data;
-                    // console.log(data);
                 });
         }
 

@@ -32,6 +32,18 @@
                     model.widgetCopy = angular.copy(model.widget);
                 });
 
+            // new feature - hw 5 - for creating a new widget from the widgetChooser
+            model.widgetTypes = ["Heading",
+                "Label",
+                "HTML",
+                "Text",
+                "Link",
+                "Button",
+                "Image",
+                "YouTube",
+                "Data Table",
+                "Repeater"];
+
         }
         init();
 
