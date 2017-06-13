@@ -38,7 +38,6 @@
             widgetService
                 .createWidget(model.pageId, model.emptyWidget)
                 .then(function (response) {
-                    console.log("response: " +response);
                     model.emptyWidget = response;
                 });
 
@@ -70,7 +69,7 @@
 
         function goToEdit(widgetType) {
             model.emptyWidget.type = widgetType.toUpperCase();
-
+            model.emptyWidget.width = "";
             widgetService
                 .updateWidget(model.emptyWidget._id, model.emptyWidget)
                 .then(function (response) {
