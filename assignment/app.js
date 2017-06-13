@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 mongoose.Promise = require('q').Promise;
 //mongoose.connect('mongodb://127.0.0.1:27017/webdev_summer1_2017');
 
-
 var connectionString = 'mongodb://127.0.0.1:27017/webdev_summer1_2017';
 
 if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
