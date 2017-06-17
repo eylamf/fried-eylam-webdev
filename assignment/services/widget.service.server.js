@@ -84,7 +84,6 @@ module.exports = function (app) {
             .then(function (widget) {
                 widget.url = '/assignment/uploads/' + filename;
                 widget.width += "%";
-                console.log(widget.width);
                 widgetModel
                     .updateWidget(widgetId, widget)
                     .then(function () {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a href="#!/login">
+            <span class="ef-white-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+        </a>
+
+        <!--<a class="navbar-brand" href="">
+            Edit Page
+        </a>-->
+        <a class="ef-nav-title-light" href="">
+            Profile
+        </a>
+
+        <a href="">
+            <span class="ef-white-glyph-header glyphicon glyphicon-ok pull-right"></span>
+        </a>
+
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <ul class="list-group">
+        <li ng-repeat="business in model.businesses"
+            class="list-group-item">
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <img width="100px" ng-src="{{business.image_url}}">
+                </div>
+                <div class="col-xs-4">
+                    <h4>{{business.name}}</h4>
+                </div>
+                <div class="col-xs-4">
+                    <h4>{{business.location.display_address[1]}}</h4>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user/{{model.user._id}}/search"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a
+               href="#!/user"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+
+</nav>

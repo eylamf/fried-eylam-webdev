@@ -10,9 +10,16 @@
 
     <!-- controllers -->
     <script src="controllers/yelp-search.controller.client.js"></script>
+    <script src="views/home/controllers/home.controller.client.js"></script>
     <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+
+    <script src="views/search/controllers/open-search.controller.client.js"></script>
+    <script src="views/search/controllers/user-search.controller.client.js"></script>
     <!-- services -->
     <script src="services/yelp.service.client.js"></script>
+    <script src="services/user.service.client.js"></script>
     <!-- bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -43,22 +50,31 @@
     </div>
 
 
-    <nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
-        <div class="container-fluid">
-            <div class="row text-center">
-                <div class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-th-list"></span>
-                </div>
-                <div class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-home"></span>
-                </div>
-                <div class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-user"></span>
-                </div>
-            </div>
-        </div>
+    <!--<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">-->
+        <!--<div class="container-fluid">-->
+            <!--<div class="row text-center">-->
 
-    </nav>
+                <!--<a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                    <!--<span class="glyphicon glyphicon-home"></span>-->
+                <!--</a>-->
+                <!--<a href="#!/user/{{model.userId}}/search"-->
+                   <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                    <!--<span class="glyphicon glyphicon-search"></span>-->
+                <!--</a>-->
+                <!--<a ng-if="model.userLoggedIn"-->
+                   <!--href="#!/user/{{model.userId}}"-->
+                   <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                    <!--<span class="glyphicon glyphicon-user"></span>-->
+                <!--</a>-->
+                <!--<a ng-if="!model.userLoggedIn"-->
+                   <!--href="#!/login"-->
+                   <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                    <!--<span class="glyphicon glyphicon-user"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</nav>-->
 
 
 </body>

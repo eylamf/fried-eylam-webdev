@@ -7,19 +7,23 @@
         .module('PROJ')
         .controller('loginController', loginController);
 
-    function loginController($location) {
-        // this is instead of using $scope
+    function loginController($location, userService) {
+
         var model = this;
 
-        model.loginUser = loginUser;
-
-
-        function loginUser(username, password) {
-            console.log(username, password);
-        }
-
-
-
-    };
+        model.loginUser = function (username, password) {
+            userService
+                .findUserByCredentials(username, password)
+                .then(function (user) {
+                    if (user !== null) {
+                        $location.url('/user/' + user._id);
+                    } else {
+                        model.message = "Username " + username + " not found";
+                    }
+                }, function (err) {
+                    model.message = "Username " + username + " not found";
+                });
+        };
+    }
 
 })();

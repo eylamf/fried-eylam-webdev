@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 
+<!DOCTYPE html>
+
 <nav class="navbar navbar-default navbar-fixed-top ef-light-nav">
     <div class="container-fluid">
-        <a href="#!/search">
+        <a href="#!/user/{{model.userId}}/search">
             <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
         </a>
 
@@ -58,7 +60,7 @@
 
                             <h4>{{location.name}}</h4>
 
-                            <a>
+                            <a ng-click="model.addBusiness(model.user._id, location)">
                                 <span class="glyphicon glyphicon-heart-empty card-glyph"></span>
                             </a>
 
@@ -69,15 +71,6 @@
                         </div>
                     </div>
 
-                    <!--<div class="text-center">-->
-                        <!--<img ng-src="{{location.image_url}}" width="310px">-->
-                    <!--</div>-->
-                    <!--<h4>{{location.name}}</h4>-->
-
-                    <!--<h6>Categories:</h6>-->
-                    <!--<h6 ng-repeat="category in location.categories">{{category.title}}</h6>-->
-
-                    <!--<h6>Rating {{location.rating}}</h6>-->
                 </li>
             </ul>
         </div>
@@ -87,6 +80,31 @@
 
 </div>
 
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user/{{model.userId}}/search"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a ng-if="model.userLoggedIn"
+               href="#!/user/{{model.userId}}"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+            <a ng-if="!model.userLoggedIn"
+               href="#!/user/{{model.user._id}}"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+
+</nav>
 
 
 
