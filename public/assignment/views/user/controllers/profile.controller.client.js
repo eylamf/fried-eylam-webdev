@@ -7,21 +7,36 @@
         .module('WAM')
         .controller('profileController', profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController(currentUser, $location, $routeParams, userService) {
         // this is instead of using $scope
         var model = this;
 
-        var userId = $routeParams['userId'];
-
+        // hw 6
+        var userId = currentUser._id;
+        // var userId = $routeParams['userId'];
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
 
-        // refactored: get the promise from the server
-        userService
-            .findUserById(userId)
-            .then(renderUser);
+        model.logout = logout;
 
+        // refactored: get the promise from the server
+        // userService
+        //     .findUserById(userId)
+        //     .then(renderUser);
+
+        function init() {
+            renderUser(currentUser);
+        }
+        init();
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
 
         function deleteUser(user) {
             userService

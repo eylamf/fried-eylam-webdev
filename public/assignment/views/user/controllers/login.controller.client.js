@@ -17,10 +17,11 @@
 
             // var found = userService.findUserByCredentials(username, password);
             userService
-                .findUserByCredentials(username, password)
+                // .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (user) {
                     if (user !== null) {
-                        $location.url('/user/' + user._id);
+                        $location.url('/profile');
                     } else {
                         model.message = "Username " + username + " not found";
                     }
@@ -44,6 +45,6 @@
 
         };
 
-    };
+    }
 
 })();

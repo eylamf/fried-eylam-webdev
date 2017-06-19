@@ -12,6 +12,7 @@ module.exports = userModel;
 userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.findUserByCredentials = findUserByCredentials;
+
 userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.findUserByUsername = findUserByUsername;
@@ -74,6 +75,7 @@ function findUserById(userId) {
 }
 
 function createUser(user) {
+    user.roles = ['USER'];
     return userModel.create(user);
 }
 

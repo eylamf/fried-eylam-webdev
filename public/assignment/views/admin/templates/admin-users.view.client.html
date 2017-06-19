@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<div class="container-fluid">
+    <h1>Admin Users</h1>
+    <ul class="list-group">
+        <li ng-repeat="user in model.users" class="list-group-item">
+            Username: {{user.username}} <br>
+            Password: {{user.password}} <br>
+            First name: {{user.firstName}} <br>
+            Last name: {{user.lastName}} <br>
+            Role: {{user.roles}} <br>
+        </li>
+    </ul>
+</div>
