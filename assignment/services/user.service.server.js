@@ -9,8 +9,63 @@ module.exports = function(app) {
     var userModel = require('../models/user/user.model.server');
 
     // hw 6
+    var bcrypt = require('bcrypt-nodejs');
+
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+    var googleConfig = {
+        clientID: '578703677696-o7n0sd1u8cuhr5k0fsubge2j40srjgqu.apps.googleusercontent.com',
+        clientSecret: 'NfeumCuPPYtOP4Us5zJhFbSU',
+        callbackURL: 'http://localhost:3000/auth/google/callback'
+    };
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/assignment/index.html#!/profile',
+            failureRedirect: '/assignment/index.html#!/login'
+        }));
+
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -21,7 +76,9 @@ module.exports = function(app) {
     app.get('/api/assignment/user', findUserByUsername);
     app.post('/api/assignment/user', createUser);
     app.put('/api/assignment/user/:userId', updateUser);
-    app.delete('/api/assignment/user/:userId', deleteUser);
+    app.delete('/api/assignment/user/:userId', isAdmin, deleteUser);
+
+
 
     // hw 6 new way of logging in
     app.post('/api/assignment/login', passport.authenticate('local'), login);
@@ -29,6 +86,9 @@ module.exports = function(app) {
     app.get('/api/assignment/checkLoggedIn', checkLoggedIn);
     app.post('/api/assignment/logout', logout);
     app.post('/api/assignment/register', register);
+    app.post('/api/assignment/unregister', unregister);
+
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -42,10 +102,12 @@ module.exports = function(app) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    if (!user) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
                         return done(null, false);
                     }
-                    return done(null, user);
+
                 },
                 function (err) {
                     if (err) {
@@ -57,12 +119,22 @@ module.exports = function(app) {
 
     function register(req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(function (user) {
                 req.login(user, function (status) {
                     res.json(user);
                 });
+            });
+    }
+
+    function unregister(req, res) {
+        userModel
+            .deleteUser(req.user._id)
+            .then(function (user) {
+               req.user.logout();
+               res.sendStatus(200);
             });
     }
 
@@ -165,6 +237,8 @@ module.exports = function(app) {
 
     function createUser(req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
+
         userModel
             .createUser(user)
             .then(function (user) {

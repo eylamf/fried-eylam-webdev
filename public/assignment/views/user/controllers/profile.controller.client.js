@@ -16,7 +16,7 @@
         // var userId = $routeParams['userId'];
 
         model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
+        model.unregister = unregister;
 
         model.logout = logout;
 
@@ -38,9 +38,9 @@
                 });
         }
 
-        function deleteUser(user) {
+        function unregister() {
             userService
-                .deleteUser(user._id)
+                .unregister()
                 .then(function () {
                     $location.url('/login');
                 });

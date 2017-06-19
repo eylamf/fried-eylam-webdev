@@ -29,7 +29,8 @@
             checkLoggedIn: checkLoggedIn,
             checkAdmin: checkAdmin,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            unregister: unregister
         };
         return api;
 
@@ -97,6 +98,22 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function unregister(userObj) {
+            var url = '/api/assignment/unregister';
+            return $http.post(url, userObj)
+                .then(function (response) {
+                    return response.data;
+                });
+
+            // old
+
+            // var user = users.find(function (user) {
+            //     return user._id === userId;
+            // });
+            // var index = users.indexOf(user);
+            // users.splice(index, 1);
         }
 
         function deleteUser(userId) {

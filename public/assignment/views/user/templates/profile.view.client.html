@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a href="#!/login">
+        <a href="#!/">
             <span class="ef-white-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
         </a>
 
@@ -63,7 +63,7 @@
         <a class="btn btn-primary btn-block"
            href="#!/user/{{model.user._id}}/website">Websites</a>
 
-        <a ng-click="model.deleteUser(model.user)"
+        <a ng-click="model.unregister()"
            class="btn btn-danger  btn-block">
             Delete Account
         </a>

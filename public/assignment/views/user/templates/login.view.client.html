@@ -11,20 +11,37 @@
     <label for="username">Username</label>
     <input ng-model="username"
            id="username"
+           autocorrect="off"
+           autocapitalize="off"
            class="form-control"
            type="text"
-           placeholder="Username"/>
+           placeholder="Username"
+           required/>
+    <div ng-show="model.usernameError"
+         class="alert alert-danger">
+        {{model.usernameError}}
+    </div>
 
     <label for="password">Password</label>
     <input ng-model="password"
            id="password"
            class="form-control"
            type="password"
-           placeholder="Password"/>
+           placeholder="Password"
+           required/>
+    <div ng-show="model.passError"
+         class="alert alert-danger">
+        {{model.passError}}
+    </div>
 
     <a ng-click="model.login(username, password)"
        class="btn btn-block btn-primary">
         Login
+    </a>
+
+    <a href="/auth/google"
+       class="btn btn-danger btn-block">
+        <span class="fa fa-google-plus"></span>
     </a>
 
     <a href="#!/register"

@@ -15,6 +15,23 @@
 
         model.login = function(username, password) {
 
+            if (username === null || username === '' || typeof username === 'undefined') {
+                model.usernameError = 'Username is required';
+                model.passError = null;
+                model.message = null;
+                return;
+            }
+
+            if (password === null || password === '' || typeof password === 'undefined') {
+                model.passError = 'Password is required';
+                model.usernameError = null;
+                model.message = null;
+                return;
+            }
+
+            model.usernameError = null;
+            model.passError = null;
+
             // var found = userService.findUserByCredentials(username, password);
             userService
                 // .findUserByCredentials(username, password)

@@ -16,21 +16,36 @@
            ng-model="username"
            class="form-control"
            type="text"
-           placeholder="Username"/>
+           placeholder="Username"
+           required/>
+    <div ng-show="model.usernameError"
+         class="alert alert-danger">
+        {{model.usernameError}}
+    </div>
 
     <label for="password">Password</label>
     <input id="password"
            ng-model="password"
            type="password"
            class="form-control"
-           placeholder="Password"/>
+           placeholder="Password"
+           required/>
+    <div ng-show="model.passError"
+         class="alert alert-danger">
+        {{model.passError}}
+    </div>
 
     <label for="ver-password">Verify Password</label>
     <input id="ver-password"
            ng-model="password2"
            type="password"
            class="form-control"
-           placeholder="Verify your password"/>
+           placeholder="Verify your password"
+           required/>
+    <div ng-show="model.passError2"
+         class="alert alert-danger">
+        {{model.passError2}}
+    </div>
 
     <a ng-click="model.register(username, password, password2)"
        class="btn btn-block btn-primary">Register</a>
