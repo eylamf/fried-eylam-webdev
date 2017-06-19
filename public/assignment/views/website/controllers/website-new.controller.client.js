@@ -42,6 +42,11 @@
         // implementations
         function createWebsite(userId, website) {
 
+            if (typeof website === 'undefined') {
+                model.nameError = "Please provide a name for this website";
+                return;
+            }
+
             if (website.name === null || website.name === '' || typeof website.name === 'undefined') {
                 model.nameError = "Please provide a name for this website";
                 return;

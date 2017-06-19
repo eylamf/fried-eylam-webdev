@@ -85,6 +85,15 @@
         }
 
         function updateWidget(widgetId, widget) {
+
+            if (typeof widget === 'undefined' || widget.name === null ||
+                widget.name === '' || typeof widget.name === 'undefined') {
+                model.nameErr = "Widget must contain a name";
+                return;
+            }
+
+            model.nameErr = null;
+
             widgetService
                 .updateWidget(widgetId, widget)
                 .then(function (response) {

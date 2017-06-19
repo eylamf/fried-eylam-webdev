@@ -7,6 +7,9 @@
            ng-model="model.widgetCopy.name"
            placeholder="Name"
            class="form-control"/>
+    <div ng-show="model.nameErr" class="alert alert-danger">
+        {{model.nameErr}}
+    </div>
 
     <div ng-model="model.widgetCopy.text"
          text-angular

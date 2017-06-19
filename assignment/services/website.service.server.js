@@ -29,7 +29,9 @@ module.exports = function (app) {
         websiteModel
             .deleteWebsite(userId, websiteId)
             .then(function (status) {
-                res.json(status);
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
             });
         // var website = websites.find(function (website) {
         //     return website._id === websiteId;
@@ -46,7 +48,9 @@ module.exports = function (app) {
         websiteModel
             .updateWebsite(websiteId, website)
             .then(function (status) {
-                res.json(status);
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
             });
 
         // for (var w in websites) {

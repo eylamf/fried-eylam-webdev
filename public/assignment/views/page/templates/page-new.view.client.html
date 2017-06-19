@@ -69,7 +69,12 @@
                    ng-model="page.name"
                    class="form-control"
                    type="text"
-                   placeholder="Page name">
+                   placeholder="Page name"
+                   required>
+            <div ng-show="model.nameErr"
+                 class="alert alert-danger">
+                {{model.nameErr}}
+            </div>
 
             <label for="title">Title</label>
             <input id="title"

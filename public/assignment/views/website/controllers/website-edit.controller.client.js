@@ -20,6 +20,7 @@
 
         // this needs to execute at startup
         function init() {
+
             websiteService
                 .findAllWebsitesForUser(model.userId)
                 .then(function (websites) {
@@ -43,6 +44,14 @@
 
 
         function updateWebsite(websiteId, website) {
+
+            if (website.name === null || website.name === '' || typeof website.name === 'undefined') {
+                model.nameErr = "Website must have a name";
+                return;
+            }
+
+            model.nameErr = null;
+
             websiteService
                 .updateWebsite(websiteId, website)
                 .then(function (response) {

@@ -59,6 +59,18 @@
 
         function updatePage(pageId, page) {
 
+            if (typeof page === 'undefined') {
+                model.nameErr = "Please provide a name for this page";
+                return;
+            }
+
+            if (page.name === null || page.name === '' || typeof page.name === 'undefined') {
+                model.nameErr = "Please provide a name for this page";
+                return;
+            }
+
+            model.pageErr = null;
+
             pageService
                 .updatePage(pageId, page)
                 .then(function (response) {

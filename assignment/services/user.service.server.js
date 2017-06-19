@@ -133,8 +133,10 @@ module.exports = function(app) {
         userModel
             .deleteUser(req.user._id)
             .then(function (user) {
-               req.user.logout();
+               req.logout();
                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
             });
     }
 
@@ -198,7 +200,9 @@ module.exports = function(app) {
         userModel
             .deleteUser(userId)
             .then(function (status) {
-                res.json(status);
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
             });
 
         // hw4 implementation
@@ -221,8 +225,10 @@ module.exports = function(app) {
         userModel
             .updateUser(userId, user)
             .then(function (status) {
-                res.json(status);
-            })
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
+            });
         /*
         for (var u in users) {
             if (userId === users[u]._id) {

@@ -8,6 +8,9 @@
            class="form-control"
            type="text"
            placeholder="Name">
+    <div ng-show="model.nameErr" class="alert alert-danger">
+        {{model.nameErr}}
+    </div>
 
     <label for="text">Text</label>
     <input id="text"

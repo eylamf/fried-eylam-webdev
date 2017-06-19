@@ -63,7 +63,12 @@
             <input id="name"
                    ng-model="model.website.name"
                    class="form-control"
-                   placeholder="Name"/>
+                   placeholder="Name"
+                   required/>
+            <div ng-show="model.nameErr"
+                 class="alert alert-danger">
+                {{model.nameErr}}
+            </div>
 
             <label for="description">Description</label>
             <textarea id="description"
