@@ -18,7 +18,8 @@ module.exports = function(app) {
     var googleConfig = {
         clientID: '578703677696-o7n0sd1u8cuhr5k0fsubge2j40srjgqu.apps.googleusercontent.com',
         clientSecret: 'NfeumCuPPYtOP4Us5zJhFbSU',
-        callbackURL: 'http://localhost:3000/auth/google/callback'
+        callbackURL: 'http://fried-eylam-webdev.herokuapp.com/auth/google/callback'
+        // 'http://localhost:3000/auth/google/callback'
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
