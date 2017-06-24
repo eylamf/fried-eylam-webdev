@@ -26,11 +26,11 @@ userModel.deleteWebsite = deleteWebsite;
 
 userModel.addBusiness = addBusiness;
 
-function addBusiness(userId, business) {
+function addBusiness(userId, businessId) {
     return userModel
         .findUserById(userId)
         .then(function (user) {
-            user.businesses.push(business);
+            user.businesses.push(businessId);
             return userModel
                     .updateUser(userId, user);
 
@@ -68,12 +68,7 @@ function findUserByUsername(username) {
 function updateUser(userId, newUser) {
     return userModel.update({_id: userId}, {
         // choose what the user can update
-        $set : {
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            email: newUser.email,
-            businesses: newUser.businesses
-        }
+        $set : newUser
     });
 }
 

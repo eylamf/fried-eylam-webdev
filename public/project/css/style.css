@@ -3,9 +3,12 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 35px; /* used to be 36px */
 }
 
+h1, h2, h3, h4, h5, h6, p {
+    color: #474747;
+}
 
 input.form-control,
 textarea.form-control,
@@ -25,10 +28,15 @@ body {
 
 a {
     text-decoration: none;
+    color: #474747;
 }
 
 a:hover {
     text-decoration: none;
+}
+
+a:link a:visited, a:active {
+    color:#474747;
 }
 
 .ef-navbar-default {
@@ -37,7 +45,7 @@ a:hover {
 
 .navbar-default {
     background-color: #4286f4;
-    /*box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);*/
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
 }
 
 .navbar-default .navbar-brand {
@@ -192,9 +200,136 @@ li {
     top:0;
 }
 
+.cardViewImageSearch {
+    position: relative;
+    width:inherit;
+    height:190px;
+    /*background-attachment: fixed;*/
+    background-size:cover;
+
+    top:0;
+}
+
 .card-glyph {
-
-
     margin-left:15px;
     margin-right:15px;
+}
+
+.profileInfo {
+    position: relative;
+    width:100%;
+    height:100px;
+    line-height:100px;
+    display: inline-block;
+}
+
+.profileImg {
+    position: relative;
+    width:70px;
+    height:70px;
+    line-height: 70px;
+    font-size: 30px;
+    border-radius: 100px;
+    background-color: #dddddd;
+}
+
+div.horizontalScroll {
+    background-color:#efefef;
+    overflow: auto;
+    white-space:nowrap;
+}
+
+div.horizontalScroll a {
+    display: inline-block;
+    padding: 14px;
+}
+
+.cardViewHorizontal {
+    position: relative;
+    width:250px;
+    height:300px;
+    background-color:#fff;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.line {
+    position: relative;
+    margin:auto;
+    width:200px;
+    height:2px;
+    background-color:#eee;
+}
+.line-left {
+    position: relative;
+
+    width:200px;
+    height:2px;
+    background-color:#eee;
+}
+
+.price {
+    margin-top:20px;
+    font-family: Tahoma, sans-serif;
+}
+
+.image-NA-text {
+    position: absolute;
+    top:50%;
+    margin-top: -30px;
+    left:50%;
+    margin-left:-65px;
+}
+.suggestionInfo {
+    position: relative;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.becomeMember {
+    position: relative;
+    margin-top:15px;
+    margin-bottom:15px;
+    width:100%;
+    height:auto;
+}
+
+.becomeMember h4 {
+    color: #9d9d9d;
+    text-align: center;
+}
+
+.becomeMember h5 {
+    color: #4286f4;
+    text-align: center;
+}
+
+.becomeMember div {
+    width:100px;
+    height:30px;
+    padding:10px;
+    text-align: center;
+    border-radius: 3px;
+    color:#fff;
+    border: none;
+    line-height:10px;
+    margin:auto;
+    font-family: Tahoma, sans-serif;
+}
+.blueFont {
+    color:#4286f4;
+}
+
+.lighGrayFont {
+    color:#9d9d9d;
+}
+
+.lightRed {
+    color: #d64955;
+}
+
+.smallFont {
+    margin-top:3px;
+    font-size: 10px;
 }

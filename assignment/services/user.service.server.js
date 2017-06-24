@@ -16,8 +16,8 @@ module.exports = function(app) {
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
     var googleConfig = {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_SECRET,
+        clientID: '578703677696-o7n0sd1u8cuhr5k0fsubge2j40srjgqu.apps.googleusercontent.com', //process.env.GOOGLE_CLIENT_ID,
+        clientSecret: 'NfeumCuPPYtOP4Us5zJhFbSU', //process.env.GOOGLE_SECRET,
         callbackURL: 'http://fried-eylam-webdev.herokuapp.com/auth/google/callback'
         // 'http://localhost:3000/auth/google/callback'
     };

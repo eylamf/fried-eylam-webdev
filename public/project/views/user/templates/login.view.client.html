@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 
-<nav class="navbar navbar-default ef-light-nav navbar-fixed-top">
-    <div class="container-fluid">
-        <a class="ef-nav-title-dark" href="">
-            Login
-        </a>
-    </div>
+<nav class="navbar navbar-fixed-top navbar-default">
+    <a class="ef-nav-title-light">
+        Login
+    </a>
 </nav>
-
 
 <div class="container-fluid">
 
+    <div ng-show="model.message" class="alert alert-danger">
+        {{model.message}}
+    </div>
 
-    <!--<div class="container-fluid">-->
-        <!--<img src="../../../assets/yelp_prof_login.png">-->
-    <!--</div>-->
-
-
-    <label for="username">Username or Email</label>
-    <input id="username"
+    <label for="username">Username</label>
+    <input ng-model="username"
+           id="username"
+           autocorrect="off"
+           autocapitalize="off"
            class="form-control"
-           ng-model="username"
-           placeholder="Username or Email">
+           type="text"
+           placeholder="Username"
+           required/>
+    <div ng-show="model.usernameError"
+         class="alert alert-danger">
+        {{model.usernameError}}
+    </div>
 
     <label for="password">Password</label>
-    <input id="password"
-           type="password"
+    <input ng-model="password"
+           id="password"
            class="form-control"
-           ng-model="password"
-           placeholder="Password">
+           type="password"
+           placeholder="Password"
+           required/>
+    <div ng-show="model.passError"
+         class="alert alert-danger">
+        {{model.passError}}
+    </div>
 
-    <a ng-click="model.loginUser(username, password)" class="btn btn-success btn-block">
+    <a ng-click="model.login(username, password)"
+       class="btn btn-block btn-success">
         <span class="glyphicon glyphicon-ok"></span>
     </a>
 
-    <a href="#!/register" class="btn btn-primary btn-block">
-        Register
+    <a href="/auth/facebook"
+       class="btn btn-primary btn-block">
+        <span class="fa fa-facebook-official"></span>
     </a>
 
-    <nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
-        <div class="container-fluid">
-            <div class="row text-center">
-
-                <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-home"></span>
-                </a>
-                <a href="#!/user/{{model.userId}}/search"
-                   class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-search"></span>
-                </a>
-                <a ng-if="model.userLoggedIn"
-                   href="#!/user/{{model.userId}}"
-                   class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-                <a ng-if="!model.userLoggedIn"
-                   href="#!/login"
-                   class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-        </div>
-
-    </nav>
-
+    <a href="#!/register"
+       class="btn btn-block btn-danger">
+        Register
+    </a>
 </div>
 
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
 
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/search"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a
+                    href="#!/login"
+                    class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+
+</nav>

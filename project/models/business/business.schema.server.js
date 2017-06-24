@@ -6,7 +6,9 @@
 var mongoose = require('mongoose');
 // create the user schema for objs (prooerties)
 var businessSchema = mongoose.Schema({
-    body: {type: mongoose.Schema.Types.Object},
+
+    //body: {type: mongoose.Schema.Types.Object},
+    name: String,
     _user: String
 }, {collection: 'businessmodels'});
 

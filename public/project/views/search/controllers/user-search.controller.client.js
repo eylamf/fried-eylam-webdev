@@ -8,35 +8,77 @@
         .module('PROJ')
         .controller('userSearchController', userSearchController);
 
-    function userSearchController($location, $routeParams, userService, yelpService) {
+    function userSearchController(currentUser, userService, yelpService, businessService) {
         var model = this;
 
-        var userId = $routeParams['userId'];
 
         model.searchYelp = searchYelp;
+        model.setTerm = setTerm;
+        model.setPrice = setPrice;
         model.addBusiness = addBusiness;
+        model.createBusiness = createBusiness;
 
         function init() {
-            userService
-                .findUserById(userId)
-                .then(function (user) {
-                     model.user = user;
-                });
+            model.currentUser = currentUser;
         }
         init();
 
-        function searchYelp(term, city) {
-            yelpService
-                .searchYelp(term, city)
+        function setPrice(price) {
+
+            if (price === "1") {
+                model.priceInCash = '$';
+            } else if (price === "2") {
+                model.priceInCash = '$$';
+            } else if (price === '3') {
+                model.priceInCash = '$$$';
+            } else if (price === '4') {
+                model.priceInCash = '$$$$';
+            } else if (price === '0') {
+                model.priceInCash = null;
+            }
+
+            model.price = price;
+
+        }
+
+        function createBusiness(userId, business) {
+            businessService
+                .createBusiness(userId, business)
                 .then(function (response) {
-                    model.locations = response.data.businesses;
+                    console.log("business: " + response);
                 });
         }
 
-        function addBusiness(userId, business) {
+        function setTerm(term) {
+            model.term = term;
+        }
 
+        function searchYelp(term, location) {
+
+            if (location === null || typeof location === 'undefined') {
+                model.error = "Please enter a valid city";
+                return;
+            }
+
+            if (term === null || typeof term === 'undefined') {
+                term = " ";
+            }
+
+            model.error = null;
+
+            var city = location.charAt(0).toUpperCase();
+            model.location = city + location.slice(1);
+
+            yelpService
+                .searchYelp(term, location)
+                .then(function (response) {
+                    model.businesses = response.data.businesses;
+                });
+        }
+
+        function addBusiness(userId, businessId) {
             userService
-                .addBusiness(userId, business)
+                .addBusiness(userId, businessId)
                 .then(function (response) {
                     console.log('this is the response : ' + response);
                 });

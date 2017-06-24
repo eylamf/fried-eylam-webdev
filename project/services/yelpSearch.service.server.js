@@ -37,8 +37,6 @@ module.exports = function (app) {
     }
 
     function yelpSearchQuery(term, location) {
-        console.log(term);
-        console.log(location);
         var deferred = q.defer();
         var item = {
             "method": "GET",

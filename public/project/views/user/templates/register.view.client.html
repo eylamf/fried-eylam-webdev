@@ -20,7 +20,7 @@
     <!--<img src="../../../assets/yelp_prof_login.png">-->
     <!--</div>-->
 
-    <label for="username">Username</label>
+    <label for="username">Username <span class="blueFont">*</span></label>
     <input id="username"
            class="form-control"
            ng-model="username"
@@ -33,14 +33,14 @@
            placeholder="Email">
 
 
-    <label for="password">Password</label>
+    <label for="password">Password <span class="blueFont">*</span></label>
     <input id="password"
            type="password"
            class="form-control"
            ng-model="password"
            placeholder="Password">
 
-    <label for="password2">Verify Password</label>
+    <label for="password2">Verify Password <span class="blueFont">*</span></label>
     <input id="password2"
            type="password"
            class="form-control"
@@ -53,6 +53,7 @@
            type="text"
            ng-model="favCity"
            placeholder="Where do you spend most of your time?">
+    <h6 class="lighGrayFont">* Your home screen will show suggested businesses in this city. This can be filled out later as well.</h6>
 
     <a ng-click="model.registerUser(username, password, password2)"
        class="btn btn-success btn-block">
@@ -75,13 +76,7 @@
                    class="ef-dark-glyph-header col-xs-4 visible-xs">
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
-                <a ng-if="model.userLoggedIn"
-                   href="#!/user/{{model.userId}}"
-                   class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-                <a ng-if="!model.userLoggedIn"
-                   href="#!/login"
+                <a href="#!/login"
                    class="ef-dark-glyph-header col-xs-4 visible-xs">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>

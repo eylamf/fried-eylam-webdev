@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
     lastName: String,
     email: String,
     favCity: String,
-    businesses: [{type: mongoose.Schema.Types.Object}],
+    businesses: [{type: mongoose.Schema.Types.Object, ref: 'BusinessModel'}],
     dateCreated: {type: Date, default: Date.now}
 });
 

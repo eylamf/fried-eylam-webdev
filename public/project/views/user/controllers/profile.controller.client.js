@@ -7,22 +7,41 @@
         .module('PROJ')
         .controller('profileController', profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController(currentUser, $location, $routeParams, userService) {
         // this is instead of using $scope
         var model = this;
 
-        var userId = $routeParams['userId'];
+        var userId = currentUser._id;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
         // refactored: get the promise from the server
-        userService
-            .findUserById(userId)
-            .then(function (user) {
-                model.user = user;
-                model.businesses = user.businesses;
-            });
+        // userService
+        //     .findUserById(userId)
+        //     .then(function (user) {
+        //         model.user = user;
+        //         model.businesses = user.businesses;
+        //     });
+        
+        function init() {
+            renderUser(currentUser);
+        }
+        init();
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
+        
+        function renderUser(user) {
+            model.user = user;
+            model.businesses = user.businesses;
+        }
 
         function deleteUser(user) {
             userService

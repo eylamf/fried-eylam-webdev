@@ -2,16 +2,20 @@
  * Created by eylamfried on 6/16/17.
  */
 
-/**
- * Created by eylamfried on 6/2/17.
- */
-
-// hw 5
-var userModel = require('../models/user/user.model.server');
-
-// start listening for types of queries (creating users, etc...)
-
 module.exports = function(app) {
+
+    var userModel = require('../models/user/user.model.server');
+    var passport = require('passport');
+
+    // Local strategy
+    var LocalStrategy = require('passport-local').Strategy;
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    // facebook login
+
     app.get('/api/project/user', findUserByCredentials);
     app.get('/api/project/user/:userId', findUserById);
     app.get('/api/project/user', findUserByUsername);
@@ -20,15 +24,72 @@ module.exports = function(app) {
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
 
+    app.post('/api/project/login', passport.authenticate('local'), login);
+    app.get('/api/project/checkLoggedIn', checkLoggedIn);
+    app.post('/api/project/logout', logout);
+    app.post('/api/project/register', register);
+    // local strategy
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                    if (!user) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
+
+    function checkLoggedIn(req, res) {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        } else {
+            res.send('0');
+        }
+    }
+
+    function register(req, res) {
+        var user = req.body;
+        userModel
+            .createUser(user)
+            .then(function (user) {
+                req.login(user, function (status) {
+                    res.json(user);
+                }, function (err) {
+                    res.send(err);
+                });
+            });
+    }
+
+    function logout(req, res) {
+        req.logout();
+        res.sendStatus(200);
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    //////////////////////
 
     function addBusiness(req, res) {
         var userId = req.params.userId;
-        var business = req.body;
+        var businessId = req.body;
 
         userModel
-            .addBusiness(userId, business)
+            .addBusiness(userId, businessId)
             .then(function (status) {
                 res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
             });
     }
 
@@ -56,7 +117,9 @@ module.exports = function(app) {
         userModel
             .deleteUser(userId)
             .then(function (status) {
-                res.json(status);
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
             });
 
     }
@@ -68,8 +131,10 @@ module.exports = function(app) {
         userModel
             .updateUser(userId, user)
             .then(function (status) {
-                res.json(status);
-            })
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
+            });
 
     }
 
@@ -110,6 +175,25 @@ module.exports = function(app) {
                 res.json(user);
             });
 
+    }
+
+    //////////////////
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
     }
 
 };

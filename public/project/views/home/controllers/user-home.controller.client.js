@@ -1,28 +1,21 @@
 /**
- * Created by eylamfried on 6/16/17.
+ * Created by eylamfried on 6/22/17.
  */
 
 (function () {
     angular
         .module('PROJ')
-        .controller('homeController', homeController);
+        .controller('userHomeController', userHomeController);
 
-    function homeController($location, $routeParams, yelpService) {
-
+    function userHomeController(currentUser, yelpService) {
         var model = this;
+        model.currentUser = currentUser;
 
-        model.seachYelp = searchYelp;
+        model.searchYelp = searchYelp;
         model.refresh = refresh;
 
-
         function init() {
-            var location = chooseLocation();
-            var term = chooseTerm();
-            searchYelp(term, location);
-        }
-        init();
 
-        function chooseLocation() {
             var locations = [
                 "New York",
                 "Boston",
@@ -36,12 +29,14 @@
                 "Phoenix",
                 "San Antonio"
             ];
-            model.location = locations[Math.floor(Math.random() * locations.length)];
-            return model.location;
 
-        }
+            if (model.currentUser.favCity === null ||
+                typeof model.currentUser.favCity === 'undefined') {
+                model.location = locations[Math.floor(Math.random() * locations.length)];
+            } else {
+                model.location = model.currentUser.favCity;
+            }
 
-        function chooseTerm() {
             var terms = [
                 "Bars",
                 "Food",
@@ -69,10 +64,15 @@
                 "Lounges",
                 "Breakfast & Brunch"
             ];
-            model.term = terms[Math.floor(Math.random() * terms.length)];
-            return model.term;
 
+            model.term = terms[Math.floor(Math.random() * terms.length)];
+
+            var city = model.location;
+            var term = model.term;
+
+            searchYelp(term, city);
         }
+        init();
 
         function refresh() {
             init();
@@ -82,13 +82,8 @@
             yelpService
                 .searchYelp(term, location)
                 .then(function (response) {
-                   model.suggestions = response.data.businesses;
+                    model.suggestions = response.data.businesses;
                 });
         }
-
-
-
-
     }
-
 })();

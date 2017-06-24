@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 
 <nav class="navbar navbar-default navbar-fixed-top">
+    <a class="navbar-brand">
+        Profile
+    </a>
     <div class="container-fluid">
-        <a href="#!/login">
-            <span class="ef-white-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
+        <a ng-click="model.logout()">
+            <span class="ef-white-glyph-header glyphicon glyphicon-off pull-right"></span>
         </a>
 
-        <!--<a class="navbar-brand" href="">
-            Edit Page
-        </a>-->
-        <a class="ef-nav-title-light" href="">
-            Profile
-        </a>
-
-        <a href="">
-            <span class="ef-white-glyph-header glyphicon glyphicon-ok pull-right"></span>
+        <a>
+            <span class="ef-white-glyph-header glyphicon glyphicon-cog ef-glyph-margin pull-right"></span>
         </a>
 
     </div>
@@ -22,6 +18,19 @@
 
 
 <div class="container-fluid">
+
+    <div class="profileInfo">
+        <div class="container-fluid row">
+            <div class="col-xs-4 profileImg text-center">
+                <span class="glyphicon glyphicon-user"></span>
+            </div>
+            <h3 class="col-xs-4">
+                {{model.user.username}}
+            </h3>
+        </div>
+    </div>
+
+    <h2>{{model.user.email}}</h2>
 
     <ul class="list-group">
         <li ng-repeat="business in model.businesses"
@@ -42,22 +51,21 @@
         </li>
     </ul>
 
-
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
     <div class="container-fluid">
         <div class="row text-center">
 
-            <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4 visible-xs">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
-            <a href="#!/user/{{model.user._id}}/search"
+            <a href="#!/user-search"
                class="ef-dark-glyph-header col-xs-4 visible-xs">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
             <a
-               href="#!/user"
+               href="#!/profile"
                class="ef-dark-glyph-header col-xs-4 visible-xs">
                 <span class="glyphicon glyphicon-user"></span>
             </a>

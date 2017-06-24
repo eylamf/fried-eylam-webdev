@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-default ef-dark-nav navbar-fixed-top">
+
+    <a class="navbar-brand" href="">
+        Dashboard
+    </a>
+    <div class="container-fluid">
+        <a ng-click="model.refresh()"
+           class="pull-right ef-white-glyph-header">
+            <span class="glyphicon glyphicon-refresh"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h5 class="lighGrayFont">Suggestions</h5>
+    <div class="line-left"></div>
+    <h3>{{model.term}} in {{model.location}}</h3>
+    <a href="#!/account">
+        <h6 ng-show="!model.currentUser.favCity"
+            class="blueFont">
+            Specify a city <span class="glyphicon glyphicon-map-marker"></span>
+        </h6>
+    </a>
+
+</div>
+
+<div class="horizontalScroll">
+    <div>
+        <a ng-repeat="suggestion in model.suggestions">
+            <div class="cardViewHorizontal">
+                <div ng-if="suggestion.image_url" class="cardViewImage" style="background-image: url('{{suggestion.image_url}}')"></div>
+                <div ng-if="!suggestion.image_url" class="cardViewImage">
+                    <div class="image-NA-text text-center">
+                        <h4><span class="glyphicon glyphicon-picture"></span></h4>
+                        <h5>Image Not Available</h5>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h5 class="suggestionInfo">{{suggestion.name}}</h5>
+                    <div class="line"></div>
+                    <div class="container row">
+
+                        <div class="col-xs-2">
+                            <h6 class="lighGrayFont">{{suggestion.price}}</h6>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <h6 class="lighGrayFont">{{suggestion.rating}}
+                                <span class="glyphicon glyphicon-star"></span>
+                            </h6>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <h6 class="lighGrayFont">{{suggestion.review_count}} reviews</h6>
+                        </div>
+
+                    </div>
+
+                    <div class="container row">
+                        <div class="col-xs-2">
+                            <div ng-if="!model.currentUser.businesses.indexOf(suggestion) > -1">
+                                <span class="glyphicon glyphicon-heart"></span>
+                            </div>
+                            <div ng-if="model.currentUser.businesses.indexOf(suggestion) > -1">
+                                <span class="lightRed glyphicon glyphicon-heart"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <div ng-if="model.currentUser.businesses.indexOf(suggestion) > -1">
+                                <h6 class="smallFont lighGrayFont">You previously liked this!</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+
+</nav>

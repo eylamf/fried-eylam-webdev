@@ -11,18 +11,37 @@
 
         var model = this;
 
-        model.loginUser = function (username, password) {
+        model.login = function(username, password) {
+
+            if (username === null || username === '' || typeof username === 'undefined') {
+                model.usernameError = 'Username is required';
+                model.passError = null;
+                model.message = null;
+                return;
+            }
+
+            if (password === null || password === '' || typeof password === 'undefined') {
+                model.passError = 'Password is required';
+                model.usernameError = null;
+                model.message = null;
+                return;
+            }
+
+            model.usernameError = null;
+            model.passError = null;
+
             userService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (user) {
                     if (user !== null) {
-                        $location.url('/user/' + user._id);
+                        $location.url('/profile');
                     } else {
                         model.message = "Username " + username + " not found";
                     }
                 }, function (err) {
                     model.message = "Username " + username + " not found";
                 });
+
         };
     }
 

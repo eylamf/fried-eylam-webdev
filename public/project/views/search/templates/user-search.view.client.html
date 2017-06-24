@@ -1,37 +1,76 @@
 <!DOCTYPE html>
 
-<!DOCTYPE html>
-
 <nav class="navbar navbar-default navbar-fixed-top ef-light-nav">
-    <div class="container-fluid">
-        <a href="#!/user/{{model.userId}}/search">
-            <span class="ef-dark-glyph-header glyphicon glyphicon-chevron-left pull-left"></span>
-        </a>
 
-        <!--<a class="navbar-brand" href="">
-            Edit Page
-        </a>-->
-        <a class="ef-nav-title-dark" href="">
-            Search
-        </a>
+    <a class="ef-nav-title-dark">
+        Search
+    </a>
 
-        <a href="">
-            <span class="ef-dark-glyph-header glyphicon glyphicon-ok pull-right"></span>
-        </a>
-
-    </div>
 </nav>
 
 
 <div class="container-fluid">
-
+    <!-- category -->
     <label for="category">Category</label>
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button ng-click="model.setTerm('Food')" type="button" class="btn btn-default">
+            Food
+            <span class="glyphicon glyphicon-apple"></span>
+        </button>
+        <button ng-click="model.setTerm('Restaurants')" type="button" class="btn btn-default">
+            Restaurants
+            <span class="glyphicon glyphicon-cutlery"></span>
+        </button>
+        <button ng-click="model.setTerm('Bars')" type="button" class="btn btn-default">
+            Bars
+            <span class="glyphicon glyphicon-glass"></span>
+        </button>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button ng-click="model.setTerm('Sports')" type="button" class="btn btn-default">
+            Sports
+            <span class="glyphicon glyphicon-flag"></span>
+        </button>
+        <button ng-click="model.setTerm('Delivery')" type="button" class="btn btn-default">
+            Delivery
+            <span class="glyphicon glyphicon-phone-alt"></span>
+        </button>
+    </div>
     <input id="category"
            class="form-control"
            ng-model="model.term"
-           placeholder="Search any category!">
+           placeholder="Search any category!"
+           value="{{model.term}}">
+    <!-- price -->
+    <label>Price
+        <span class="lighGrayFont smallFont">
+            {{model.priceInCash}}
+        </span>
+    </label>
+    <br>
+    <div class="btn-group" role="group" aria-label="...">
+        <button ng-click="model.setPrice('1')" type="button" class="btn btn-default">
+            $
+        </button>
+        <button ng-click="model.setPrice('2')" type="button" class="btn btn-default">
+            $$
+        </button>
+        <button ng-click="model.setPrice('3')" type="button" class="btn btn-default">
+            $$$
+        </button>
+        <button ng-click="model.setPrice('4')" type="button" class="btn btn-default">
+            $$$$
+        </button>
+        <button ng-click="model.setPrice('0')" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
 
-    <label for="loc">City</label>
+    <br>
+    <!-- input a city and click on search icon to find businesses in yelp api -->
+    <label for="loc">City <span class="blueFont">*</span></label>
     <div class="input-group">
 
         <input id="loc"
@@ -47,26 +86,63 @@
         </a>
         </span>
     </div>
+    <!-- handle error if user does not input a city -->
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
 
     <div class="row">
 
         <div class="col-xs-12">
             <ul class="list-group">
-                <li ng-repeat="location in model.locations">
+                <li ng-repeat="business in model.businesses">
 
                     <div class="cardView">
-                        <div class="cardViewImage" style="background-image: url('{{location.image_url}}')"></div>
+                        <div class="cardViewImageSearch" style="background-image: url('{{business.image_url}}')"></div>
                         <div class="container-fluid">
+                            {{business.id}}
+                            <h5 class="text-center">
+                                {{business.name}}
+                            </h5>
 
-                            <h4>{{location.name}}</h4>
+                            <div class="line"></div>
 
-                            <a ng-click="model.addBusiness(model.user._id, location)">
-                                <span class="glyphicon glyphicon-heart-empty card-glyph"></span>
-                            </a>
+                            <div class="text-center row">
 
-                            <a>
-                                <span class="glyphicon glyphicon-comment card-glyph"></span>
-                            </a>
+                                <div class="col-xs-4">
+                                    <h6 class="lighGrayFont">{{business.price}}</h6>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <h6 class="lighGrayFont">{{business.rating}}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    </h6>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <h6 class="lighGrayFont">{{business.review_count}} reviews</h6>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <div ng-if="!model.currentUser.businesses.indexOf(business) > -1"
+                                         ng-click="model.createBusiness(model.currentUser._id, business)">
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                    </div>
+                                    <div ng-if="model.currentUser.businesses.indexOf(business) > -1"
+                                         ng-click="model.removeBusiness(model.currentUser._id, business)">
+                                        <span class="lightRed glyphicon glyphicon-heart"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-2">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>
@@ -84,23 +160,19 @@
     <div class="container-fluid">
         <div class="row text-center">
 
-            <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/user-home"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
-            <a href="#!/user/{{model.userId}}/search"
+            <a href="#!/user-search"
                class="ef-dark-glyph-header col-xs-4 visible-xs">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
-            <a ng-if="model.userLoggedIn"
-               href="#!/user/{{model.userId}}"
+            <a href="#!/profile"
                class="ef-dark-glyph-header col-xs-4 visible-xs">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
-            <a ng-if="!model.userLoggedIn"
-               href="#!/user/{{model.user._id}}"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
+
         </div>
     </div>
 

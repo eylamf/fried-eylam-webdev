@@ -47,11 +47,11 @@ myApp(app);*/
 var port = process.env.PORT || 3000;
 
 // hw3 load app
-require ("./assignment/app.js")(app);
+// require ("./assignment/app.js")(app);
 
 //////////////////////////////////////////////* PROJECT */
 
-// require("./project/app")(app);
+require("./project/app")(app);
 
 
 app.listen(port);

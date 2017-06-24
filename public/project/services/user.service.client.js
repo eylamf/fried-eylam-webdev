@@ -15,12 +15,53 @@
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
+            login: login,
+            checkLoggedIn: checkLoggedIn,
+            logout: logout,
+            register: register,
             updateUser: updateUser,
             deleteUser: deleteUser,
             addBusiness: addBusiness,
             findBusinessesByUserId: findBusinessesByUserId
         };
         return api;
+
+        function checkLoggedIn() {
+            var url = '/api/project/checkLoggedIn';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function register(user) {
+            var url = '/api/project/register';
+            return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+        
+        function logout() {
+            var url = '/api/project/logout';
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function login(username, password) {
+            var url = '/api/project/login';
+            var credentials = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
 
         function findBusinessesByUserId(userId) {
             var url = '/api/project/user/' + userId;
@@ -85,9 +126,9 @@
 
         }
 
-        function addBusiness(userId, business) {
+        function addBusiness(userId, businessId) {
             var url = '/api/project/user/' + userId;
-            return $http.post(url, business)
+            return $http.post(url, businessId)
                 .then(function (response) {
                     return response.data;
                 })

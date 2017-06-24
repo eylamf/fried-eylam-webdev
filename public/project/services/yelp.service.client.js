@@ -14,6 +14,7 @@
 
         this.searchYelp = searchYelp;
 
+
         var key = "be63fb748c0ce5677af6163e431ee392";
         var secret = "cc0ab29a7833ae51";
         var urlBase = "https://api.yelp.com/oauth2/token";
