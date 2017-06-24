@@ -5,6 +5,7 @@
 module.exports = function(app) {
 
     var userModel = require('../models/user/user.model.server');
+    var businessModel = require('../models/business/business.model.server');
     var passport = require('passport');
 
     // Local strategy
@@ -19,8 +20,8 @@ module.exports = function(app) {
     app.get('/api/project/user', findUserByCredentials);
     app.get('/api/project/user/:userId', findUserById);
     app.get('/api/project/user', findUserByUsername);
-
-    app.post('/api/project/user/:userId', addBusiness);
+    app.post('/api/project/user', addBusiness);
+    //app.post('/api/project/user/:userId', createBusiness);
     app.post('/api/project/user', createUser);
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
@@ -80,6 +81,17 @@ module.exports = function(app) {
     }
 
     //////////////////////
+
+    // function createBusiness(req, res) {
+    //     var userId = req.user._id;
+    //     var business = req.body;
+    //
+    //     businessModel
+    //         .createBusiness(userId, business)
+    //         .then(function (status) {
+    //             res.json(status);
+    //         });
+    // }
 
     function addBusiness(req, res) {
         var userId = req.params.userId;

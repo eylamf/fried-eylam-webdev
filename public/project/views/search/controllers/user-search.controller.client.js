@@ -8,7 +8,7 @@
         .module('PROJ')
         .controller('userSearchController', userSearchController);
 
-    function userSearchController(currentUser, userService, $location, yelpService) {
+    function userSearchController(currentUser, userService, $location, yelpService, businessService) {
         var model = this;
 
 
@@ -16,6 +16,7 @@
         model.setTerm = setTerm;
         model.setPrice = setPrice;
         model.addBusiness = addBusiness;
+        model.createBusiness = createBusiness;
 
         function init() {
             model.currentUser = currentUser;
@@ -38,6 +39,14 @@
 
             model.price = price;
 
+        }
+
+        function createBusiness(userId, business) {
+            businessService
+                .createBusiness(userId, business)
+                .then(function (response) {
+                    $location.url('/profile');
+                });
         }
 
 
@@ -69,11 +78,10 @@
         }
 
         function addBusiness(userId, businessId) {
-            console.log("this is bus id: " + businessId);
+
             userService
                 .addBusiness(userId, businessId)
                 .then(function (response) {
-                    console.log('this is the response : ' + response);
                 });
         }
     }

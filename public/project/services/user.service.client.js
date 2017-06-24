@@ -22,6 +22,7 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             addBusiness: addBusiness,
+            //createBusiness: createBusiness,
             findBusinessesByUserId: findBusinessesByUserId
         };
         return api;
@@ -126,12 +127,21 @@
 
         }
 
+        // function createBusiness(userId, business) {
+        //     var url = '/api/project/user/' + userId;
+        //     return $http.post(url, business)
+        //         .then(function (response) {
+        //             return response.data;
+        //         });
+        // }
+
         function addBusiness(userId, businessId) {
-            var url = '/api/project/user/' + userId;
+            // var url = '/api/project/user/' + userId;
+            var url = '/api/project/user';
             return $http.post(url, businessId)
                 .then(function (response) {
                     return response.data;
-                })
+                });
         }
     }
 

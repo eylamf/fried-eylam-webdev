@@ -18,4 +18,5 @@ mongoose.connect(connectionString);
 module.exports = function (app) {
     require('./services/yelpSearch.service.server')(app);
     require('./services/user.service.server')(app);
+    require('./services/business.service.server')(app);
 };

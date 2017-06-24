@@ -18,7 +18,14 @@ businessModel.createBusiness = createBusiness;
 
 function createBusiness(userId, business) {
     business._user = userId;
-    businessModel.create(business);
+    business._id = business.id;
+    return businessModel
+        .create(business);
+        // .then(function (business) {
+        //     userModel
+        //         .addBusiness(userId, business);
+        // });
+
 }
 
 function findBusinessById(businessId) {
