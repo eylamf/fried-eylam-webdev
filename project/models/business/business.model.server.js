@@ -13,18 +13,26 @@ var businessModel = mongoose.model('BusinessModel', businessSchema);
 
 module.exports = businessModel;
 
-businessModel.findBusinessesByUserId = findBusinessById;
+businessModel.findAllBusinessesForUser = findAllBusinessesForUser;
 businessModel.createBusiness = createBusiness;
+businessModel.findBusinessesById = findBusinessById;
+
+function findAllBusinessesForUser(userId) {
+    return businessModel
+        .find({_user: userId})
+        .populate('_user')
+        .exec();
+}
 
 function createBusiness(userId, business) {
     business._user = userId;
     business._id = business.id;
     return businessModel
-        .create(business);
-        // .then(function (business) {
-        //     userModel
-        //         .addBusiness(userId, business);
-        // });
+        .create(business)
+        .then(function (business) {
+            userModel
+                .addBusiness(userId, business._id);
+        });
 
 }
 

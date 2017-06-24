@@ -136,8 +136,7 @@
         // }
 
         function addBusiness(userId, businessId) {
-            // var url = '/api/project/user/' + userId;
-            var url = '/api/project/user';
+            var url = '/api/project/user/' + userId;
             return $http.post(url, businessId)
                 .then(function (response) {
                     return response.data;

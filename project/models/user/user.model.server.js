@@ -21,8 +21,6 @@ userModel.updateUser = updateUser;
 userModel.findUserByUsername = findUserByUsername;
 
 userModel.findAllUsers = findAllUsers;
-userModel.addWebsite = addWebsite;
-userModel.deleteWebsite = deleteWebsite;
 
 userModel.addBusiness = addBusiness;
 
@@ -40,25 +38,6 @@ function addBusiness(userId, businessId) {
 
 function findAllUsers() {
     return userModel.find();
-}
-
-function addWebsite(userId, websiteId) {
-    return userModel
-        .findUserById(userId)
-        .then(function (user) {
-            user.websites.push(websiteId);
-            return user.save();
-        });
-}
-
-function deleteWebsite(userId, websiteId) {
-    return userModel
-        .findById(userId)
-        .then(function (user) {
-            var index = user.websites.indexOf(websiteId);
-            user.websites.splice(index, 1);
-            return user.save();
-        });
 }
 
 function findUserByUsername(username) {

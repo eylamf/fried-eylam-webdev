@@ -7,7 +7,7 @@
         .module('PROJ')
         .controller('profileController', profileController);
 
-    function profileController(currentUser, $location, $routeParams, userService) {
+    function profileController(currentUser, $location, $routeParams, userService, businessService) {
         // this is instead of using $scope
         var model = this;
 
@@ -27,6 +27,7 @@
         
         function init() {
             renderUser(currentUser);
+            findAllBusinessesForUser(currentUser._id);
         }
         init();
 
@@ -37,10 +38,17 @@
                     $location.url('/login');
                 });
         }
+
+        function findAllBusinessesForUser(userId) {
+            businessService
+                .findAllBusinessesForUser(userId)
+                .then(function (businesses) {
+                    model.businesses = businesses;
+                });
+        }
         
         function renderUser(user) {
             model.user = user;
-            model.businesses = user.businesses;
         }
 
         function deleteUser(user) {

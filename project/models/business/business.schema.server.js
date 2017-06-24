@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var businessSchema = mongoose.Schema({
     _id: String,
     name: String,
+    image_url: String,
+    location: {type: Object},
     _user: {type: mongoose.Schema.ObjectId, ref: "UserModel"}
 });
 
