@@ -19,10 +19,28 @@ userModel.findUserByCredentials = findUserByCredentials;
 userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.findUserByUsername = findUserByUsername;
-
 userModel.findAllUsers = findAllUsers;
-
 userModel.addBusiness = addBusiness;
+userModel.removeBusiness = removeBusiness;
+userModel.findBusinessById = findBusinessById;
+
+
+function findBusinessById(userId, businessId) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+           var has = user.businesses.indexOf(businessId);
+           return has;
+        });
+}
+
+function removeBusiness(userId, business) {
+    return userModel.findUserById(userId)
+        .then(function (user) {
+            user.businesses.remove(business._id);
+            return user.save();
+        });
+}
 
 function addBusiness(userId, businessId) {
     return userModel
@@ -31,8 +49,6 @@ function addBusiness(userId, businessId) {
             user.businesses.push(businessId);
             return userModel
                     .updateUser(userId, user);
-
-
         });
 }
 

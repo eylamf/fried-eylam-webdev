@@ -10,7 +10,7 @@ var businessSchema = mongoose.Schema({
     name: String,
     image_url: String,
     location: {type: Object},
-    _user: {type: mongoose.Schema.ObjectId, ref: "UserModel"}
+    _user: [{type: mongoose.Schema.ObjectId, ref: "UserModel"}]
 });
 
 module.exports = businessSchema;
