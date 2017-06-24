@@ -19,6 +19,7 @@ module.exports = function(app) {
     app.get('/api/project/user', findUserByCredentials);
     app.get('/api/project/user/:userId', findUserById);
     app.get('/api/project/user', findUserByUsername);
+
     app.post('/api/project/user/:userId', addBusiness);
     app.post('/api/project/user', createUser);
     app.put('/api/project/user/:userId', updateUser);
@@ -83,6 +84,7 @@ module.exports = function(app) {
     function addBusiness(req, res) {
         var userId = req.params.userId;
         var businessId = req.body;
+        console.log('body ' + businessId);
 
         userModel
             .addBusiness(userId, businessId)

@@ -8,7 +8,7 @@
         .module('PROJ')
         .controller('userSearchController', userSearchController);
 
-    function userSearchController(currentUser, userService, yelpService, businessService) {
+    function userSearchController(currentUser, userService, $location, yelpService) {
         var model = this;
 
 
@@ -16,7 +16,6 @@
         model.setTerm = setTerm;
         model.setPrice = setPrice;
         model.addBusiness = addBusiness;
-        model.createBusiness = createBusiness;
 
         function init() {
             model.currentUser = currentUser;
@@ -41,13 +40,6 @@
 
         }
 
-        function createBusiness(userId, business) {
-            businessService
-                .createBusiness(userId, business)
-                .then(function (response) {
-                    console.log("business: " + response);
-                });
-        }
 
         function setTerm(term) {
             model.term = term;
@@ -77,6 +69,7 @@
         }
 
         function addBusiness(userId, businessId) {
+            console.log("this is bus id: " + businessId);
             userService
                 .addBusiness(userId, businessId)
                 .then(function (response) {
