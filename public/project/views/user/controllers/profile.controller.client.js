@@ -24,7 +24,7 @@
         //         model.user = user;
         //         model.businesses = user.businesses;
         //     });
-        
+
         function init() {
             renderUser(currentUser);
             findAllBusinessesForUser(currentUser._id);
@@ -46,7 +46,7 @@
                     model.businesses = businesses;
                 });
         }
-        
+
         function renderUser(user) {
             model.user = user;
         }

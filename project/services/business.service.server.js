@@ -31,14 +31,27 @@ module.exports = function (app) {
             .then(function (business) {
                 res.json(business);
             }, function (err) {
-                userModel
-                    .addBusiness(userId, business._id)
-                    .then(function (status) {
-                        res.sendStatus(200);
-                    }, function (err) {
-                        res.send(err);
-                    });
+                business._id = business.id;
+                var businessExists = businessModel.findBusinessById(business._id);
+                var userHasBus = userModel.findBusinessById(userId, business._id).data;
+                var busHasUser = businessModel.findUserById(userId, business).data;
+                console.log('bus exists: ' + businessExists);
+                console.log('user has bus: ' + userHasBus);
+                console.log('bus has user: ' + busHasUser);
 
+                if (businessExists && !userHasBus && !busHasUser) {
+                    userModel
+                        .addBusiness(userId, business);
+                    businessModel
+                        .addUser(userId, business);
+                    res.send(err);
+                }
+
+                if (businessExists && userHasBus && busHasUser) {
+                    // remove
+                    res.send(err);
+                }
+                res.send(err);
             });
     }
 

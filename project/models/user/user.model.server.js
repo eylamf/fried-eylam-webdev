@@ -29,8 +29,8 @@ function findBusinessById(userId, businessId) {
     return userModel
         .findUserById(userId)
         .then(function (user) {
-           var has = user.businesses.indexOf(businessId);
-           return has;
+            var has = user.businesses.indexOf(businessId);
+            return has;
         });
 }
 
@@ -48,7 +48,7 @@ function addBusiness(userId, businessId) {
         .then(function (user) {
             user.businesses.push(businessId);
             return userModel
-                    .updateUser(userId, user);
+                .updateUser(userId, user);
         });
 }
 
