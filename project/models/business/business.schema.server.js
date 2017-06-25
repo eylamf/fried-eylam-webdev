@@ -10,6 +10,13 @@ var businessSchema = mongoose.Schema({
     name: String,
     image_url: String,
     location: {type: Object},
+    photos: [{type: String}],
+    rating: Number,
+    review_count: Number,
+    price: String,
+    url: String,
+    phone: {type: String},
+    categories: {type: Object},
     _user: [{type: mongoose.Schema.ObjectId, ref: "UserModel"}]
 });
 

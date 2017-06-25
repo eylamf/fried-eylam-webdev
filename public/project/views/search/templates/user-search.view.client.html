@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 
-<nav class="navbar navbar-default navbar-fixed-top ef-light-nav">
-
-    <a class="ef-nav-title-dark">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <a class="navbar-brand">
         Search
     </a>
+
+    <div class="container-fluid">
+        <a href="#!/search-friend">
+            <div class="findFriendsContainer">
+                <h6 class="findFriendsTitle pull-right">Follow other users! &nbsp <span class="glyphicon glyphicon-plus"></span></h6>
+            </div>
+        </a>
+    </div>
+
 
 </nav>
 
@@ -100,7 +108,6 @@
                     <div class="cardView">
                         <div class="cardViewImageSearch" style="background-image: url('{{business.image_url}}')"></div>
                         <div class="container-fluid">
-                            {{business.id}}
                             <h5 class="text-center">
                                 {{business.name}}
                             </h5>
@@ -132,18 +139,16 @@
                                          ng-click="model.createBusiness(model.currentUser._id, business)">
                                         <span class="glyphicon glyphicon-heart"></span>
                                     </div>
-                                    <div ng-if="model.currentUser.businesses.indexOf(business) > -1"
-                                         ng-click="model.removeBusiness(model.currentUser._id, business)">
-                                        <span class="lightRed glyphicon glyphicon-heart"></span>
-                                    </div>
+                                    <!--<div ng-if="model.currentUser.businesses.indexOf(business) > -1"-->
+                                         <!--ng-click="model.removeBusiness(model.currentUser._id, business)">-->
+                                        <!--<span class="lightRed glyphicon glyphicon-heart"></span>-->
+                                    <!--</div>-->
                                 </div>
 
                                 <div class="col-xs-2">
                                     <span class="glyphicon glyphicon-comment"></span>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 

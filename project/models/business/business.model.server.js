@@ -58,9 +58,9 @@ function removeUser(userId, business) {
 }
 
 function findAllBusinessesForUser(userId) {
-    return businessModel
-        .find({_user: userId})
-        .populate('_user')
+    return userModel
+        .find({_id: userId})
+        .populate('businesses')
         .exec();
 }
 

@@ -6,6 +6,7 @@ module.exports = function(app) {
 
     var userModel = require('../models/user/user.model.server');
     var businessModel = require('../models/business/business.model.server');
+    // var friendModel = require('../models/friend/friend.model.server');
     var passport = require('passport');
 
     // Local strategy
@@ -17,11 +18,13 @@ module.exports = function(app) {
 
     // facebook login
 
+    app.get('/api/project/user', findUserByUsername);
     app.get('/api/project/user', findUserByCredentials);
     app.get('/api/project/user/:userId', findUserById);
-    app.get('/api/project/user', findUserByUsername);
     app.post('/api/project/user/:userId', addBusiness);
-    //app.post('/api/project/user/:userId', createBusiness);
+    app.delete('/api/project/user/:userId/business', removeBusiness);
+    app.post('/api/project/user/:userId/friend', addFriend);
+    app.get('/api/project/user/:userId/all-friends', findAllFriendsForUser);
     app.post('/api/project/user', createUser);
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
@@ -93,6 +96,35 @@ module.exports = function(app) {
     //         });
     // }
 
+
+    function addFriend(req, res) {
+
+        var userId = req.params.userId;
+
+        var friend = req.body;
+
+        userModel
+            .addFriend(userId, friend)
+            .then(function (status) {
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
+            });
+    }
+
+    function removeBusiness(req, res) {
+        var userId = req.params.userId;
+        var businessId = req.body;
+
+        userModel
+            .removeBusiness(userId, businessId)
+            .then(function (status) {
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
+            });
+    }
+
     function addBusiness(req, res) {
         var userId = req.params.userId;
         var businessId = req.body;
@@ -107,6 +139,17 @@ module.exports = function(app) {
             });
     }
 
+    function findAllFriendsForUser(req, res) {
+        var userId = req.params.userId;
+        userModel
+            .findAllFriendsForUser(userId)
+            .then(function (friends) {
+                res.json(friends);
+            }, function (err) {
+                res.send(err);
+            });
+    }
+
     function findUserByUsername(req, res) {
 
         var username = req.query['username'];
@@ -114,15 +157,14 @@ module.exports = function(app) {
         userModel
             .findUserByUsername(username)
             .then(function (user) {
-                if  (user !== null) {
+                if (user !== null) {
                     res.json(user);
                 } else {
                     res.sendStatus(404);
                 }
             }, function (err) {
-                res.sendStatus(404);
+                res.send(err);
             });
-
     }
 
     function deleteUser(req, res) {

@@ -7,14 +7,17 @@
         .module('PROJ')
         .controller('userHomeController', userHomeController);
 
-    function userHomeController(currentUser, yelpService) {
+    function userHomeController(currentUser, yelpService, businessService, $location, userService) {
         var model = this;
-        model.currentUser = currentUser;
+
 
         model.searchYelp = searchYelp;
         model.refresh = refresh;
+        model.createBusiness = createBusiness;
+        model.removeBusiness = removeBusiness;
 
         function init() {
+            model.currentUser = currentUser;
 
             var locations = [
                 "New York",
@@ -31,7 +34,7 @@
             ];
 
             if (model.currentUser.favCity === null ||
-                typeof model.currentUser.favCity === 'undefined') {
+                typeof model.currentUser.favCity === 'undefined' || model.currentUser.favCity === '') {
                 model.location = locations[Math.floor(Math.random() * locations.length)];
             } else {
                 model.location = model.currentUser.favCity;
@@ -76,6 +79,23 @@
 
         function refresh() {
             init();
+        }
+
+        function removeBusiness(userId, business) {
+            userService
+                .removeBusiness(userId, business)
+                .then(function (response) {
+
+                });
+
+        }
+
+        function createBusiness(userId, business) {
+            businessService
+                .createBusiness(userId, business)
+                .then(function (response) {
+                    $location.url('/user-home');
+                });
         }
 
         function searchYelp(term, location) {

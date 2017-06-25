@@ -22,8 +22,10 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             addBusiness: addBusiness,
-            //createBusiness: createBusiness,
-            findBusinessesByUserId: findBusinessesByUserId
+            removeBusiness: removeBusiness,
+            addFriend: addFriend,
+            findBusinessesByUserId: findBusinessesByUserId,
+            findAllFriendsForUser: findAllFriendsForUser
         };
         return api;
 
@@ -60,6 +62,15 @@
             return $http.post(url, credentials)
                 .then(function (response) {
                     return response.data;
+                });
+        }
+
+        function findAllFriendsForUser(userId) {
+            var url = '/api/project/user/' +userId+ '/all-friends';
+            return $http.get(url)
+                .then(function (response) {
+                    console.log('friends: ' + response.data);
+                    return response.data[0]._friends;
                 });
         }
 
@@ -134,6 +145,23 @@
         //             return response.data;
         //         });
         // }
+
+        function addFriend(userId, friend) {
+
+            var url = '/api/project/user/'+ userId +'/friend';
+            return $http.post(url, friend)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function removeBusiness(userId, businessId) {
+            var url = '/api/project/user/'+userId+'/business';
+            return $http.delete(url, businessId)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function addBusiness(userId, businessId) {
             var url = '/api/project/user/' + userId;

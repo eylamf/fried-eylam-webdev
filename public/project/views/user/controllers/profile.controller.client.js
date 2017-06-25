@@ -13,9 +13,12 @@
 
         var userId = currentUser._id;
 
-        model.updateUser = updateUser;
+
         model.deleteUser = deleteUser;
         model.logout = logout;
+        model.seeDetails = seeDetails;
+        model.cancelDetails = cancelDetails;
+        model.removeBusiness = removeBusiness;
 
         // refactored: get the promise from the server
         // userService
@@ -28,14 +31,41 @@
         function init() {
             renderUser(currentUser);
             findAllBusinessesForUser(currentUser._id);
+            findAllFriendsForUser(currentUser._id);
         }
         init();
+
+        function removeBusiness(userId, business) {
+            userService
+                .removeBusiness(userId, business)
+                .then(function (response) {
+                    init();
+                    model.selectedBusiness = null;
+                });
+        }
+
+        function cancelDetails() {
+            model.selectedBusiness = null;
+        }
+
+        function seeDetails(business) {
+            model.selectedBusiness = business;
+
+        }
 
         function logout() {
             userService
                 .logout()
                 .then(function () {
                     $location.url('/login');
+                });
+        }
+
+        function findAllFriendsForUser(userId) {
+            userService
+                .findAllFriendsForUser(userId)
+                .then(function (friends) {
+                    model.friends = friends;
                 });
         }
 
@@ -58,13 +88,7 @@
                     $location.url('/login');
                 });
         }
-        function updateUser(user) {
-            userService
-                .updateUser(user._id, user)
-                .then(function () {
-                    model.message = "User updated successfully";
-                });
-        }
+
 
 
     }

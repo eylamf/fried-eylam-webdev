@@ -18,7 +18,7 @@
             var url = '/api/project/user/' + userId + '/business';
             return $http.get(url)
                 .then(function (response) {
-                    return response.data;
+                    return response.data[0].businesses;
                 });
         }
 

@@ -9,7 +9,7 @@
             <span class="ef-white-glyph-header glyphicon glyphicon-off pull-right"></span>
         </a>
 
-        <a>
+        <a href="#!/account">
             <span class="ef-white-glyph-header glyphicon glyphicon-cog ef-glyph-margin pull-right"></span>
         </a>
 
@@ -18,40 +18,191 @@
 
 
 <div class="container-fluid">
-
     <div class="profileInfo">
         <div class="container-fluid row">
             <div class="col-xs-4 profileImg text-center">
                 <span class="glyphicon glyphicon-user"></span>
             </div>
-            <h3 class="col-xs-4">
+            <h3 class="col-xs-8">
                 {{model.user.username}}
             </h3>
         </div>
     </div>
 
-    <h2>{{model.user.email}}</h2>
+    <div class="profileDetails">
+        <h5 ng-show="model.user.firstName || model.user.lastName">{{model.user.firstName}} {{model.user.lastName}}</h5>
+        <h6 ng-show="model.user.email" class="lighGrayFont"><span class="glyphicon glyphicon-envelope"></span> &nbsp {{model.user.email}}</h6>
+        <h6 ng-if="model.user.favCity" class="lighGrayFont"><span class="glyphicon glyphicon-map-marker"></span> &nbsp {{model.user.favCity}}</h6>
+        <a href="#!/account">
+            <h6 ng-if="!model.user.favCity" class="blueFont"><span class="glyphicon glyphicon-map-marker"></span> &nbsp Input a city to get suggested businesses!</h6>
+        </a>
+    </div>
 
-    <ul class="list-group">
-        <li ng-repeat="business in model.businesses"
-            class="list-group-item">
+</div>
+    <div class="myBusinesses btn-success">
+        <h6>My Businesses &nbsp <span class="glyphicon glyphicon-lock"></span></h6>
+    </div>
+
+    <div class="horizontalScroll">
+        <div>
+            <a ng-click="model.seeDetails(business)" ng-repeat="business in model.businesses">
+                <div class="cardViewHorizontal">
+                    <div ng-if="business.image_url" class="cardViewImage" style="background-image: url('{{business.image_url}}')"></div>
+                    <div ng-if="!business.image_url" class="cardViewImage">
+                        <div class="image-NA-text text-center">
+                            <h4><span class="glyphicon glyphicon-picture"></span></h4>
+                            <h5>Image Not Available</h5>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h5 class="suggestionInfo">{{business.name}}</h5>
+                        <div class="line"></div>
+                        <div class="container row">
+
+                            <div class="col-xs-2">
+                                <h6 class="lighGrayFont">{{business.price}}</h6>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <h6 class="lighGrayFont">{{business.rating}}
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </h6>
+                            </div>
+
+                            <div class="col-xs-3">
+                                <h6 class="lighGrayFont">{{business.review_count}} reviews</h6>
+                            </div>
+
+                        </div>
+
+                        <div class="container row">
+                            <div class="col-xs-2">
+                                <div>
+                                    <span class="lightRed glyphicon glyphicon-heart"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <span class="glyphicon glyphicon-comment"></span>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div ng-if="model.currentUser.businesses.indexOf(business) > -1">
+                                    <h6 class="smallFont lighGrayFont">You previously liked this!</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div ng-show="model.selectedBusiness"
+         class="businessDetails">
+        <div class="container-fluid">
+            <!-- name of business and option to close details -->
+            <h4>
+                {{model.selectedBusiness.name}}
+                <span ng-click="model.cancelDetails()"
+                      class="glyphicon glyphicon-remove pull-right">
+
+                </span>
+            </h4>
+
+            <div class="line-left"></div>
+
+            <!-- show the address -->
+            <h6 ng-if="model.selectedBusiness.location.display_address"
+                class="lighGrayFont">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                {{model.selectedBusiness.location.display_address[0]}},
+                {{model.selectedBusiness.location.display_address[1]}}
+            </h6>
+            <!-- else statement -->
+            <h6 ng-if="!model.selectedBusiness.location.display_address"
+                class="lighGrayFont">
+                {{model.selectedBusiness.location.address1}},
+                {{model.selectedBusiness.location.city}},
+                {{model.selectedBusiness.location.state}},
+                {{model.selectedBusiness.location.zip_code}}
+            </h6>
+
+
+            <h6 ng-if="model.selectedBusiness.phone"
+                class="lighGrayFont">
+                <span class="glyphicon glyphicon-phone-alt"></span>
+                {{model.selectedBusiness.phone}}
+            </h6>
+
+            <div class="line-left"></div>
 
             <div class="row">
-                <div class="col-xs-4">
-                    <img width="100px" ng-src="{{business.image_url}}">
+
+                <div class="col-xs-2">
+                    <h6 ng-if="model.selectedBusiness.price"
+                        class="lighGrayFont">
+                        {{model.selectedBusiness.price}}
+                    </h6>
                 </div>
-                <div class="col-xs-4">
-                    <h4>{{business.name}}</h4>
+
+                <div class="col-xs-3">
+                    <h6 ng-if="model.selectedBusiness.rating"
+                        class="lighGrayFont">
+                        {{model.selectedBusiness.rating}} <span class="glyphicon glyphicon-star"></span>
+                    </h6>
                 </div>
+
                 <div class="col-xs-4">
-                    <h4>{{business.location.city}}, {{business.location.state}}</h4>
+                    <h6 ng-if="model.selectedBusiness.review_count"
+                        class="lighGrayFont">
+                        {{model.selectedBusiness.review_count}} reviews</span>
+                    </h6>
+                </div>
+
+            </div>
+
+            <!-- show if this is business is open or not -->
+            <div class="horizontalScroll">
+                <div>
+                    <a ng-repeat="photo in model.selectedBusiness.photos">
+                        <div style="width: 200px; background-image: url('{{photo}}')"></div>
+                    </a>
                 </div>
             </div>
 
-        </li>
-    </ul>
+            <a ng-click="model.removeBusiness(model.user._id, model.selectedBusiness)" class="btn btn-danger">
+                Remove this business
+            </a>
 
-</div>
+        </div>
+    </div>
+
+    <div ng-show="model.friends.length > 0"
+         class="myFriends">
+        <h6>Following &nbsp <span class="glyphicon glyphicon-sunglasses"></span></h6>
+    </div>
+
+
+    <div class="container-fluid">
+        <div ng-repeat="friend in model.friends" class="friendFoundList">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="profileImgSmall"><span class="glyphicon glyphicon-user"></span></div>
+                </div>
+                <div class="col-xs-6">
+                    <h5 class="friendFoundListVerticalAlign">{{friend.username}} <span class="lighGrayFont"><h6>{{friend.firstName}}</h6></span> </h5>
+                </div>
+                <div class="col-xs-3">
+                    <div ng-click="model.removeFriend(model.currentUser._id, model.suggestedFriend)">
+                        <span class="friendFoundListGlyph glyphicon glyphicon-trash pull-right"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
     <div class="container-fluid">

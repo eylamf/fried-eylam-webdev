@@ -58,6 +58,22 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/account', {
+                templateUrl: 'views/user/templates/account.view.client.html',
+                controller: 'accountController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/search-friend', {
+                templateUrl: 'views/user/templates/search-friend.view.client.html',
+                controller: 'friendController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when('/user-search', {
                 templateUrl: 'views/search/templates/user-search.view.client.html',
                 controller: 'userSearchController',
@@ -66,8 +82,6 @@
                     currentUser: checkLoggedIn
                 }
             });
-
-
     }
 
 })();

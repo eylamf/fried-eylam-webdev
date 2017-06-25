@@ -13,6 +13,8 @@ var userModel = mongoose.model('UserModel', userSchema);
 
 module.exports = userModel;
 
+// user
+
 userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.findUserByCredentials = findUserByCredentials;
@@ -20,9 +22,36 @@ userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findAllUsers = findAllUsers;
+
+// business
+
 userModel.addBusiness = addBusiness;
 userModel.removeBusiness = removeBusiness;
 userModel.findBusinessById = findBusinessById;
+
+// friends
+
+userModel.addFriend = addFriend;
+userModel.findAllFriendsForUser = findAllFriendsForUser;
+
+
+function findAllFriendsForUser(userId) {
+
+    return userModel
+        .find({_id: userId})
+        .populate('_friends')
+        .exec();
+
+}
+
+function addFriend(userId, friend) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            user._friends.push(friend);
+            return user.save();
+        });
+}
 
 
 function findBusinessById(userId, businessId) {
@@ -37,7 +66,8 @@ function findBusinessById(userId, businessId) {
 function removeBusiness(userId, business) {
     return userModel.findUserById(userId)
         .then(function (user) {
-            user.businesses.remove(business._id);
+            var index = user.businesses.indexOf(business.id);
+            user.businesses.splice(index, 1);
             return user.save();
         });
 }

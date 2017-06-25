@@ -13,7 +13,7 @@ var userSchema = mongoose.Schema({
     email: String,
     favCity: String,
     businesses: [{type: String, ref: 'BusinessModel'}],
-    friends: [{type: mongoose.Schema.ObjectId, ref: 'FriendModel'}],
+    _friends: [{type: mongoose.Schema.ObjectId, ref: 'UserModel'}],
     dateCreated: {type: Date, default: Date.now}
 });
 

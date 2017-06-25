@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+        <a href="#!/profile">
+            <span class="glyphicon glyphicon-chevron-left pull-left ef-white-glyph-header"></span>
+        </a>
+        <a class="navbar-brand">
+            Account
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}} &nbsp <span class="glyphicon glyphicon-ok"></span>
+    </div>
+
+    <label for="username">Username <span class="blueFont">*</span></label>
+    <input id="username"
+           class="form-control"
+           ng-model="model.userCopy.username"
+           value="{{model.currentUser.username}}">
+
+    <label for="email">Email</label>
+    <input id="email"
+           type="email"
+           class="form-control"
+           ng-model="model.userCopy.email"
+           placeholder="Email"
+           value="{{model.userCopy.email}}">
+
+    <label for="password">Password <span class="blueFont">*</span></label>
+    <input id="password"
+           class="form-control"
+           ng-model="model.userCopy.password"
+           value="{{model.currentUser.password}}">
+
+    <label for="first">First Name</label>
+    <input id="first"
+           class="form-control"
+           placeholder="First Name"
+           ng-model="model.userCopy.firstName"
+           value="{{model.currentUser.firstName}}">
+
+    <label for="last">Last Name</label>
+    <input id="last"
+           class="form-control"
+           placeholder="Last Name"
+           ng-model="model.userCopy.lastName"
+           value="{{model.currentUser.lastName}}">
+
+    <label for="favCity">Favorite City</label>
+    <input id="favCity"
+           class="form-control"
+           ng-model="model.userCopy.favCity"
+           placeholder="Where are you looking?"
+           value="{{model.currentUser.favCity}}">
+
+    <br>
+    <a ng-click="model.updateUser(model.userCopy)"
+       class="btn btn-success form-control">
+        Update &nbsp <span class="glyphicon glyphicon-edit"></span>
+    </a>
+
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-4 visible-xs">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+
+</nav>

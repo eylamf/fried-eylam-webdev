@@ -15,8 +15,10 @@
         model.searchYelp = searchYelp;
         model.setTerm = setTerm;
         model.setPrice = setPrice;
-        model.addBusiness = addBusiness;
         model.createBusiness = createBusiness;
+        model.addBusiness = addBusiness;
+        model.removeBusiness = removeBusiness;
+
 
         function init() {
             model.currentUser = currentUser;
@@ -74,6 +76,13 @@
                 .searchYelp(term, location)
                 .then(function (response) {
                     model.businesses = response.data.businesses;
+                });
+        }
+
+        function removeBusiness(userId, businessId) {
+            userService
+                .removeBusiness(userId, businessId)
+                .then(function (response) {
                 });
         }
 
