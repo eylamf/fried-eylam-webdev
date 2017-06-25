@@ -10,9 +10,18 @@
 
         var api = {
             createBusiness: createBusiness,
-            findAllBusinessesForUser: findAllBusinessesForUser
+            findAllBusinessesForUser: findAllBusinessesForUser,
+            createComment: createComment
         };
         return api;
+
+        function createComment(businessId, comment) {
+            var url = '/api/project/business/'+businessId;
+            return $http.post(url, comment)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function findAllBusinessesForUser(userId) {
             var url = '/api/project/user/' + userId + '/business';

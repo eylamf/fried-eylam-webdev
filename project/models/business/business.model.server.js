@@ -27,7 +27,18 @@ businessModel.addUser = addUser;
 businessModel.removeUser = removeUser;
 businessModel.findUserById = findUserById;
 businessModel.updateBusiness = updateBusiness;
+businessModel.createComment = createComment;
 
+
+function createComment(businessId, comment) {
+    return businessModel
+        .findById(businessId)
+        .then(function (business) {
+            console.log('found business: ' + business);
+            business._comments.push(comment);
+            return business.save();
+        });
+}
 
 function addUser(userId, business) {
     return businessModel
@@ -42,9 +53,7 @@ function addUser(userId, business) {
 function updateBusiness(business) {
     console.log(business._user);
     return businessModel.update({_id: business._id}, {
-        $set : {
-            _user: business._user
-        }
+        $set : business
     });
 }
 

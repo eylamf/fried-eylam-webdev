@@ -24,6 +24,7 @@ module.exports = function(app) {
     app.post('/api/project/user/:userId', addBusiness);
     app.delete('/api/project/user/:userId/business', removeBusiness);
     app.post('/api/project/user/:userId/friend', addFriend);
+    app.delete('/api/project/user/:userId/friend', removeFriend);
     app.get('/api/project/user/:userId/all-friends', findAllFriendsForUser);
     app.post('/api/project/user', createUser);
     app.put('/api/project/user/:userId', updateUser);
@@ -95,6 +96,19 @@ module.exports = function(app) {
     //             res.json(status);
     //         });
     // }
+
+    function removeFriend(req, res) {
+        var userId = req.params.userId;
+        var friend = req.body;
+
+        userModel
+            .removeFriend(userId, friend)
+            .then(function (status) {
+                res.sendStatus(200);
+            }, function (err) {
+                res.send(err);
+            });
+    }
 
 
     function addFriend(req, res) {

@@ -24,6 +24,7 @@
             addBusiness: addBusiness,
             removeBusiness: removeBusiness,
             addFriend: addFriend,
+            removeFriend: removeFriend,
             findBusinessesByUserId: findBusinessesByUserId,
             findAllFriendsForUser: findAllFriendsForUser
         };
@@ -145,6 +146,14 @@
         //             return response.data;
         //         });
         // }
+
+        function removeFriend(userId, friend) {
+            var url = '/api/project/user/'+userId+'/friend';
+            return $http.delete(url, friend)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function addFriend(userId, friend) {
 

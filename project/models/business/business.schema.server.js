@@ -17,6 +17,7 @@ var businessSchema = mongoose.Schema({
     url: String,
     phone: {type: String},
     categories: {type: Object},
+    _comments: [mongoose.Schema.Types.Object],
     _user: [{type: mongoose.Schema.ObjectId, ref: "UserModel"}]
 });
 

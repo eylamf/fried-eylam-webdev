@@ -14,11 +14,62 @@
         model.registerUser = registerUser;
 
         function registerUser(username, password, password2) {
+
             if (password !== password2) {
                 model.error = "Passwords must match";
                 return;
             }
-            var found = null; //userService.findUserByUsername(username);
+
+            var found = null;
+            userService
+                .findUserByUsername(username)
+                .then(function (user) {
+                    if (typeof user === 'undefined' || user === null) {
+                        found = null;
+                        var user = {
+                            username: username,
+                            password: password
+                        };
+                        userService
+                            .register(user)
+                            .then(function (user) {
+                                $location.url('/profile');
+                            });
+                    } else {
+                        found = user;
+                        model.error = "Username is unavailable";
+                    }
+                }, function (err) {
+                    var user = {
+                        username: username,
+                        password: password
+                    };
+                    userService
+                        .register(user)
+                        .then(function (user) {
+                            $location.url('/profile');
+                        });
+                });
+
+            /*
+            if (password !== password2) {
+                model.error = "Passwords must match";
+                return;
+            } else {
+
+            }
+            var found = null;
+            userService
+                .findUserByUsername(username)
+                .then(function (user) {
+                    if (typeof user === 'undefined' || user === null) {
+                        found = null
+                    } else {
+                        found = user;
+                    }
+                }, function (err) {
+                    found = null;
+                });
 
             if (found !== null) {
                 model.error = "Username is not available";
@@ -34,6 +85,7 @@
                     });
 
             }
+            */
         }
     }
 

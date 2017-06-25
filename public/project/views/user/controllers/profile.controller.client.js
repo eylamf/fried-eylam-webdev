@@ -19,14 +19,13 @@
         model.seeDetails = seeDetails;
         model.cancelDetails = cancelDetails;
         model.removeBusiness = removeBusiness;
+        model.writeComment = writeComment;
+        model.createComment = createComment;
+        model.trashComment = trashComment;
+        model.toggleComments = toggleComments;
+        model.addFriend = addFriend;
+        model.removeFriend = removeFriend;
 
-        // refactored: get the promise from the server
-        // userService
-        //     .findUserById(userId)
-        //     .then(function (user) {
-        //         model.user = user;
-        //         model.businesses = user.businesses;
-        //     });
 
         function init() {
             renderUser(currentUser);
@@ -34,6 +33,60 @@
             findAllFriendsForUser(currentUser._id);
         }
         init();
+
+        function removeFriend(userId, friend) {
+            userService
+                .removeFriend(userId, friend)
+                .then(function (response) {
+                    model.message = "Removed";
+                    init();
+                });
+        }
+
+        function addFriend(userId, friendUsername) {
+
+            userService
+                .findUserByUsername(friendUsername)
+                .then(function (friend) {
+
+                    userService
+                        .addFriend(userId, friend)
+                        .then(function (response) {
+                            model.message = "You are now following " + friend.username;
+                            init();
+                        });
+                });
+
+
+        }
+
+        function createComment(businessId, comment) {
+            comment.user = currentUser.username;
+            comment.userId = currentUser._id;
+            businessService
+                .createComment(businessId, comment)
+                .then(function (response) {
+                    model.message = "Comment posted successfully";
+                    model.commentEnabled = null;
+                    init();
+                });
+        }
+
+        function toggleComments() {
+            model.comments = null;
+            model.message = null;
+        }
+
+        function trashComment() {
+            model.comment = null;
+            model.commentEnabled = null;
+            model.comments = null;
+            model.message = null;
+        }
+
+        function writeComment() {
+            model.commentEnabled = true;
+        }
 
         function removeBusiness(userId, business) {
             userService
@@ -46,11 +99,12 @@
 
         function cancelDetails() {
             model.selectedBusiness = null;
+            model.message = null;
         }
 
         function seeDetails(business) {
             model.selectedBusiness = business;
-
+            model.comments = business._comments;
         }
 
         function logout() {

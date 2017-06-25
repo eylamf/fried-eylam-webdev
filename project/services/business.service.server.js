@@ -8,8 +8,20 @@ module.exports = function (app) {
     var userModel = require('../models/user/user.model.server');
 
     app.post('/api/project/user/:userId/business', createBusiness);
+    app.post('/api/project/business/:businessId', createComment);
     app.get('/api/project/user/:userId/business', findAllBusinessesForUser);
 
+    function createComment(req, res) {
+        var businessId = req.params.businessId;
+        var comment = req.body;
+        businessModel
+            .createComment(businessId, comment)
+            .then(function (comment) {
+                res.json(comment);
+            }, function (err) {
+                res.send(err);
+            });
+    }
 
     function findAllBusinessesForUser(req, res) {
         var userId = req.params.userId;

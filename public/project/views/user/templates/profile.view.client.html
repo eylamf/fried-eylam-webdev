@@ -30,11 +30,25 @@
     </div>
 
     <div class="profileDetails">
-        <h5 ng-show="model.user.firstName || model.user.lastName">{{model.user.firstName}} {{model.user.lastName}}</h5>
-        <h6 ng-show="model.user.email" class="lighGrayFont"><span class="glyphicon glyphicon-envelope"></span> &nbsp {{model.user.email}}</h6>
-        <h6 ng-if="model.user.favCity" class="lighGrayFont"><span class="glyphicon glyphicon-map-marker"></span> &nbsp {{model.user.favCity}}</h6>
+        <h5 ng-show="model.user.firstName || model.user.lastName">
+            {{model.user.firstName}} {{model.user.lastName}}
+        </h5>
+
+        <h6 ng-show="model.user.email"
+            class="lighGrayFont">
+            <span class="glyphicon glyphicon-envelope"></span>
+            &nbsp {{model.user.email}}
+        </h6>
+
+        <h6 ng-if="model.user.favCity"
+            class="lighGrayFont"><span class="glyphicon glyphicon-map-marker"></span>
+            &nbsp {{model.user.favCity}}
+        </h6>
         <a href="#!/account">
-            <h6 ng-if="!model.user.favCity" class="blueFont"><span class="glyphicon glyphicon-map-marker"></span> &nbsp Input a city to get suggested businesses!</h6>
+            <h6 ng-if="!model.user.favCity"
+                class="blueFont"><span class="glyphicon glyphicon-map-marker"></span>
+                &nbsp Input a city to get suggested businesses!
+            </h6>
         </a>
     </div>
 
@@ -83,11 +97,13 @@
                             </div>
 
                             <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-comment"></span>
+                                <div ng-click="model.writeComment()">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </div>
                             </div>
 
                             <div class="col-xs-4">
-                                <div ng-if="model.currentUser.businesses.indexOf(business) > -1">
+                                <div ng-if="model.currentUser.businesses.indexOf(business.id) > -1">
                                     <h6 class="smallFont lighGrayFont">You previously liked this!</h6>
                                 </div>
                             </div>
@@ -98,14 +114,40 @@
             </a>
         </div>
     </div>
+    <div ng-show="model.commentEnabled">
+        <div class="container-fluid margin-top-15">
+            <label for="comment">Write a comment</label>
+            <textarea class="form-control"
+                      placeholder="Comment..."
+                      id="comment"
+                      ng-model="comment.text"></textarea>
+
+            <a ng-click="model.createComment(model.selectedBusiness._id, comment)"
+               class="btn btn-success">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+            <a ng-click="model.trashComment()"
+               class="btn btn-danger pull-right">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+    </div>
+
+    <div ng-show="model.message">
+        <div class="alert alert-success">
+            {{model.message}} &nbsp <span class="glyphicon glyphicon-ok"></span>
+        </div>
+    </div>
 
     <div ng-show="model.selectedBusiness"
          class="businessDetails">
         <div class="container-fluid">
+
             <!-- name of business and option to close details -->
             <h4>
                 {{model.selectedBusiness.name}}
                 <span ng-click="model.cancelDetails()"
+                      id="details"
                       class="glyphicon glyphicon-remove pull-right">
 
                 </span>
@@ -129,11 +171,20 @@
                 {{model.selectedBusiness.location.zip_code}}
             </h6>
 
-
             <h6 ng-if="model.selectedBusiness.phone"
                 class="lighGrayFont">
                 <span class="glyphicon glyphicon-phone-alt"></span>
                 {{model.selectedBusiness.phone}}
+            </h6>
+
+            <h6 ng-if="model.selectedBusiness.url"
+                class="lighGrayFont">
+                <span class="glyphicon glyphicon-globe"></span>
+                <a class="lighGrayFont"
+                   href="{{model.selectedBusiness.url}}"
+                   target="_blank">
+                    Check this business out on Yelp!
+                </a>
             </h6>
 
             <div class="line-left"></div>
@@ -172,12 +223,46 @@
                 </div>
             </div>
 
-            <a ng-click="model.removeBusiness(model.user._id, model.selectedBusiness)" class="btn btn-danger">
-                Remove this business
-            </a>
+            <div ng-if="model.comments.length >= 1">
+
+
+                <h5>User Comments <span ng-click="model.toggleComments()" class="lightRed pull-right">Toggle</span> </h5>
+
+
+                </div>
+                <div ng-repeat="com in model.comments"
+                     class="commentContainer">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div class="profileImgExtraSmall">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <h5>{{com.user}}</h5>
+                        </div>
+                        <div class="col-xs-2">
+                            <div ng-if="model.user._friends.indexOf(com.userId) > -1">
+                                <span class="glyphicon glyphicon-ok blueFont pull-right"></span>
+                            </div>
+                            <div ng-if="!(model.user._friends.indexOf(com.userId) > -1)"
+                                 ng-click="model.addFriend(model.user._id, com.user)">
+                                <span class="glyphicon glyphicon-plus pull-right"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="lighGrayFont">{{com.text}}</h6>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <a ng-click="model.removeBusiness(model.user._id, model.selectedBusiness)" class="btn btn-danger">
+                    Remove this business
+                </a>
+            </div>
 
         </div>
-    </div>
+
 
     <div ng-show="model.friends.length > 0"
          class="myFriends">
@@ -195,7 +280,7 @@
                     <h5 class="friendFoundListVerticalAlign">{{friend.username}} <span class="lighGrayFont"><h6>{{friend.firstName}}</h6></span> </h5>
                 </div>
                 <div class="col-xs-3">
-                    <div ng-click="model.removeFriend(model.currentUser._id, model.suggestedFriend)">
+                    <div ng-click="model.removeFriend(model.user._id, model.suggestedFriend)">
                         <span class="friendFoundListGlyph glyphicon glyphicon-trash pull-right"></span>
                     </div>
                 </div>

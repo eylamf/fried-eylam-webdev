@@ -16,6 +16,9 @@
         model.createBusiness = createBusiness;
         model.removeBusiness = removeBusiness;
 
+        model.seeDetails = seeDetails;
+        model.cancelDetails = cancelDetails;
+
         function init() {
             model.currentUser = currentUser;
 
@@ -79,6 +82,16 @@
 
         function refresh() {
             init();
+        }
+
+        function cancelDetails() {
+            model.selectedBusiness = null;
+            model.message = null;
+        }
+
+        function seeDetails(business) {
+            model.selectedBusiness = business;
+            model.comments = business._comments;
         }
 
         function removeBusiness(userId, business) {

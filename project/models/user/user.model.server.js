@@ -32,8 +32,19 @@ userModel.findBusinessById = findBusinessById;
 // friends
 
 userModel.addFriend = addFriend;
+userModel.removeFriend = removeFriend;
 userModel.findAllFriendsForUser = findAllFriendsForUser;
 
+
+function removeFriend(userId, friend) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            var index = user._friends.indexOf(friend._id);
+            user._friends.splice(index, 1);
+            return user.save();
+        });
+}
 
 function findAllFriendsForUser(userId) {
 
