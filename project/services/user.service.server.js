@@ -21,7 +21,7 @@ module.exports = function(app) {
     // var facebookConfig = {
     //     clientID: '460484557651369', //process.env.FACEBOOK_CLIENT_ID, //'460484557651369',
     //     clientSecret: '2852203dd0f38204c379ab0295bf06f7', //process.env.FACEBOOK_SECRET,// '2852203dd0f38204c379ab0295bf06f7',
-    //     callbackURL:'https://localhost:3000/auth/facebook/callback', //process.env.FACEBOOK_CALLBACK,//
+    //     callbackURL:'http://localhost:3000/auth/facebook/callback', //process.env.FACEBOOK_CALLBACK,//
     //     profileFields: ['emails','id','name','displayName']
     // };
 
