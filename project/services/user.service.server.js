@@ -26,6 +26,8 @@ module.exports = function(app) {
         profileFields: ['emails','id','name','displayName']
     };
 
+
+
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     app.get('/api/project/user', findUserByUsername);

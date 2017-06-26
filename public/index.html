@@ -1,30 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- font awesome -->
+    <link href="vendor/fontawesome/fonts/font-awesome.min.css" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta charset="UTF-8">
     <title>Web Dev Course Home Page</title>
 </head>
 <body>
-    <h1>Web Dev Course Home Page</h1>
 
-    <p>
-        Customize this home page to your linking.
-    </p>
+    <nav class="navbar navbar-fixed-top navbar-default">
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/eylamf/fried-eylam-webdev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+            <a class="navbar-brand">
+                Web Dev Course Home Page
+            </a>
+
+
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="profilePicBorder">
+            <img id="profilePic"
+                 width="150px"
+                 src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAqDAAAAJGNiODc4YzMzLWFkODYtNDM4Yi05ZDJkLWZkZWEzYTQxYmI0ZA.jpg">
+        </div>
+
+        <div class="line margin-top-15"></div>
+
+        <div class="text-align-center">
+            <h3><span class="glyphicon glyphicon-user"></span> &nbsp Bio</h3>
+
+        </div>
+
+        <div class="aboutMeContainer">
+            <h4 class="text-center">My name is Eylam Fried</h4>
+
+            <h5 class="text-center lighGrayFont">I am a 3rd year undergraduate student at Northeastern University.</h5>
+            <h5 class="text-center lighGrayFont">Pursuing a B.S. in Computer Science and Digital Art</h5>
+
+        </div>
+
+        <div class="aboutMeContainer">
+            <a href="https://fried-eylam-webdev.herokuapp.com/assignment/index.html#!/">
+                <h4 class="text-center"><span class="glyphicon glyphicon-apple"></span> &nbsp Assignment</h4>
+            </a>
+        </div>
+
+        <div class="aboutMeContainer">
+            <a href="https://web-dev-proj.herokuapp.com/project/index.html#!/">
+                <h4 class="text-center"><span class="glyphicon glyphicon-folder-open"></span> &nbsp Project</h4>
+            </a>
+        </div>
+
+        <div class="aboutMeContainer">
+            <a href="https://github.com/eylamf/fried-eylam-webdev"
+               target="_blank">
+                <h4 class="text-center"><span class="glyphicon glyphicon-save"></span> &nbsp Github</h4>
+            </a>
+        </div>
+
+
+        <!--<ul>-->
+            <!--<li>-->
+                <!--<a href="project/index.html">Project</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="assignment/index.html">Assignment</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="test/index.html">Test MongoDB</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="https://github.com/eylamf/fried-eylam-webdev">Your public repository at GitHub.com</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+
+    </div>
+
+    <nav class="navbar navbar-fixed-bottom navbar-default">
+
+        <a class="navbar-brand">
+            Thanks!
+        </a>
+
+
+    </nav>
+
+
 </body>
 </html>

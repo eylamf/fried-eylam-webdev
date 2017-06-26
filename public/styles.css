@@ -1,0 +1,534 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 35px; /* used to be 36px */
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: #474747;
+}
+
+input.form-control,
+textarea.form-control,
+select.form-control {
+    margin-bottom: 5px;
+}
+
+/* added in hw4 for widget image editor form */
+.btn {
+    margin-bottom: 5px;
+}
+
+body {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+
+a {
+    text-decoration: none;
+    color: #474747;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:link a:visited {
+    color:#474747;
+}
+
+a:active {
+    color: #d64955;
+}
+
+.ef-navbar-default {
+    background-color: #4286f4;
+}
+
+.navbar-default {
+    background-color: #4286f4;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+
+/*
+.list-group-item {
+    border: none;
+}
+*/
+
+.srollable-left {
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    overflow: scroll;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+
+
+@media (min-width: 768px) {
+    .col-sm-8 {
+        margin-left: 33.3%;
+    }
+}
+
+.wd-widget {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wd-toolbar {
+    position: absolute;
+    background-color: white;
+    top: 0px;
+    right: 0px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    opacity: 0.8;
+    z-index:2;
+}
+
+/* classes for custom headers */
+
+.ef-light-nav {
+    background-color: #F4F4F4;
+}
+
+.glyphicon-eye-open {
+    margin-left:15px;
+}
+
+
+.ef-white-glyph {
+    color:#fff;
+}
+
+.ef-white-glyph-header {
+    position:relative;
+    color:#fff;
+    top:17px;
+
+}
+
+.ef-white-glyph-header:hover {
+    transition: 0.35s ease;
+    color: #444;
+}
+
+.ef-dark-glyph-header {
+    transition: 0.35s ease;
+    position: relative;
+    color: #777;
+    top:17px;
+
+}
+
+.ef-dark-glyph-header:hover {
+    transition: 0.35s ease;
+    color: #444;
+}
+
+.ef-nav-title-light {
+    color:#fff;
+    font-size:18px;
+    margin-left:15px;
+    line-height:50px;
+    text-decoration: none;
+}
+
+.ef-nav-title-dark {
+    color: #a0a0a0;
+    font-size:18px;
+    margin-left:15px;
+    line-height:50px;
+    text-decoration: none;
+}
+.ef-nav-title-dark:hover {
+    color:#aaa;
+    text-decoration: none;
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top:25px;
+    height:0;
+    z-index:1;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.ef-glyph-margin {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+/* CARD VIEW */
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+.cardView {
+    position: relative;
+    width:100%;
+    height:300px;
+    background-color:#fff;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.cardViewLarge {
+    position: relative;
+    width:100%;
+    height:auto;
+    padding-bottom:15px;
+    background-color:#fff;
+    /*box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);*/
+    /*border-top:1px solid #ddd;*/
+    border-bottom:3px solid #dddddd;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.cardViewImage {
+    position: relative;
+    width:inherit;
+    height:200px;
+    /*background-attachment: fixed;*/
+    background-size:cover;
+
+    top:0;
+}
+
+.cardViewImageSearch {
+    position: relative;
+    width:inherit;
+    height:190px;
+    /*background-attachment: fixed;*/
+    background-size:cover;
+
+    top:0;
+}
+
+.card-glyph {
+    margin-left:15px;
+    margin-right:15px;
+}
+
+.profileInfo {
+    position: relative;
+    width:100%;
+    height:100px;
+    line-height:100px;
+    display: inline-block;
+}
+
+.profileImg {
+    position: relative;
+    width:70px;
+    height:70px;
+    line-height: 70px;
+    font-size: 30px;
+    border-radius: 100px;
+    background-color: #dddddd;
+}
+
+.profileImgSmall {
+    position: relative;
+    margin-top:4px;
+    width:50px;
+    height:50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 100px;
+    background-color: #dddddd;
+}
+
+.profileImgExtraSmall {
+    position: relative;
+    margin-top:4px;
+    width:35px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 100px;
+    background-color: #dddddd;
+}
+
+
+div.horizontalScroll {
+    background-color:#efefef;
+    overflow: auto;
+    white-space:nowrap;
+}
+
+div.horizontalScroll a {
+    display: inline-block;
+    padding: 14px;
+}
+
+.cardViewHorizontal {
+    position: relative;
+    width:250px;
+    height:300px;
+    background-color:#fff;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.line {
+    position: relative;
+    margin:auto;
+    width:200px;
+    height:2px;
+    background-color:#eee;
+}
+.line-left {
+    position: relative;
+
+    width:200px;
+    height:2px;
+    background-color:#eee;
+}
+
+.price {
+    margin-top:20px;
+    font-family: Tahoma, sans-serif;
+}
+
+.image-NA-text {
+    position: absolute;
+    top:50%;
+    margin-top: -30px;
+    left:50%;
+    margin-left:-65px;
+}
+.suggestionInfo {
+    position: relative;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.becomeMember {
+    position: relative;
+    margin-top:15px;
+    margin-bottom:15px;
+    width:100%;
+    height:auto;
+}
+
+.becomeMember h4 {
+    color: #9d9d9d;
+    text-align: center;
+}
+
+.becomeMember h5 {
+    color: #4286f4;
+    text-align: center;
+}
+
+.becomeMember div {
+    width:100px;
+    height:30px;
+    padding:10px;
+    text-align: center;
+    border-radius: 3px;
+    color:#fff;
+    border: none;
+    line-height:10px;
+    margin:auto;
+    font-family: Tahoma, sans-serif;
+}
+.blueFont {
+    color:#4286f4;
+}
+
+.lighGrayFont {
+    color:#9d9d9d;
+}
+
+.lightRed {
+    color: #d64955;
+}
+
+.greenFront {
+    color:#4cae4c;
+}
+
+.smallFont {
+    margin-top:3px;
+    font-size: 10px;
+}
+
+.myBusinesses {
+    position: relative;
+    width:100%;
+    height:30px;
+    padding-left:15px;
+}
+
+.myBusinesses h6 {
+    color:#fff;
+    line-height:30px;
+}
+
+.myFriends {
+    position: relative;
+    width:100%;
+    height:30px;
+    margin-top:-10px;
+    padding-left:15px;
+    background-color: #a172eb;
+}
+
+.myFriends h6 {
+    color:#fff;
+    line-height:30px;
+}
+
+.profileDetails {
+    position: relative;
+    margin-top:-25px;
+    margin-bottom:15px;
+}
+
+.businessDetails {
+    position: relative;
+    margin-top:15px;
+    margin-bottom:25px;
+}
+
+.line-vertical {
+    width:2px;
+    height:4px;
+    background-color:#eee;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+.findFriendsTitle {
+    position: relative;
+    line-height:20px;
+    margin-right:10px;
+    margin-left:15px;
+    color:#fff;
+}
+
+.findFriendsContainer {
+    position: fixed;
+    width:auto;
+    height:40px;
+    background-color: #3937d9;
+    text-align: center;
+    border-radius: 2px;
+    top:5px;
+    right:5px;
+}
+
+.friendFoundList {
+    position: relative;
+    width:100%;
+    height:80px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    line-height:40px;
+    padding:10px;
+    display: inline-block;
+}
+
+.friendFoundListVerticalAlign {
+    line-height:35px;
+}
+
+.friendFoundListGlyph {
+    line-height:55px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-left-15 {
+    margin-left:15px;
+}
+
+.commentContainer {
+    position: relative;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    padding:10px;
+    margin-bottom:15px;
+}
+
+a.aHeart:visited, a.aHeart:active {
+    color: #d64955 !important;
+}
+
+.adminUserList {
+    position: relative;
+    width: 100%;
+    height:auto;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-bottom:1px solid #ddd;
+
+}
+
+.marginAuto {
+    position: relative;
+    width:100%;
+    height:auto;
+    padding:10px;
+    margin:auto;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+#profilePic {
+    border-radius: 100%;
+    margin:auto;
+}
+
+.profilePicBorder {
+    position: relative;
+    width:170px;
+    height:170px;
+    border-radius: 100%;
+    border: 2px solid #dddddd;
+    margin:auto;
+    padding:8px;
+    text-align: center;
+    line-height:0px;
+
+}
+
+.aboutMeContainer {
+    position: relative;
+    width:100%;
+    height:auto;
+    padding:10px;
+    border-top:2px solid #eee;
+
+}
