@@ -18,16 +18,10 @@ module.exports = function(app) {
 
     var FacebookStrategy = require('passport-facebook').Strategy;
 
-    // var facebookConfig = {
-    //     clientID: '460484557651369', //process.env.FACEBOOK_CLIENT_ID, //'460484557651369',
-    //     clientSecret: '2852203dd0f38204c379ab0295bf06f7', //process.env.FACEBOOK_SECRET,// '2852203dd0f38204c379ab0295bf06f7',
-    //     callbackURL:'http://localhost:3000/auth/facebook/callback', //process.env.FACEBOOK_CALLBACK,//
-    //     profileFields: ['emails','id','name','displayName']
-    // };
 
     var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID, //'460484557651369',
-        clientSecret: process.env.FACEBOOK_SECRET,// '2852203dd0f38204c379ab0295bf06f7',
+        clientID: process.env.FACEBOOK_CLIENT_ID, //'
+        clientSecret: process.env.FACEBOOK_SECRET,//
         callbackURL: process.env.FACEBOOK_CALLBACK,//
         profileFields: ['emails','id','name','displayName']
     };
