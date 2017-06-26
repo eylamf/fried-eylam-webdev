@@ -20,6 +20,7 @@
 <div class="container-fluid">
     <!-- category -->
     <label for="category">Category</label>
+    <br>
 
     <div class="btn-group" role="group" aria-label="...">
         <button ng-click="model.setTerm('Food')" type="button" class="btn btn-default">
@@ -57,26 +58,26 @@
             {{model.priceInCash}}
         </span>
     </label>
-    <br>
-    <div class="btn-group" role="group" aria-label="...">
-        <button ng-click="model.setPrice('1')" type="button" class="btn btn-default">
-            $
-        </button>
-        <button ng-click="model.setPrice('2')" type="button" class="btn btn-default">
-            $$
-        </button>
-        <button ng-click="model.setPrice('3')" type="button" class="btn btn-default">
-            $$$
-        </button>
-        <button ng-click="model.setPrice('4')" type="button" class="btn btn-default">
-            $$$$
-        </button>
-        <button ng-click="model.setPrice('0')" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-remove"></span>
-        </button>
-    </div>
+    <!--<br>-->
+    <!--<div class="btn-group" role="group" aria-label="...">-->
+        <!--<button ng-click="model.setPrice('1')" type="button" class="btn btn-default">-->
+            <!--$-->
+        <!--</button>-->
+        <!--<button ng-click="model.setPrice('2')" type="button" class="btn btn-default">-->
+            <!--$$-->
+        <!--</button>-->
+        <!--<button ng-click="model.setPrice('3')" type="button" class="btn btn-default">-->
+            <!--$$$-->
+        <!--</button>-->
+        <!--<button ng-click="model.setPrice('4')" type="button" class="btn btn-default">-->
+            <!--$$$$-->
+        <!--</button>-->
+        <!--<button ng-click="model.setPrice('0')" type="button" class="btn btn-default">-->
+            <!--<span class="glyphicon glyphicon-remove"></span>-->
+        <!--</button>-->
+    <!--</div>-->
 
-    <br>
+    <!--<br>-->
     <!-- input a city and click on search icon to find businesses in yelp api -->
     <label for="loc">City <span class="blueFont">*</span></label>
     <div class="input-group">
@@ -105,7 +106,7 @@
             <ul class="list-group">
                 <li ng-repeat="business in model.businesses">
 
-                    <div class="cardView">
+                    <div class="cardViewLarge">
                         <div class="cardViewImageSearch" style="background-image: url('{{business.image_url}}')"></div>
                         <div class="container-fluid">
                             <h5 class="text-center">
@@ -114,41 +115,63 @@
 
                             <div class="line"></div>
 
-                            <div class="text-center row">
+                            <h6><span class="glyphicon glyphicon-map-marker"></span>&nbsp
+                                <span ng-show="business.location.address1">{{business.location.address1}},</span>
+                                {{business.location.city}},
+                                {{business.location.state}}
+                                <span class="pull-right greenFront">{{business.price}}</span>
+                            </h6>
 
-                                <div class="col-xs-4">
-                                    <h6 class="lighGrayFont">{{business.price}}</h6>
-                                </div>
+                            <h6 ng-show="business.phone || business.review_count"><span class="glyphicon glyphicon-phone-alt"></span>
+                                &nbsp {{business.phone}}
+                                <span class="pull-right">
+                                    {{business.review_count}} reviews
+                                </span>
+                            </h6>
 
-                                <div class="col-xs-4">
-                                    <h6 class="lighGrayFont">{{business.rating}}
-                                        <span class="glyphicon glyphicon-star"></span>
-                                    </h6>
-                                </div>
+                            <a ng-show="business.url" href="{{business.url}}"><h6 class="blueFont">
+                                <span class="glyphicon glyphicon-globe"></span>
+                                &nbsp Check out this business on Yelp!
+                            </h6></a>
 
-                                <div class="col-xs-4">
-                                    <h6 class="lighGrayFont">{{business.review_count}} reviews</h6>
-                                </div>
+                            <div class="line"></div>
+                            <h4 ng-if="model.currentUser.businesses.indexOf(business.id) <= -1"
+                                ng-click="model.createBusiness(model.currentUser._id, business)"
+                                class="pull-right">
+                                <a class="aHeart">
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </a>
+                            </h4>
+                            <h4 ng-if="model.currentUser.businesses.indexOf(business.id) > -1"
+                                class="pull-right">
+                                <span class="glyphicon glyphicon-heart lightRed"></span>
+                            </h4>
+                            <h6 ng-if="model.currentUser.businesses.indexOf(business.id) <= -1"
+                                class="lighGrayFont">
+                                Like this business to see what other users are saying about it!
+                            </h6>
 
-                            </div>
+                            <h6 ng-if="model.currentUser.businesses.indexOf(business.id) > -1"
+                                class="lighGrayFont">
+                                You and {{business._user.length + 1}} other user(s) like this!
+                            </h6>
 
-
-                            <div class="row">
-                                <div class="col-xs-2">
-                                    <div ng-if="!model.currentUser.businesses.indexOf(business) > -1"
-                                         ng-click="model.createBusiness(model.currentUser._id, business)">
-                                        <span class="glyphicon glyphicon-heart"></span>
-                                    </div>
-                                    <!--<div ng-if="model.currentUser.businesses.indexOf(business) > -1"-->
-                                         <!--ng-click="model.removeBusiness(model.currentUser._id, business)">-->
-                                        <!--<span class="lightRed glyphicon glyphicon-heart"></span>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-2">-->
+                                    <!--<div ng-if="!model.currentUser.businesses.indexOf(business) > -1"-->
+                                         <!--ng-click="model.createBusiness(model.currentUser._id, business)">-->
+                                        <!--<span class="glyphicon glyphicon-heart"></span>-->
                                     <!--</div>-->
-                                </div>
+                                    <!--&lt;!&ndash;<div ng-if="model.currentUser.businesses.indexOf(business) > -1"&ndash;&gt;-->
+                                         <!--&lt;!&ndash;ng-click="model.removeBusiness(model.currentUser._id, business)">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<span class="lightRed glyphicon glyphicon-heart"></span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--</div>-->
 
-                                <div class="col-xs-2">
-                                    <span class="glyphicon glyphicon-comment"></span>
-                                </div>
-                            </div>
+                                <!--<div class="col-xs-2">-->
+                                    <!--<span class="glyphicon glyphicon-comment"></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
                         </div>
                     </div>
 
@@ -161,27 +184,99 @@
 
 </div>
 
-<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+
+<!-- admin user -->
+<nav ng-show="model.currentUser.roles.indexOf('ADMIN') > -1"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
     <div class="container-fluid">
         <div class="row text-center">
 
-            <a href="#!/user-home"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-3">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
             <a href="#!/user-search"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+               class="ef-dark-glyph-header col-xs-3">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
             <a href="#!/profile"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+            <a href="#!/admin" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!-- user -->
+
+<nav ng-show="model.currentUser._id && !(model.currentUser.roles.indexOf('ADMIN') > -1)"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-4">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
 
         </div>
     </div>
-
 </nav>
+
+<!-- anon user -->
+<nav ng-show="!model.currentUser._id"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/login"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!--<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="row text-center">-->
+
+            <!--<a href="#!/user-home"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-home"></span>-->
+            <!--</a>-->
+            <!--<a href="#!/user-search"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-search"></span>-->
+            <!--</a>-->
+            <!--<a href="#!/profile"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-user"></span>-->
+            <!--</a>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</nav>-->
 
 
 

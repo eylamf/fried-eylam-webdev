@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+        <a href="#!/profile">
+            <span class="glyphicon glyphicon-chevron-left pull-left ef-white-glyph-header"></span>
+        </a>
+        <a class="ef-nav-title-light">
+            Admin Portal
+        </a>
+
+        <a href="#!/create-user">
+            <div class="findFriendsContainer">
+                <h6 class="findFriendsTitle pull-right">Create user &nbsp <span class="glyphicon glyphicon-plus"></span></h6>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <h4>
+        Users
+    </h4>
+    <div class="line-left"></div>
+
+    <div ng-repeat="user in model.users" class="adminUserList">
+        <h5>
+            {{user.username}}
+            <span ng-click="model.deleteUser(user)"
+                  class="glyphicon glyphicon-trash pull-right"></span>
+        </h5>
+        <h6 class="lighGrayFont">
+            <span ng-show="user.firstName">{{user.firstName}}</span>
+            <span ng-show="user.lastName">{{user.lastName}}</span>
+        </h6>
+        <h6 ng-show="user.email" class="smallFont">
+            <span class="glyphicon glyphicon-envelope"></span> &nbsp
+            {{user.email}}
+        </h6>
+        <h6 ng-show="user.favCity" class="smallFont">
+            <span class="glyphicon glyphicon-globe"></span> &nbsp
+            {{user.favCity}}
+        </h6>
+
+
+    </div>
+
+</div>
+
+
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+            <a href="#!/admin" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+
+        </div>
+    </div>
+
+</nav>

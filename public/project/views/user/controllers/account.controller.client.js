@@ -11,6 +11,8 @@
         var model = this;
 
         model.updateUser = updateUser;
+        model.unregister = unregister;
+
 
         function init() {
             model.currentUser = currentUser;
@@ -18,6 +20,15 @@
         }
         init();
 
+        function unregister() {
+            userService
+                .unregister()
+                .then(function () {
+                    $location.url('/login');
+                }, function () {
+                    model.error = "Error occurred";
+                });
+        }
 
         function updateUser(user) {
             userService

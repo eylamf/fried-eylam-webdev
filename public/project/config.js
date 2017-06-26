@@ -10,9 +10,31 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html',
-                controller: 'homeController',
-                controllerAs: 'model'
+                templateUrl: 'views/real-home/templates/real-home.view.client.html',
+                controller: 'realHomeController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
+            })
+
+            /////////// ADMIN  ///////////
+
+            .when('/admin', {
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                controller: 'adminController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/create-user', {
+                templateUrl: 'views/admin/templates/create-user.view.client.html',
+                controller: 'adminController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
             })
 
             /////////// ANON  ///////////
@@ -85,6 +107,35 @@
     }
 
 })();
+
+function checkAdmin($q, $location, userService) {
+    var deferred = $q.defer();
+    userService
+        .checkAdmin()
+        .then(function (currentUser) {
+            if (currentUser === '0') {
+                deferred.resolve({});
+                $location.url('/');
+            } else {
+                deferred.resolve(currentUser);
+            }
+        });
+    return deferred.promise;
+}
+
+function checkCurrentUser($q, $location, userService) {
+    var deferred = $q.defer();
+    userService
+        .checkLoggedIn()
+        .then(function (currentUser) {
+            if (currentUser === '0') {
+                deferred.resolve({});
+            } else {
+                deferred.resolve(currentUser);
+            }
+        });
+    return deferred.promise;
+}
 
 function checkLoggedIn($q, $location, userService) {
     var deferred = $q.defer();

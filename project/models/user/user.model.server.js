@@ -35,6 +35,14 @@ userModel.addFriend = addFriend;
 userModel.removeFriend = removeFriend;
 userModel.findAllFriendsForUser = findAllFriendsForUser;
 
+// facebook
+userModel.findUserByFacebookId = findUserByFacebookId;
+
+function findUserByFacebookId(facebookId) {
+    return userModel
+        .findOne({'facebook.id' : facebookId});
+}
+
 
 function removeFriend(userId, friend) {
     return userModel
@@ -121,6 +129,7 @@ function findUserById(userId) {
 }
 
 function createUser(user) {
+    user.roles = ['USER'];
     return userModel.create(user);
 }
 

@@ -19,6 +19,7 @@
             checkLoggedIn: checkLoggedIn,
             logout: logout,
             register: register,
+            unregister: unregister,
             updateUser: updateUser,
             deleteUser: deleteUser,
             addBusiness: addBusiness,
@@ -26,9 +27,27 @@
             addFriend: addFriend,
             removeFriend: removeFriend,
             findBusinessesByUserId: findBusinessesByUserId,
-            findAllFriendsForUser: findAllFriendsForUser
+            findAllFriendsForUser: findAllFriendsForUser,
+            checkAdmin: checkAdmin,
+            findAllUsers: findAllUsers
         };
         return api;
+
+        function findAllUsers(username, password) {
+            var url = "/api/project/user";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = '/api/project/checkAdmin';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function checkLoggedIn() {
             var url = '/api/project/checkLoggedIn';
@@ -102,6 +121,15 @@
                 });
         }
 
+        function unregister() {
+            var url = '/api/project/unregister';
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+
         function deleteUser(userId) {
             var url = '/api/project/user/' + userId;
             return $http.delete(url)
@@ -139,13 +167,6 @@
 
         }
 
-        // function createBusiness(userId, business) {
-        //     var url = '/api/project/user/' + userId;
-        //     return $http.post(url, business)
-        //         .then(function (response) {
-        //             return response.data;
-        //         });
-        // }
 
         function removeFriend(userId, friend) {
             var url = '/api/project/user/'+userId+'/friend';

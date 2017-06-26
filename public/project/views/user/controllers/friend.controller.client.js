@@ -34,9 +34,13 @@
                 .findUserByUsername(username)
                 .then(function (user) {
                     // check to see if you are already following this user or if its you
-                    if (currentUser._friends.indexOf(user._id) > -1 || user._id === currentUser._id) {
+                    if (currentUser._friends.indexOf(user._id) > -1) {
                         model.found = "You are already following this user";
                         model.error = null;
+                    } else if (user._id === currentUser._id) {
+                        model.found = null;
+                        model.error = null;
+                        $location.url('/profile');
                     } else {
                         model.found = null;
                         model.error = null;

@@ -43,24 +43,25 @@
                     <div class="line"></div>
                     <div class="container row">
 
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-sm-1">
                             <h6 class="lighGrayFont">{{suggestion.price}}</h6>
                         </div>
 
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-sm-1">
                             <h6 class="lighGrayFont">{{suggestion.rating}}
                                 <span class="glyphicon glyphicon-star"></span>
                             </h6>
                         </div>
 
-                        <div class="col-xs-3">
-                            <h6 class="lighGrayFont">{{suggestion.review_count}} reviews</h6>
+                        <div class="col-xs-3 col-sm-1">
+                            <h6 class="lighGrayFont">{{suggestion.review_count}}
+                                <span class="glyphicon glyphicon-comment"></span></h6>
                         </div>
 
                     </div>
 
                     <div class="container row">
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-sm-1">
                             <div ng-if="model.currentUser.businesses.indexOf(suggestion.id) > -1"
                                  ng-click="model.removeBusiness(model.currentUser._id, suggestion)">
                                 <span class="lightRed glyphicon glyphicon-heart"></span>
@@ -73,11 +74,11 @@
 
                         </div>
 
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 col-sm-1">
                             <span class="glyphicon glyphicon-comment"></span>
                         </div>
 
-                        <div class="col-xs-4">
+                        <div class="col-xs-4 col-sm-2">
                             <div ng-if="model.currentUser.businesses.indexOf(suggestion) > -1">
                                 <h6 class="smallFont lighGrayFont">You previously liked this!</h6>
                             </div>
@@ -133,8 +134,8 @@
 
         <h6 ng-if="model.selectedBusiness.url"
             class="lighGrayFont">
-            <span class="glyphicon glyphicon-globe"></span>
-            <a class="lighGrayFont"
+            <span class="glyphicon glyphicon-globe blueFont"></span>
+            <a class="blueFont"
                href="{{model.selectedBusiness.url}}"
                target="_blank">
                 Check this business out on Yelp!
@@ -145,21 +146,21 @@
 
         <div class="row">
 
-            <div class="col-xs-2">
+            <div class="col-xs-2 col-sm-1">
                 <h6 ng-if="model.selectedBusiness.price"
                     class="lighGrayFont">
                     {{model.selectedBusiness.price}}
                 </h6>
             </div>
 
-            <div class="col-xs-3">
+            <div class="col-xs-3 col-sm-1">
                 <h6 ng-if="model.selectedBusiness.rating"
                     class="lighGrayFont">
                     {{model.selectedBusiness.rating}} <span class="glyphicon glyphicon-star"></span>
                 </h6>
             </div>
 
-            <div class="col-xs-4">
+            <div class="col-xs-4 col-sm-1">
                 <h6 ng-if="model.selectedBusiness.review_count"
                     class="lighGrayFont">
                     {{model.selectedBusiness.review_count}} reviews</span>
@@ -209,10 +210,83 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-        <a ng-click="model.removeBusiness(model.user._id, model.selectedBusiness)" class="btn btn-danger">
-            Remove this business
-        </a>
+</div>
+
+<div ng-show="model.friends || model.friendsBusinesses">
+
+    <div ng-repeat="obj in model.friendsBusinesses">
+        <div class="container-fluid">
+            <h5 class="margin-top-15">{{obj.user}}</h5>
+            <div class="line-left"></div>
+        </div>
+
+        <div class="horizontalScroll">
+            <div>
+                <a ng-click="model.seeDetails(suggestion)"
+                   ng-repeat="item in obj.items">
+                    <div class="cardViewHorizontal">
+                        <div ng-if="item.image_url" class="cardViewImage" style="background-image: url('{{item.image_url}}')"></div>
+                        <div ng-if="!item.image_url" class="cardViewImage">
+                            <div class="image-NA-text text-center">
+                                <h4><span class="glyphicon glyphicon-picture"></span></h4>
+                                <h5>Image Not Available</h5>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="suggestionInfo">{{item.name}}</h5>
+                            <div class="line"></div>
+                            <div class="container row">
+
+                                <div class="col-xs-2 col-sm-1">
+                                    <h6 class="lighGrayFont">{{item.price}}</h6>
+                                </div>
+
+                                <div class="col-xs-2 col-sm-1">
+                                    <h6 class="lighGrayFont">{{item.rating}}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    </h6>
+                                </div>
+
+                                <div class="col-xs-3 col-sm-1 col-md-1">
+                                    <h6 class="lighGrayFont">{{item.review_count}}
+                                        <span class="glyphicon glyphicon-comment"></span>
+                                    </h6>
+                                </div>
+
+                            </div>
+
+                            <div class="container row">
+                                <div class="col-xs-2 col-sm-1">
+                                    <div ng-if="model.currentUser.businesses.indexOf(item.id) > -1"
+                                         ng-click="model.removeBusiness(model.currentUser._id, suggestion)">
+                                        <span class="lightRed glyphicon glyphicon-heart"></span>
+                                    </div>
+                                    <div ng-if="!(model.currentUser.businesses.indexOf(item.id) > -1)"
+                                         ng-click="model.createBusiness(model.currentUser._id, item)">
+
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xs-2 col-sm-1">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </div>
+
+                                <div class="col-xs-4 col-sm-2">
+                                    <div ng-if="model.currentUser.businesses.indexOf(item) > -1">
+                                        <h6 class="smallFont lighGrayFont">You previously liked this!</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
     </div>
 
 </div>
@@ -220,24 +294,94 @@
 
 
 
-
-<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+<!-- admin user -->
+<nav ng-show="model.currentUser.roles.indexOf('ADMIN') > -1"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
     <div class="container-fluid">
         <div class="row text-center">
 
-            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-3">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
             <a href="#!/user-search"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+               class="ef-dark-glyph-header col-xs-3">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
             <a href="#!/profile"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+            <a href="#!/admin" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!-- user -->
+
+<nav ng-show="model.currentUser._id && !(model.currentUser.roles.indexOf('ADMIN') > -1)"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-4">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
 
         </div>
     </div>
-
 </nav>
+
+<!-- anon user -->
+<nav ng-show="!model.currentUser._id"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/login"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!--<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="row text-center">-->
+
+            <!--<a href="#!/user-home" class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-home"></span>-->
+            <!--</a>-->
+            <!--<a href="#!/user-search"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-search"></span>-->
+            <!--</a>-->
+            <!--<a href="#!/profile"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-user"></span>-->
+            <!--</a>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</nav>-->

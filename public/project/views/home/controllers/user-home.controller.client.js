@@ -77,6 +77,46 @@
             var term = model.term;
 
             searchYelp(term, city);
+
+            model.friendsBusinesses = [];
+
+            userService
+                .findAllFriendsForUser(currentUser._id)
+                .then(function (friends) {
+                    model.friends = friends;
+                    console.log(friends);
+                    friends = friends.sort();
+                    console.log(friends);
+
+                    var newFriend = [];
+                    //newFriend.push(friends[0]);
+                    for (var i = 0; i < friends.length; i++) {
+                        newFriend.push(friends[i]);
+                    }
+
+                    var counter = 0;
+                    for (var u in newFriend) {
+
+                        businessService
+                            .findAllBusinessesForUser(newFriend[u]._id)
+                            .then(function (businesses) {
+                                var obj = {
+                                    user: newFriend[counter].username,
+                                    items: businesses
+                                };
+                                counter++;
+                                model.friendsBusinesses.push(obj);
+                            }, function (err) {
+                                console.log(err);
+                            });
+                    }
+                    for (var j = 0; j < model.friendsBusinesses.length; j++) {
+                        model.friendsBusinesses[j].user = friends[j].username;
+                    }
+
+                });
+
+
         }
         init();
 
@@ -104,6 +144,7 @@
         }
 
         function createBusiness(userId, business) {
+
             businessService
                 .createBusiness(userId, business)
                 .then(function (response) {

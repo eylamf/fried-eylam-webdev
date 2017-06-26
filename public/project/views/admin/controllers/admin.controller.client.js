@@ -1,24 +1,42 @@
 /**
- * Created by eylamfried on 6/8/17
+ * Created by eylamfried on 6/25/17.
  */
-
-(function() {
+(function () {
     angular
         .module('PROJ')
-        .controller('registerController', registerController);
+        .controller('adminController', adminController);
 
-    function registerController($location, userService) {
-        // this is instead of using $scope
+    function adminController(currentUser, userService) {
         var model = this;
+        model.currentUser = currentUser;
+
         model.registerUser = registerUser;
+        model.deleteUser = deleteUser;
 
         function init() {
-
+            findAllUsers();
+            model.newUser = {};
         }
         init();
+        
+        function deleteUser(user) {
+            userService
+                .deleteUser(user._id)
+                .then(findAllUsers());
+        }
 
-        function registerUser(username, password, password2) {
+        function findAllUsers() {
+            userService
+                .findAllUsers()
+                .then(function (users) {
+                    model.users = users;
+                });
+        }
 
+        function registerUser(newUser) {
+            var password = newUser.password;
+            var password2 = newUser.password2;
+            var username = newUser.username;
             // handle errors
             if (typeof password === 'undefined' || password === null || password === ''
                 || typeof password2 === 'undefined' || password2 === null || password2 === ''
@@ -40,12 +58,16 @@
                         found = null;
                         var user = {
                             username: username,
-                            password: password
+                            password: password,
+                            email: newUser.email,
+                            firstName: newUser.firstName,
+                            lastName: newUser.lastName,
+                            favCity: newUser.favCity
                         };
                         userService
                             .register(user)
                             .then(function (user) {
-                                $location.url('/profile');
+                                console.log("succ");
                             });
                     } else {
                         found = user;
@@ -54,15 +76,26 @@
                 }, function (err) {
                     var user = {
                         username: username,
-                        password: password
+                        password: password,
+                        email: newUser.email,
+                        firstName: newUser.firstName,
+                        lastName: newUser.lastName,
+                        favCity: newUser.favCity
                     };
                     userService
-                        .register(user)
+                        .createUser(user)
                         .then(function (user) {
-                            $location.url('/profile');
+                            model.message = "User created successfully";
+                            model.newUser = {};
                         });
                 });
-        }
-    }
 
+
+        }
+
+
+    }
 })();
+
+
+

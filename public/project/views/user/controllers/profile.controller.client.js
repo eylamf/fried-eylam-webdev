@@ -49,6 +49,10 @@
                 .findUserByUsername(friendUsername)
                 .then(function (friend) {
 
+                    if (userId === friend._id) {
+                        return;
+                    }
+
                     userService
                         .addFriend(userId, friend)
                         .then(function (response) {
@@ -92,8 +96,8 @@
             userService
                 .removeBusiness(userId, business)
                 .then(function (response) {
-                    init();
                     model.selectedBusiness = null;
+                    init();
                 });
         }
 

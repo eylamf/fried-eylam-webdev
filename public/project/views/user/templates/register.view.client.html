@@ -50,6 +50,7 @@
            ng-model="password2"
            placeholder="Password">
 
+
     <!--<label for="city">Favorite City</label>-->
     <!--<input id="city"-->
            <!--class="form-control"-->
@@ -70,26 +71,27 @@
         Cancel
     </a>
 
-    <nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
-        <div class="container-fluid">
-            <div class="row text-center">
 
-                <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-home"></span>
-                </a>
-                <a href="#!/user/{{model.userId}}/search"
-                   class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-search"></span>
-                </a>
-                <a href="#!/login"
-                   class="ef-dark-glyph-header col-xs-4 visible-xs">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-        </div>
-
-    </nav>
 
 </div>
 
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user/{{model.userId}}/search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/login"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+
+</nav>
 

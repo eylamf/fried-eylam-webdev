@@ -47,7 +47,7 @@
             businessService
                 .createBusiness(userId, business)
                 .then(function (response) {
-                    $location.url('/profile');
+                    model.red = "lightRed";
                 });
         }
 
@@ -91,6 +91,7 @@
             userService
                 .addBusiness(userId, businessId)
                 .then(function (response) {
+                    init();
                 });
         }
     }

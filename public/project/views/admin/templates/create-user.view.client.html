@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+        <a href="#!/admin">
+            <span class="glyphicon glyphicon-chevron-left pull-left ef-white-glyph-header"></span>
+        </a>
+        <a class="ef-nav-title-light">
+            Create User
+        </a>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.erorr}}
+    </div>
+
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}} &nbsp <span class="glyphicon glyphicon-ok"></span>
+    </div>
+
+    <label for="username">Username <span class="blueFont">*</span> </label>
+    <input id="username"
+           class="form-control"
+           type="text"
+           ng-model="model.newUser.username"
+           placeholder="Username">
+
+    <label for="email">Email</label>
+    <input id="email"
+           class="form-control"
+           type="email"
+           ng-model="model.newUser.email"
+           placeholder="email@email.com">
+
+    <label for="first">First Name</label>
+    <input id="first"
+           class="form-control"
+           type="text"
+           ng-model="model.newUser.firstName"
+           placeholder="First name">
+
+    <label for="last">Last Name</label>
+    <input id="last"
+           class="form-control"
+           type="text"
+           ng-model="model.newUser.lastName"
+           placeholder="Last name">
+
+    <label for="pass">Password <span class="blueFont">*</span> </label>
+    <input id="pass"
+           class="form-control"
+           type="password"
+           ng-model="model.newUser.password"
+           placeholder="Password">
+
+    <label for="pass2">Verify Password <span class="blueFont">*</span> </label>
+    <input id="pass2"
+           class="form-control"
+           type="password"
+           ng-model="model.newUser.password2"
+           placeholder="Verify password">
+
+    <label for="city">City</label>
+    <input id="city"
+           class="form-control"
+           type="text"
+           ng-model="model.newUser.favCity"
+           placeholder="Where are you looking?">
+
+    <a ng-show="model.selectedUser"
+       class="btn btn-block btn-success">
+        Update &nbsp <span class="glyphicon glyphicon-edit"></span>
+    </a>
+
+    <a ng-show="!model.selectedUser"
+       class="btn btn-block btn-success"
+       ng-click="model.registerUser(model.newUser)">
+        Create &nbsp <span class="glyphicon glyphicon-ok"></span>
+    </a>
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+            <a href="#!/admin" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+
+        </div>
+    </div>
+
+</nav>

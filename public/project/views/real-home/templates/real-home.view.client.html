@@ -1,70 +1,47 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
 
-<nav class="navbar navbar-fixed-top navbar-default">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top">
 
-            <a href="#!/profile">
-                <span class="glyphicon glyphicon-chevron-left pull-left ef-white-glyph-header"></span>
-            </a>
-            <a class="navbar-brand">
-                Search a user
-            </a>
-
-
-    </div>
 </nav>
 
 <div class="container-fluid">
-    <h5 class="lighGrayFont">Search for a user using their username</h5>
-    <div class="line-left"></div>
-    <br>
-    <label for="search">Username</label>
-    <div class="input-group">
 
-        <input id="search"
-               type="text"
-               ng-model="usernameSearched"
-               class="form-control"
-               placeholder="Friend's username...">
+    <ul class="list-group">
 
-        <span class="input-group-btn">
-        <a ng-click="model.findUserByUsername(usernameSearched)" class="btn btn-success" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-        </span>
-    </div>
+        <li ng-if="model.currentUser.roles.indexOf('ADMIN') > -1"
+            class="list-group-item">
+            <a href="#!/admin">
+                Admin Portal
+            </a>
+        </li>
 
-    <div ng-show="model.found || model.error">
-        <div ng-if="model.found" class="alert alert-success">
-            {{model.found}} &nbsp <span class="glyphicon glyphicon-ok"></span>
-        </div>
-        <div ng-if="model.error" class="alert alert-danger">
-            {{model.error}} &nbsp <span class="glyphicon glyphicon-remove"></span>
-        </div>
-    </div>
+        <!--<li class="list-group-item">-->
+            <!--<a href="#!/search">Yelp API Test</a>-->
+        <!--</li>-->
 
-    <div ng-show="model.suggestedFriend">
-        <h5>Results</h5>
+        <li class="list-group-item">
+            <a ng-if="!model.currentUser._id"
+               href="#!/login">Login</a>
+            <a ng-if="model.currentUser._id"
+               href="#!/profile">Login</a>
+        </li>
 
-        <div class="friendFoundList">
-            <div class="row">
-                <div class="col-xs-3">
-                    <div class="profileImgSmall"><span class="glyphicon glyphicon-user"></span></div>
-                </div>
-                <div class="col-xs-6">
-                    <h5>{{model.suggestedFriend.username}}</h5>
-                    <h6 class="lighGrayFont">{{model.suggestedFriend.firstName}}</h6>
-                </div>
-                <div class="col-xs-3">
-                    <div ng-click="model.addFriend(model.currentUser._id, model.suggestedFriend)">
-                        <span class="friendFoundListGlyph glyphicon glyphicon-plus pull-right"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <li class="list-group-item">
+            <a ng-if="!model.currentUser._id"
+               href="#!/home">Main</a>
+            <a ng-if="model.currentUser._id"
+               href="#!/user-home">Main</a>
+        </li>
+
+    </ul>
+
 </div>
-
 
 <!-- admin user -->
 <nav ng-show="model.currentUser.roles.indexOf('ADMIN') > -1"
@@ -125,7 +102,7 @@
                 <span class="glyphicon glyphicon-home"></span>
             </a>
             <a href="#!/search"
-               class="ef-dark-glyph-header col-xs-4 ">
+               class="ef-dark-glyph-header col-xs-4">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
             <a href="#!/login"
@@ -137,4 +114,5 @@
     </div>
 </nav>
 
-
+</body>
+</html>

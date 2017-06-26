@@ -14,6 +14,11 @@ var userSchema = mongoose.Schema({
     favCity: String,
     businesses: [{type: String, ref: 'BusinessModel'}],
     _friends: [{type: mongoose.Schema.ObjectId, ref: 'UserModel'}],
+    roles: [{type: String, default: 'USER', enum: ['USER', 'ADMIN']}],
+    facebook: {
+        id:  String,
+        token: String
+    },
     dateCreated: {type: Date, default: Date.now}
 });
 

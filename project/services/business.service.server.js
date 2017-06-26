@@ -44,6 +44,7 @@ module.exports = function (app) {
                 res.json(business);
             }, function (err) {
                 business._id = business.id;
+
                 var businessExists = businessModel.findBusinessById(business._id);
                 var userHasBus = userModel.findBusinessById(userId, business._id).data;
                 var busHasUser = businessModel.findUserById(userId, business).data;
@@ -57,6 +58,10 @@ module.exports = function (app) {
                     businessModel
                         .addUser(userId, business);
                     res.send(err);
+                }
+
+                if (!businessExists) {
+                    console.log('here business');
                 }
 
                 if (businessExists && userHasBus && busHasUser) {

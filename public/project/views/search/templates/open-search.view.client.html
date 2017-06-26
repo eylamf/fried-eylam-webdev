@@ -115,24 +115,96 @@
 
 </div>
 
-<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+
+<!-- admin user -->
+<nav ng-show="model.currentUser.roles.indexOf('ADMIN') > -1"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
     <div class="container-fluid">
         <div class="row text-center">
 
-            <a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-3">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
-            <a href="#!/search"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-3">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
-            <a href="#!/login"
-               class="ef-dark-glyph-header col-xs-4 visible-xs">
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+            <a href="#!/admin" class="ef-dark-glyph-header col-xs-3">
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!-- user -->
+
+<nav ng-show="model.currentUser._id && !(model.currentUser.roles.indexOf('ADMIN') > -1)"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/user-home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/user-search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/profile"
+               class="ef-dark-glyph-header col-xs-4">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
 
         </div>
     </div>
-
 </nav>
+
+<!-- anon user -->
+<nav ng-show="!model.currentUser._id"
+     class="navbar navbar-fixed-bottom navbar-default ef-light-nav">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <a href="#!/home" class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <a href="#!/search"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#!/login"
+               class="ef-dark-glyph-header col-xs-4">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<!--<nav class="navbar navbar-fixed-bottom navbar-default ef-light-nav">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="row text-center">-->
+
+            <!--<a href="#!/home" class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-home"></span>-->
+            <!--</a>-->
+            <!--<a href="#!/search"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-search"></span>-->
+            <!--</a>-->
+            <!--<a href="#!/login"-->
+               <!--class="ef-dark-glyph-header col-xs-4 visible-xs">-->
+                <!--<span class="glyphicon glyphicon-user"></span>-->
+            <!--</a>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</nav>-->
 
