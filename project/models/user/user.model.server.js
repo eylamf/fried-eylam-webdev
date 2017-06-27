@@ -130,6 +130,15 @@ function findUserById(userId) {
 
 function createUser(user) {
     user.roles = ['USER'];
+
+    /**
+     *  THIS IS SIMPLY FOR TESTING PURPOSES
+     */
+    if (user.username === 'admin') {
+        user.roles = ['USER', 'ADMIN'];
+    }
+
+
     return userModel.create(user);
 }
 
