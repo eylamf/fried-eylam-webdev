@@ -92,6 +92,11 @@ function removeBusiness(userId, business) {
 }
 
 function addBusiness(userId, businessId) {
+
+
+    /*
+        ON PLANE : blind code
+     */
     return userModel
         .findUserById(userId)
         .then(function (user) {

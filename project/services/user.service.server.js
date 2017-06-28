@@ -26,6 +26,14 @@ module.exports = function(app) {
         profileFields: ['emails','id','name','displayName']
     };
 
+    // var facebookConfig = {
+    //     clientID: '460484557651369',//process.env.FACEBOOK_CLIENT_ID, //'
+    //     clientSecret:'2852203dd0f38204c379ab0295bf06f7', // process.env.FACEBOOK_SECRET,//
+    //     callbackURL: 'http://localhost:3000/auth/facebook/callback', // process.env.FACEBOOK_CALLBACK,//
+    //     profileFields: ['emails','id','name','displayName']
+    // };
+
+
 
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
