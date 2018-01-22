@@ -19,3 +19,4 @@ This repo is where all my deliverables for CS4550/CS5610 Web Development will be
 Links:
 -----
 Heroku hosted environment: https://fried-eylam-webdev.herokuapp.com/
+PROJECT WORKING LINK: https://web-dev-proj.herokuapp.com/
